@@ -6,12 +6,10 @@ exports.createGroup = (req, res) => {
   const name = req.body.name;
   if (!name) {
     return res.status(400).send({
-      error: "You must provide a name and a description"
+      error: "You must provide a name"
     });
   }
-  const newGroup = {
-    name: name
-  };
+  const newGroup = { name: name };
   Group.create(newGroup)
     .then((data) => {
       res.send(data);
