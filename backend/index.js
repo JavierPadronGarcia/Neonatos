@@ -2,11 +2,19 @@ const express = require("express");
 
 const app = express();
 
+const cors = require("cors");
+
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./models");
+
+var corsOptions = {
+  origin: "*",
+}
+
+app.use(cors(corsOptions));
 
 //normal use. Doesn't delete the database data
 db.sequelize.sync();
