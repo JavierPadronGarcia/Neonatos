@@ -1,0 +1,21 @@
+.groups-page {
+  font-family: 'Roboto';
+}
+
+.groups-page-header {
+  display: flex;
+  height: 3.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.groups-page-header>h2 {
+  margin: 0;
+}
+
+.groups-page-add {
+  position: fixed;
+  right: 0.5rem;
+  top: 3.5rem;
+}
