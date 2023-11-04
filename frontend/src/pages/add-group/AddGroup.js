@@ -27,7 +27,7 @@ function AddGroup() {
   return (
     <div className='add-group-page'>
       <Header />
-      <div className='add-group-page-arrow' onClick={() => navigate('/')}>
+      <div className='add-group-page-arrow' onClick={() => navigate('/groups')}>
         <img src='/assets/icons/arrow-left.svg' />
       </div>
       <main className='add-group-main'>

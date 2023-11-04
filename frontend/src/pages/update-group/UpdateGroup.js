@@ -28,7 +28,7 @@ function UpdateGroup() {
     }
 
     groupsService.updateGroup(updatedGroup).then(() => {
-      navigate('/')
+      navigate('/groups')
     })
   }
 
@@ -43,7 +43,7 @@ function UpdateGroup() {
   return (
     <div className='update-group-page'>
       <Header />
-      <div className='update-group-page-arrow' onClick={() => navigate('/')}>
+      <div className='update-group-page-arrow' onClick={() => navigate('/groups')}>
         <img src='/assets/icons/arrow-left.svg' />
       </div>
       <main className='update-group-main'>

@@ -1,0 +1,70 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page>header>h1 {
+  display: flex;
+  width: 100%;
+  height: 18.75rem;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Alegreya Sans SC';
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+.login-page>main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page>main>form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 16.5rem;
+  height: 8.75rem;
+  gap: 1.88em;
+}
+
+.login-page>main>form>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3em;
+}
+
+
+.login-page #user,
+.login-page #password {
+  display: flex;
+  width: 16.5rem;
+  height: 2rem;
+  border-radius: 0.3125rem;
+  border: 1px solid #E4E4E4;
+  background: #D9D9D9;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.25rem 0.75rem;
+  box-sizing: border-box;
+}
+
+.button {
+  color: #E4E4E4;
+  display: flex;
+  width: 9em;
+  height: 2.5em;
+  border-radius: 0.3125rem;
+  border: 1px solid #21759B;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+  background: #21759B;
+  justify-content: center;
+  align-items: center;
+}

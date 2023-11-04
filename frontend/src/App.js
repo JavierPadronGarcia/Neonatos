@@ -9,8 +9,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
-        <Route path="/" element={<Groups />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/groups" element={<Groups />} />
         <Route path="/groups/add-group" element={<AddGroup />} />
         <Route path="/groups/update/:name/:id" element={<UpdateGroup />} />
       </Routes>

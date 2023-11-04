@@ -1,7 +1,35 @@
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
+
 function Login() {
+
+  const navigate = useNavigate();
+
+  const login = (e) => {
+    e.preventDefault();
+    navigate('/groups');
+  }
+
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login-page">
+      <header>
+        <h1>MetaHospitalFP</h1>
+      </header>
+      <main>
+        <form onSubmit={(e) => login(e)}>
+          <div>
+            <label className="input-label">
+              <input name="user" id="user" type="text" placeholder="Usuario" />
+            </label>
+            <label className="input-label">
+              <input name="password" id="password" type="password" placeholder="Contraseña" />
+            </label>
+          </div>
+          <label>
+            <button className="button">Iniciar sesión</button>
+          </label>
+        </form>
+      </main>
     </div>
   );
 }
