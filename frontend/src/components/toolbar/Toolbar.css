@@ -1,0 +1,17 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3.3125rem;
+  background: #21759B;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

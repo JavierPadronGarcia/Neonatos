@@ -4,6 +4,7 @@ import Add from "../../components/add/Add";
 import './Groups.css';
 import groupsService from "../../services/groups.service";
 import Group from "../../components/group/Group";
+import Toolbar from "../../components/toolbar/Toolbar";
 
 function Groups() {
 
@@ -13,6 +14,12 @@ function Groups() {
   async function getAllGroups() {
     const newGroups = await groupsService.getAllGroups();
     setAllGroups(newGroups);
+  }
+
+  async function deleteGroup(id) {
+    groupsService.deleteGroup(id).then(() => {
+      getAllGroups();
+    })
   }
 
   useEffect(() => {
@@ -33,12 +40,18 @@ function Groups() {
           {allGroups.map((group) => {
             return (
               <article>
-                <Group name={group.name} ident={group.id} />
+                <Group
+                  name={group.name}
+                  ident={group.id}
+                  edit={true}
+                  notifyDelete={(id) => deleteGroup(id)}
+                />
               </article>
             );
           })}
         </section>
       </main>
+      <Toolbar />
     </div>
   );
 

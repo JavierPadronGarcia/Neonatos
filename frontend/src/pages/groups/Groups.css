@@ -27,3 +27,13 @@
   align-items: center;
   gap: 23px;
 }
+
+.groups-page-section>article {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.groups-page-section>article:last-child {
+  padding-bottom: 4em;
+}
