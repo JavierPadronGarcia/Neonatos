@@ -10,10 +10,14 @@ module.exports = app => {
   router.get("/", auth.isAuthenticated, users.findAll);
   // Retrieve a single user with id
   router.get("/:id", auth.isAuthenticated, users.findOne);
+
   // Update a User with id
   router.put("/:id", auth.isAuthenticated, users.update);
   //Sign in
   router.post('/signin', auth.signin);
+
+  //get the role of the user authenticated
+  router.post("/my-role", auth.isAuthenticated, auth.getRole);
 
   app.use('/api/users', router);
 }

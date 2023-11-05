@@ -51,7 +51,12 @@ exports.create = (req, res) => {
   })
 }
 
+exports.findByRole = (req, res) => {
+  req.send(req.user.role);
+}
+
 exports.findAll = (req, res) => {
+
   User.findAll().then(data => {
     res.send(data);
   }).catch(err => {

@@ -5,10 +5,20 @@ import './Groups.css';
 import groupsService from "../../services/groups.service";
 import Group from "../../components/group/Group";
 import Toolbar from "../../components/toolbar/Toolbar";
+import authService from "../../services/auth.service";
+import { useNavigate } from "react-router-dom";
 
 function Groups() {
 
+  const navigate = useNavigate();
+
   const [allGroups, setAllGroups] = useState([]);
+
+  authService.getMyRole().then((role) => {
+    if (role != 'admin') {
+      authService.navigateByRole(role, navigate);
+    }
+  });
 
 
   async function getAllGroups() {
@@ -39,7 +49,7 @@ function Groups() {
         <section className="groups-page-section">
           {allGroups.map((group) => {
             return (
-              <article>
+              <article key={group.id}>
                 <Group
                   name={group.name}
                   ident={group.id}

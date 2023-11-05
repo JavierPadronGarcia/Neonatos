@@ -62,6 +62,9 @@ exports.isAuthenticated = (req, res, next) => {
           err.message || "Some error occurred while retrieving users."
       })
     })
-
   })
+}
+
+exports.getRole = (req, res) => {
+  res.json({ role: req.user.role })
 }
