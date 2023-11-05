@@ -1,5 +1,6 @@
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import authService from '../../services/auth.service';
 
 function Login() {
 
@@ -7,7 +8,12 @@ function Login() {
 
   const login = (e) => {
     e.preventDefault();
-    navigate('/groups');
+    console.log(e.target.user.value)
+    console.log(e.target.password.value)
+
+    authService.login({ username: e.target.user.value, password: e.target.password.value }).then(() => {
+      console.log(localStorage.getItem("token"))
+    })
   }
 
   return (
