@@ -1,4 +1,4 @@
-# ActiviApp
+# MetaHospitalFP
 
 <a name="readme-top"></a>
 
@@ -65,7 +65,7 @@ Once we have that diagram ready, we can start creating the backend.
 In this diagram we can identify all the necessary tables to create the databases.
 
 Notice that we have a table that has several records, among them is the role ("Discriminator"), this
-role will be the one that will identify if the user is a student, a teacher, or an administrator.
+role will be the one that will identify if the user is a student, a teacher, a director or an administrator.
 
 Finally, it is not necessary to add the guest because it can't modify the data in the database
 
