@@ -1,6 +1,7 @@
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
+import { message } from 'antd';
 
 function Login() {
 
@@ -14,6 +15,10 @@ function Login() {
 
     authService.login({ username: e.target.user.value, password: e.target.password.value }).then((role) => {
       authService.navigateByRole(role, navigate);
+      message.success({
+        content: `Sesión iniciada correctamente`,
+        duration: 1,
+      })
     })
   }
 

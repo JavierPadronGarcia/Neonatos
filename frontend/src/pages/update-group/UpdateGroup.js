@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import Group from '../../components/group/Group';
 import Toolbar from '../../components/toolbar/Toolbar';
 import groupsService from '../../services/groups.service';
+import { message } from 'antd';
 
 function UpdateGroup() {
   const params = useParams();
@@ -26,9 +27,11 @@ function UpdateGroup() {
       id: params.id,
       name: inputValue
     }
-
+    message.loading('Actualizando...', 0)
     groupsService.updateGroup(updatedGroup).then(() => {
-      navigate('/groups')
+      message.destroy();
+      message.success('Actualizado', 2);
+      navigate('/groups');
     })
   }
 

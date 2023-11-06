@@ -7,6 +7,7 @@ import Group from "../../components/group/Group";
 import Toolbar from "../../components/toolbar/Toolbar";
 import authService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 function Groups() {
 
@@ -20,15 +21,22 @@ function Groups() {
     }
   });
 
-
   async function getAllGroups() {
     const newGroups = await groupsService.getAllGroups();
     setAllGroups(newGroups);
   }
 
-  async function deleteGroup(id) {
+  function deleteGroup(id) {
     groupsService.deleteGroup(id).then(() => {
       getAllGroups();
+      message.success({
+        content: "Curso eliminado",
+        duration: 2,
+        style: {
+          display: "flex",
+          justifyContent: "flex-end",
+        }
+      })
     })
   }
 

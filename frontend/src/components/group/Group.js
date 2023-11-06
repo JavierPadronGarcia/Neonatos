@@ -1,13 +1,24 @@
 import './Group.css';
 import { useNavigate } from 'react-router-dom';
+import { Popconfirm } from 'antd';
+import { useState } from 'react';
 
 function Group(props) {
-
-  const navigate = useNavigate();
-
   const name = props.name;
   const ident = props.ident;
   const edit = props.edit;
+
+  const navigate = useNavigate();
+
+  const [open, setOpen] = useState(false);
+
+  const showPopDelete = () => {
+    setOpen(true);
+  }
+
+  const cancelDeletion = () => {
+    setOpen(false);
+  }
 
   const deleteGroup = () => {
     props.notifyDelete(props.ident);
@@ -34,7 +45,17 @@ function Group(props) {
     return (
       <article className='group-component'>
         <header className='group-component-header'>
-          <img src="/assets/icons/trash-can.svg" alt="delete group" onClick={() => deleteGroup()} />
+          <Popconfirm
+            title="Eliminar este curso?"
+            open={open}
+            placement='left'
+            onConfirm={deleteGroup}
+            onCancel={cancelDeletion}
+            okText='Confirmar'
+            cancelText='Cancelar'
+          >
+            <img src="/assets/icons/trash-can.svg" alt="delete group" onClick={() => showPopDelete()} />
+          </Popconfirm>
           <p>{name}</p>
           <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/groups/update/${name}/${ident}`)} />
         </header>
