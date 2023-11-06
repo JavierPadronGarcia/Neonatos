@@ -15,11 +15,6 @@ function Groups() {
 
   const [allGroups, setAllGroups] = useState([]);
 
-  authService.getMyRole().then((role) => {
-    if (role != 'admin') {
-      authService.navigateByRole(role, navigate);
-    }
-  });
 
   async function getAllGroups() {
     const newGroups = await groupsService.getAllGroups();

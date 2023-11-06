@@ -43,7 +43,7 @@ function AddGroup() {
         <h5>Previsualización</h5>
         <Group name={inputValue} ident={0} />
         <form onSubmit={(e) => addGroup(e)}>
-          <input id='name' name='name' type='text' placeholder='Nombre del curso' onKeyUp={(e) => updateTitle(e)} />
+          <input id='name' name='name' type='text' placeholder='Nombre del curso' onKeyUp={(e) => updateTitle(e)} required />
           <button>Agregar</button>
         </form>
       </main>
