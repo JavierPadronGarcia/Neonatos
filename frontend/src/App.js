@@ -4,7 +4,6 @@ import Login from './pages/login/Login';
 import Groups from './pages/groups/Groups';
 import AddGroup from './pages/add-group/AddGroup';
 import UpdateGroup from './pages/update-group/UpdateGroup';
-import { createContext } from 'react';
 import PrivateRoute from './utils/PrivateRoute';
 import authService from './services/auth.service';
 
