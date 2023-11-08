@@ -82,19 +82,60 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  User.update(req.body, { where: { id: id } }).then(num => {
-    if (num == 1) {
+  let user = {
+    username: req.body.username,
+    password: req.body.password,
+    role: req.body.role
+  }
+
+  User.findOne({ where: { id: id } }).then(data => {
+    if (!data) {
+      res.status(404).send({ message: "Cannot update the user because don't exists" })
+    }
+    const result = bcrypt.compareSync(user.password, data.password);
+    //if the password don't match, hash the new password
+    if (!result) {
+      user.password = bcrypt.hashSync(user.password);
+    }
+
+    User.update(user, { where: { id: id } }).then(num => {
+      if (num == 1) {
+        res.send({
+          message: "User was updated successfully."
+        })
+      } else {
+        res.send({
+          message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+        })
+      }
+    }).catch(err => {
+      res.status(500).send({
+        message: "Error updating User with id=" + id
+      });
+    })
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving the User."
+    })
+  })
+}
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  User.destroy({ where: { id: id } }).then(num => {
+    if (num === 1) {
       res.send({
-        message: "User was updated successfully."
+        message: "User was deleted successfully!"
       })
     } else {
       res.send({
-        message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+        message: `Cannot delete User with id=${id}. Maybe User was not found!`
       })
     }
   }).catch(err => {
     res.status(500).send({
-      message: "Error updating User with id=" + id
+      message: "Could not delete User with id=" + id
     })
   })
 }

@@ -6,13 +6,19 @@ module.exports = app => {
 
   // Create a new User
   router.post("/", users.create);
+
   // Retrieve all Users
   router.get("/", auth.isAuthenticated, users.findAll);
+
   // Retrieve a single user with id
   router.get("/:id", auth.isAuthenticated, users.findOne);
 
   // Update a User with id
   router.put("/:id", auth.isAuthenticated, users.update);
+
+  // Delete a User with id
+  router.delete("/:id", auth.isAuthenticated, users.delete);
+
   //Sign in
   router.post('/signin', auth.signin);
 
