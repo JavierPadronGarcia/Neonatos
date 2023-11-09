@@ -5,16 +5,11 @@ import './Groups.css';
 import groupsService from "../../services/groups.service";
 import Group from "../../components/group/Group";
 import Toolbar from "../../components/toolbar/Toolbar";
-import authService from "../../services/auth.service";
-import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 
 function Groups() {
 
-  const navigate = useNavigate();
-
   const [allGroups, setAllGroups] = useState([]);
-
 
   async function getAllGroups() {
     const newGroups = await groupsService.getAllGroups();

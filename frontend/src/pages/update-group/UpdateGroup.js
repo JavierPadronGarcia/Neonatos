@@ -5,13 +5,15 @@ import Header from '../../components/Header/Header';
 import Group from '../../components/group/Group';
 import Toolbar from '../../components/toolbar/Toolbar';
 import groupsService from '../../services/groups.service';
-import { message } from 'antd';
+import { Button, Input, message } from 'antd';
 
 function UpdateGroup() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [inputValue, setInputValue] = useState(params.name);
+  const prevName = params.name;
+  const [inputValue, setInputValue] = useState(prevName);
+  const [inputNameStatus, setInputNameStatus] = useState('');
 
   useEffect(() => {
     if (params.name) {
@@ -23,16 +25,25 @@ function UpdateGroup() {
 
   async function updateGroup(e) {
     e.preventDefault();
-    const updatedGroup = {
-      id: params.id,
-      name: inputValue
+    if (!e.target.name.value) {
+      message.error('El nombre no puede estar vacío');
+      setInputNameStatus('error');
+    } else if (prevName !== inputValue) {
+      setInputNameStatus('');
+      const updatedGroup = {
+        id: params.id,
+        name: inputValue
+      }
+      message.loading('Actualizando...', 0)
+      groupsService.updateGroup(updatedGroup).then(() => {
+        navigate('/groups');
+        message.destroy();
+        message.success('Actualizado', 2);
+      })
+    } else {
+      message.error('El curso no puede tener el mismo nombre que el anterior')
+      setInputNameStatus('error')
     }
-    message.loading('Actualizando...', 0)
-    groupsService.updateGroup(updatedGroup).then(() => {
-      message.destroy();
-      message.success('Actualizado', 2);
-      navigate('/groups');
-    })
   }
 
   const updateTitle = (e) => {
@@ -47,21 +58,27 @@ function UpdateGroup() {
     <div className='update-group-page'>
       <Header />
       <div className='update-group-page-arrow' onClick={() => navigate('/groups')}>
-        <img src='/assets/icons/arrow-left.svg' />
+        <img src='/assets/icons/arrow-left.svg' alt='volver a los cursos' />
       </div>
       <main className='update-group-main'>
         <h3>Actualizando curso</h3>
         <h5>Previsualización</h5>
         <Group name={inputValue} ident={0} />
         <form onSubmit={(e) => updateGroup(e)}>
-          <input id='name' name='name' type='text' placeholder='Nombre del curso' onKeyUp={(e) => updateTitle(e)} />
-          <button>Actualizar</button>
+          <Input
+            id='name'
+            name='name'
+            type='text'
+            placeholder='Nombre del curso'
+            status={inputNameStatus}
+            onKeyUp={(e) => updateTitle(e)}
+          />
+          <Button htmlType='submit'>Actualizar</Button>
         </form>
       </main>
       <Toolbar />
     </div>
   );
-
 }
 
 export default UpdateGroup;

@@ -1,7 +1,7 @@
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
-import { Button, Form, Input, message, notification } from 'antd';
+import { Button, Input, message, notification } from 'antd';
 import { useState } from 'react';
 
 function Login() {
@@ -51,7 +51,7 @@ function Login() {
           message: 'No se ha podido iniciar sesión',
           description: "El usuario o la contraseña son correctos?",
           placement: 'top',
-          duration: 10
+          duration: 5
         });
       })
     }
