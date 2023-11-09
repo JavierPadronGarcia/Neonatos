@@ -1,7 +1,8 @@
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
-import { message } from 'antd';
+import { Button, Form, Input, message, notification } from 'antd';
+import { useState } from 'react';
 
 function Login() {
 
@@ -9,17 +10,51 @@ function Login() {
 
   const logged = authService.isLoggedIn();
 
+  const [inputNameStatus, setInputNameStatus] = useState('');
+  const [inputPasswdStatus, setInputPasswdStatus] = useState('');
 
   const login = (e) => {
     e.preventDefault();
+    const username = e.target.user.value;
+    const password = e.target.password.value;
 
-    authService.login({ username: e.target.user.value, password: e.target.password.value }).then((role) => {
-      authService.navigateByRole(role, navigate);
-      message.success({
-        content: `Sesión iniciada correctamente`,
-        duration: 1,
+    setInputNameStatus('');
+    setInputPasswdStatus('');
+
+    notification.destroy();
+
+    if (!username && !password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputNameStatus('error');
+      setInputPasswdStatus('error');
+    }
+
+    if (!username && password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputNameStatus('error');
+    }
+
+    if (username && !password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputPasswdStatus('error');
+    }
+
+    if (username && password) {
+      authService.login({ username: username, password: password }).then((role) => {
+        authService.navigateByRole(role, navigate);
+        message.success({
+          content: `Sesión iniciada correctamente`,
+          duration: 1,
+        })
+      }).catch((err) => {
+        notification.error({
+          message: 'No se ha podido iniciar sesión',
+          description: "El usuario o la contraseña son correctos?",
+          placement: 'top',
+          duration: 10
+        });
       })
-    })
+    }
   }
 
   if (logged) {
@@ -40,17 +75,30 @@ function Login() {
           <h1>MetaHospitalFP</h1>
         </header>
         <main>
+
           <form onSubmit={(e) => login(e)}>
             <div>
               <label className="input-label">
-                <input name="user" id="user" type="text" placeholder="Usuario" />
+                <Input
+                  status={inputNameStatus}
+                  style={{ background: "#D9D9D9" }}
+                  name="user"
+                  id="user"
+                  placeholder="Usuario"
+                />
               </label>
               <label className="input-label">
-                <input name="password" id="password" type="password" placeholder="Contraseña" />
+                <Input.Password
+                  status={inputPasswdStatus}
+                  style={{ background: "#D9D9D9" }}
+                  name="password"
+                  id="password"
+                  placeholder="Contraseña"
+                />
               </label>
             </div>
             <label>
-              <button className="button">Iniciar sesión</button>
+              <Button className='button' htmlType='submit'>Iniciar sesion</Button>
             </label>
           </form>
         </main>
@@ -58,4 +106,5 @@ function Login() {
     );
   }
 }
+
 export default Login;
