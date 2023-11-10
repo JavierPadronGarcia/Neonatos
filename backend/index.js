@@ -20,12 +20,12 @@ app.use(express.json());
 const db = require("./models");
 
 //normal use. Doesn't delete the database data
-db.sequelize.sync();
+// db.sequelize.sync();
 
 // //In development, it drops the database data
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log('Drop and re-sync db.');
-// })
+db.sequelize.sync({ force: true }).then(() => {
+  console.log('Drop and re-sync db.');
+})
 
 app.use(function (req, res, next) {
   var token = req.headers['authorization'];

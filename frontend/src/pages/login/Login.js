@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
 import { useState } from 'react';
+import { UserOutlined } from '@ant-design/icons';
 
 function Login() {
 
@@ -81,16 +82,16 @@ function Login() {
               <label className="input-label">
                 <Input
                   status={inputNameStatus}
-                  style={{ background: "#D9D9D9" }}
                   name="user"
                   id="user"
                   placeholder="Usuario"
+                  prefix={<UserOutlined />}
                 />
               </label>
               <label className="input-label">
                 <Input.Password
                   status={inputPasswdStatus}
-                  style={{ background: "#D9D9D9" }}
+
                   name="password"
                   id="password"
                   placeholder="Contraseña"
