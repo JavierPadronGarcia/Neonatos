@@ -1,0 +1,66 @@
+.background-ellipses {
+  position: absolute;
+  background: #E3E2E2;
+  width: 100%;
+  height: 100%;
+  z-index: -500;
+}
+
+.background-ellipses div {
+  position: fixed;
+  border-radius: 50%;
+}
+
+.ellipse-1 {
+  --size: 373px;
+  width: var(--size);
+  height: var(--size);
+  top: -161px;
+  left: 72.22%;
+  background: #B2DECC;
+}
+
+.ellipse-2 {
+  --size: 243px;
+  width: var(--size);
+  height: var(--size);
+  top: -137px;
+  left: -26.25%;
+  background: #69ACF4;
+}
+
+.ellipse-3 {
+  --size: 171px;
+  width: var(--size);
+  height: var(--size);
+  top: 170px;
+  left: -26.25%;
+  background: #FF704A;
+}
+
+.ellipse-4 {
+  --size: 373px;
+  width: var(--size);
+  height: var(--size);
+  top: 470px;
+  left: -85%;
+  background: #69ACF4;
+}
+
+.ellipse-5 {
+  --size: 437px;
+  width: var(--size);
+  height: var(--size);
+  top: 450px;
+  left: 70%;
+  background: #B2DECC;
+}
+
+.ellipse-6 {
+  --size: 170px;
+  width: var(--size);
+  height: var(--size);
+  top: 250px;
+  left: 85%;
+  background: #FF704A;
+}

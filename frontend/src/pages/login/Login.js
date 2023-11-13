@@ -5,6 +5,7 @@ import { Button, Input, message, notification } from 'antd';
 import { useContext, useState } from 'react';
 import UserRolesContext from '../../utils/UserRoleContext';
 import { UserOutlined } from '@ant-design/icons';
+import Background from '../../components/background/Background';
 
 function Login() {
 
@@ -78,12 +79,14 @@ function Login() {
   }
 
   return (
-    <div className="login-page">
-      <header>
-        <h1>MetaHospitalFP</h1>
-      </header>
-      <main>
-
+    <div className='main-page'>
+      <Background />
+      <div className="login-page">
+        <header>
+          <div><img src='/assets/img/logo.png' alt='logo' /></div>
+          <h1>MetaHospitalFP</h1>
+        </header>
+        <main>
           <form onSubmit={(e) => login(e)}>
             <div>
               <label className="input-label">
@@ -110,9 +113,12 @@ function Login() {
             </label>
           </form>
         </main>
+        <footer className='login-page-footer'>
+          <img src='/assets/img/login-image.svg' alt='image' />
+        </footer>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Login;
