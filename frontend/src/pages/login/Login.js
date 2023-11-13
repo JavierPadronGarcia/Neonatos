@@ -82,37 +82,38 @@ function Login() {
     <div className='main-page'>
       <Background />
       <div className="login-page">
-        <header>
-          <div><img src='/assets/img/logo.png' alt='logo' /></div>
-          <h1>MetaHospitalFP</h1>
-        </header>
-        <main>
-          <form onSubmit={(e) => login(e)}>
-            <div>
-              <label className="input-label">
-                <Input
-                  status={inputNameStatus}
-                  name="user"
-                  id="user"
-                  placeholder="Usuario"
-                  prefix={<UserOutlined />}
-                />
+        <div>
+          <header className='login-page-header'>
+            <div><img src='/assets/img/logo.png' alt='logo' /></div>
+            <h1>MetaHospitalFP</h1>
+          </header>
+          <main className='login-page-main'>
+            <form onSubmit={(e) => login(e)}>
+              <div>
+                <label className="input-label">
+                  <Input
+                    status={inputNameStatus}
+                    name="user"
+                    id="user"
+                    placeholder="Usuario"
+                    prefix={<UserOutlined />}
+                  />
+                </label>
+                <label className="input-label">
+                  <Input.Password
+                    status={inputPasswdStatus}
+                    name="password"
+                    id="password"
+                    placeholder="Contraseña"
+                  />
+                </label>
+              </div>
+              <label>
+                <Button className='button' htmlType='submit'>Iniciar sesion</Button>
               </label>
-              <label className="input-label">
-                <Input.Password
-                  status={inputPasswdStatus}
-
-                  name="password"
-                  id="password"
-                  placeholder="Contraseña"
-                />
-              </label>
-            </div>
-            <label>
-              <Button className='button' htmlType='submit'>Iniciar sesion</Button>
-            </label>
-          </form>
-        </main>
+            </form>
+          </main>
+        </div>
         <footer className='login-page-footer'>
           <img src='/assets/img/login-image.svg' alt='image' />
         </footer>
