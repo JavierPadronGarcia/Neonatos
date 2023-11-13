@@ -2,11 +2,13 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import UserRolesContext from '../../utils/UserRoleContext';
 import { UserOutlined } from '@ant-design/icons';
 
 function Login() {
 
+  const RoleContext = useContext(UserRolesContext);
   const navigate = useNavigate();
 
   const logged = authService.isLoggedIn();
@@ -24,24 +26,29 @@ function Login() {
 
     notification.destroy();
 
+    //all the inputs fail
     if (!username && !password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputNameStatus('error');
       setInputPasswdStatus('error');
     }
 
+    //only username fails
     if (!username && password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputNameStatus('error');
     }
 
+    //only password fails
     if (username && !password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputPasswdStatus('error');
     }
 
+    //all inputs ok
     if (username && password) {
       authService.login({ username: username, password: password }).then((role) => {
+        RoleContext.role = role;
         authService.navigateByRole(role, navigate);
         message.success({
           content: `Sesión iniciada correctamente`,
@@ -59,9 +66,8 @@ function Login() {
   }
 
   if (logged) {
-    authService.getMyRole().then(role => {
-      authService.navigateByRole(role, navigate);
-    })
+    console.log(RoleContext.role)
+    authService.navigateByRole(RoleContext.role, navigate);
     return (
       <div className="login-page">
         <header>
@@ -69,13 +75,14 @@ function Login() {
         </header>
       </div>
     );
-  } else {
-    return (
-      <div className="login-page">
-        <header>
-          <h1>MetaHospitalFP</h1>
-        </header>
-        <main>
+  }
+
+  return (
+    <div className="login-page">
+      <header>
+        <h1>MetaHospitalFP</h1>
+      </header>
+      <main>
 
           <form onSubmit={(e) => login(e)}>
             <div>
