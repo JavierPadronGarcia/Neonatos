@@ -1,30 +1,34 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import authService from "../services/auth.service";
 import { Outlet, useNavigate } from "react-router-dom";
+import UserRolesContext from "./UserRoleContext";
 
 function PrivateRoute(props) {
 
   const navigate = useNavigate();
   const [changePage, setChangePage] = useState();
+  const RoleContext = useContext(UserRolesContext);
 
   async function checkRole() {
-    let enter = false;
+    const role = RoleContext.role;
+
     if (!props.logged) {
-      return enter;
-    } else {
-      const role = await authService.getMyRole();
-      if (role !== props.permittedRole) {
-        authService.navigateByRole(role, navigate);
-        return false;
-      } else {
-        return true;
-      }
+      navigate('/');
+      return false;
     }
+
+    if (role !== props.permittedRole) {
+      authService.navigateByRole(role, navigate);
+      return false;
+    }
+
+    return true;
   }
 
-  checkRole().then(accessGranted => {
-    setChangePage(accessGranted);
-  });
+  useEffect(() => {
+    const accessGranted = checkRole();
+    setChangePage(accessGranted)
+  }, [])
 
   if (changePage) {
     return <Outlet />

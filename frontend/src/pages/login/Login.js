@@ -2,10 +2,12 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import UserRolesContext from '../../utils/UserRoleContext';
 
 function Login() {
 
+  const RoleContext = useContext(UserRolesContext);
   const navigate = useNavigate();
 
   const logged = authService.isLoggedIn();
@@ -23,24 +25,29 @@ function Login() {
 
     notification.destroy();
 
+    //all the inputs fail
     if (!username && !password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputNameStatus('error');
       setInputPasswdStatus('error');
     }
 
+    //only username fails
     if (!username && password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputNameStatus('error');
     }
 
+    //only password fails
     if (username && !password) {
       message.warning("Por favor, Rellena todos los campos", 5,)
       setInputPasswdStatus('error');
     }
 
+    //all inputs ok
     if (username && password) {
       authService.login({ username: username, password: password }).then((role) => {
+        RoleContext.role = role;
         authService.navigateByRole(role, navigate);
         message.success({
           content: `Sesión iniciada correctamente`,
@@ -58,9 +65,8 @@ function Login() {
   }
 
   if (logged) {
-    authService.getMyRole().then(role => {
-      authService.navigateByRole(role, navigate);
-    })
+    console.log(RoleContext.role)
+    authService.navigateByRole(RoleContext.role, navigate);
     return (
       <div className="login-page">
         <header>
@@ -68,43 +74,44 @@ function Login() {
         </header>
       </div>
     );
-  } else {
-    return (
-      <div className="login-page">
-        <header>
-          <h1>MetaHospitalFP</h1>
-        </header>
-        <main>
-
-          <form onSubmit={(e) => login(e)}>
-            <div>
-              <label className="input-label">
-                <Input
-                  status={inputNameStatus}
-                  style={{ background: "#D9D9D9" }}
-                  name="user"
-                  id="user"
-                  placeholder="Usuario"
-                />
-              </label>
-              <label className="input-label">
-                <Input.Password
-                  status={inputPasswdStatus}
-                  style={{ background: "#D9D9D9" }}
-                  name="password"
-                  id="password"
-                  placeholder="Contraseña"
-                />
-              </label>
-            </div>
-            <label>
-              <Button className='button' htmlType='submit'>Iniciar sesion</Button>
-            </label>
-          </form>
-        </main>
-      </div>
-    );
   }
+
+  return (
+    <div className="login-page">
+      <header>
+        <h1>MetaHospitalFP</h1>
+      </header>
+      <main>
+
+        <form onSubmit={(e) => login(e)}>
+          <div>
+            <label className="input-label">
+              <Input
+                status={inputNameStatus}
+                style={{ background: "#D9D9D9" }}
+                name="user"
+                id="user"
+                placeholder="Usuario"
+              />
+            </label>
+            <label className="input-label">
+              <Input.Password
+                status={inputPasswdStatus}
+                style={{ background: "#D9D9D9" }}
+                name="password"
+                id="password"
+                placeholder="Contraseña"
+              />
+            </label>
+          </div>
+          <label>
+            <Button className='button' htmlType='submit'>Iniciar sesion</Button>
+          </label>
+        </form>
+      </main>
+    </div>
+  );
 }
+
 
 export default Login;
