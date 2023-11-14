@@ -10,5 +10,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.ENUM('admin', 'teacher', 'student', 'director'),
     }
   })
+
+
   return User;
 }

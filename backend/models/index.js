@@ -17,5 +17,23 @@ db.sequelize = sequelize;
 
 db.groups = require("./group.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.teachercourse = require("./teachercourse.model.js")(sequelize, Sequelize);
+
+//teacher - groups relations
+db.users.hasMany(db.teachercourse, {
+  foreignKey: 'UserID'
+});
+
+db.groups.hasMany(db.teachercourse, {
+  foreignKey: 'GroupID'
+});
+
+db.teachercourse.belongsTo(db.users, {
+  foreignKey: 'UserID'
+});
+
+db.teachercourse.belongsTo(db.groups, {
+  foreignKey: 'GroupID'
+});
 
 module.exports = db;
