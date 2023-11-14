@@ -19,6 +19,7 @@ db.groups = require("./group.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.teachercourse = require("./teachercourse.model.js")(sequelize, Sequelize);
 db.groupEnrolement = require("./groupenrolement.model.js")(sequelize, Sequelize);
+db.workUnit = require('./workunit.model.js')(sequelize, Sequelize);
 
 //teacher - groups relations
 db.users.hasMany(db.teachercourse, {
