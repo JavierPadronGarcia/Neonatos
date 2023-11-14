@@ -20,6 +20,7 @@ db.users = require("./user.model.js")(sequelize, Sequelize);
 db.teachercourse = require("./teachercourse.model.js")(sequelize, Sequelize);
 db.groupEnrolement = require("./groupenrolement.model.js")(sequelize, Sequelize);
 db.workUnit = require('./workunit.model.js')(sequelize, Sequelize);
+db.case = require('./case.model.js')(sequelize, Sequelize);
 
 //teacher - groups relations
 db.users.hasMany(db.teachercourse, {
@@ -54,5 +55,11 @@ db.groupEnrolement.belongsTo(db.users, {
 db.groupEnrolement.belongsTo(db.groups, {
   foreignKey: 'GroupID'
 });
+
+//work unit - case relations
+db.workUnit.hasMany(db.case, { foreignKey: 'WorkUnitId' });
+
+
+module.exports = db;
 
 module.exports = db;
