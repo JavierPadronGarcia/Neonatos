@@ -67,6 +67,7 @@ require("./routes/teachercourse.routes")(app);
 require("./routes/groupenrolement.routes")(app);
 require("./routes/workunit.routes")(app);
 require("./routes/case.routes")(app);
+require("./routes/item.routes")(app);
 
 
 app.listen(port, () => {
