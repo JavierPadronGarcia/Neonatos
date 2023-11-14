@@ -64,6 +64,7 @@ app.use(function (req, res, next) {
 require("./routes/user.routes")(app);
 require("./routes/group.routes")(app);
 require("./routes/teachercourse.routes")(app);
+require("./routes/groupenrolement.routes")(app);
 
 
 app.listen(port, () => {

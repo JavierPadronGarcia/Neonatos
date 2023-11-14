@@ -18,6 +18,7 @@ db.sequelize = sequelize;
 db.groups = require("./group.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
 db.teachercourse = require("./teachercourse.model.js")(sequelize, Sequelize);
+db.groupEnrolement = require("./groupenrolement.model.js")(sequelize, Sequelize);
 
 //teacher - groups relations
 db.users.hasMany(db.teachercourse, {
@@ -33,6 +34,23 @@ db.teachercourse.belongsTo(db.users, {
 });
 
 db.teachercourse.belongsTo(db.groups, {
+  foreignKey: 'GroupID'
+});
+
+//student - groups relations
+db.users.hasMany(db.groupEnrolement, {
+  foreignKey: 'UserID'
+});
+
+db.groups.hasMany(db.groupEnrolement, {
+  foreignKey: 'GroupID'
+});
+
+db.groupEnrolement.belongsTo(db.users, {
+  foreignKey: 'UserID'
+});
+
+db.groupEnrolement.belongsTo(db.groups, {
   foreignKey: 'GroupID'
 });
 
