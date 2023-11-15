@@ -65,7 +65,6 @@ function Login() {
   }
 
   if (logged) {
-    console.log(RoleContext.role)
     authService.navigateByRole(RoleContext.role, navigate);
     return (
       <div className="login-page">

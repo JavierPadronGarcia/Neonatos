@@ -57,7 +57,7 @@ function UpdateGroup() {
   return (
     <div className='update-group-page'>
       <Header />
-      <div className='update-group-page-arrow' onClick={() => navigate('/groups')}>
+      <div className='update-group-page-arrow' onClick={() => navigate('/admin/groups')}>
         <img src='/assets/icons/arrow-left.svg' alt='volver a los cursos' />
       </div>
       <main className='update-group-main'>
