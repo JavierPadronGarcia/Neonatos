@@ -23,7 +23,6 @@ exports.signin = (req, res) => {
     const token = utils.generateToken(data);
 
     const userObj = utils.getCleanUser(data);
-
     return res.json({ user: userObj, access_token: token })
   }).catch(err => {
     res.status(500).send({

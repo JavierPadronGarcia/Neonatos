@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     role: {
       type: Sequelize.ENUM('admin', 'teacher', 'student', 'director'),
+    },
+    filename: {
+      type: Sequelize.STRING
     }
   })
 
