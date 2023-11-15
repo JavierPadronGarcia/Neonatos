@@ -1,14 +1,15 @@
 module.exports = (sequelize, Sequelize) => {
-  const Group = sequelize.define("group", {
+  const WorkUnit = sequelize.define("workUnit", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: Sequelize.STRING,
-      allowNull: false
-    },
+      allowNull: false,
+    }
   })
-  return Group;
+
+  return WorkUnit;
 }

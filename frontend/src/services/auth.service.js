@@ -64,8 +64,14 @@ async function logout() {
 }
 
 async function getMyRole() {
-  const response = await axios.post(`${AUTH_SERVER_ADDRESS}/api/users/my-role`, null, setTokenOptions())
-  return response.data.role
+  try {
+    const response = await axios.post(`${AUTH_SERVER_ADDRESS}/api/users/my-role`, null, setTokenOptions())
+    return response.data.role
+  } catch (err) {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+    throw err;
+  }
 }
 
 function isLoggedIn() {
@@ -79,7 +85,7 @@ function isLoggedIn() {
 const navigateByRole = (role, navigate) => {
   switch (role) {
     case 'admin':
-      navigate('/groups');
+      navigate('/admin/control-panel');
       break;
     case 'teacher':
       navigate('/teacher-groups');

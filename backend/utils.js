@@ -26,7 +26,15 @@ function getCleanUser(user) {
   }
 }
 
+function decodeToken(token) {
+  token = token.replace('Bearer ', '');
+  //decode token bearer
+  let decoded = jwt.verify(token, process.env.JWT_SECRET);
+  return decoded;
+}
+
 module.exports = {
   generateToken,
-  getCleanUser
+  getCleanUser,
+  decodeToken
 }

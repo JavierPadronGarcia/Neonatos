@@ -41,7 +41,7 @@ function Groups() {
         <header className="groups-page-header">
           <h2>Cursos</h2>
           <div className="groups-page-add" >
-            <Add link="/groups/add-group" alt="add group" />
+            <Add link="/admin/groups/add-group" alt="add group" />
           </div>
         </header>
         <section className="groups-page-section">

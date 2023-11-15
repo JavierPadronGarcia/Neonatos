@@ -11,13 +11,17 @@ function getOptions(token) {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }
-  return options
+  return options;
 }
 
 async function getAllGroups() {
-  const response = await axios.get(endPoint, getOptions(localStorage.getItem("token")));
-  const groups = await response.data;
-  return groups;
+  try {
+    const response = await axios.get(endPoint, getOptions(localStorage.getItem("token")));
+    const groups = await response.data;
+    return groups;
+  } catch (err) {
+    console.log('Error getting all groups', err);
+  }
 }
 
 async function addGroup(groupName) {
