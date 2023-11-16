@@ -3,9 +3,11 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const express = require("express");
 const cors = require("cors");
+var path = require('path');
 
 const app = express();
 const port = process.env.PORT || 8080;
+app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
   origin: "http://localhost:3000"
@@ -63,6 +65,13 @@ app.use(function (req, res, next) {
 
 require("./routes/user.routes")(app);
 require("./routes/group.routes")(app);
+require("./routes/teachercourse.routes")(app);
+require("./routes/groupenrolement.routes")(app);
+require("./routes/workunit.routes")(app);
+require("./routes/case.routes")(app);
+require("./routes/item.routes")(app);
+require("./routes/exercise.routes")(app);
+require("./routes/grade.routes")(app);
 
 app.listen(port, () => {
   console.log('Server is runing on: ' + port);

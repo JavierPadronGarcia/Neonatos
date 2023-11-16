@@ -8,6 +8,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #F2F2F2F2;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
 }
 
 code {

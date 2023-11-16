@@ -17,5 +17,40 @@ db.sequelize = sequelize;
 
 db.groups = require("./group.model.js")(sequelize, Sequelize);
 db.users = require("./user.model.js")(sequelize, Sequelize);
+db.teachercourse = require("./teachercourse.model.js")(sequelize, Sequelize);
+db.groupEnrolement = require("./groupenrolement.model.js")(sequelize, Sequelize);
+db.workUnit = require('./workunit.model.js')(sequelize, Sequelize);
+db.case = require('./case.model.js')(sequelize, Sequelize);
+db.item = require('./item.model.js')(sequelize, Sequelize);
+db.exercise = require('./exercise.model.js')(sequelize, Sequelize);
+db.grade = require('./grade.model.js')(sequelize, Sequelize);
+
+//teacher - groups relations
+db.users.hasMany(db.teachercourse, { foreignKey: 'UserID' });
+db.groups.hasMany(db.teachercourse, { foreignKey: 'GroupID' });
+
+db.teachercourse.belongsTo(db.users, { foreignKey: 'UserID' });
+db.teachercourse.belongsTo(db.groups, { foreignKey: 'GroupID' });
+
+//student - groups relations
+db.users.hasMany(db.groupEnrolement, { foreignKey: 'UserID' });
+db.groups.hasMany(db.groupEnrolement, { foreignKey: 'GroupID' });
+
+db.groupEnrolement.belongsTo(db.users, { foreignKey: 'UserID' });
+db.groupEnrolement.belongsTo(db.groups, { foreignKey: 'GroupID' });
+
+//work unit - case relations
+db.workUnit.hasMany(db.case, { foreignKey: 'WorkUnitId' });
+
+//items - cases relations
+db.case.hasMany(db.item, { foreignKey: 'CaseId' });
+
+//exercises relations
+db.exercise.belongsTo(db.case, { foreignKey: 'CaseID' })
+db.exercise.belongsTo(db.users, { foreignKey: 'UserID' })
+
+//grade relations
+db.grade.belongsTo(db.item, { foreignKey: 'ItemID' });
+db.grade.belongsTo(db.exercise, { foreignKey: 'ExerciseID' });
 
 module.exports = db;

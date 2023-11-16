@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const AUTH_SERVER_ADDRESS = 'http://localhost:8080';
-const roles = ['admin', 'teacher', 'student', 'director'];
 
 function getOptions(user) {
   let base64UserAndPassword = window.btoa(user.username + ":" + user.password);
@@ -65,8 +64,14 @@ async function logout() {
 }
 
 async function getMyRole() {
-  const response = await axios.post(`${AUTH_SERVER_ADDRESS}/api/users/my-role`, null, setTokenOptions())
-  return response.data.role
+  try {
+    const response = await axios.post(`${AUTH_SERVER_ADDRESS}/api/users/my-role`, null, setTokenOptions())
+    return response.data.role
+  } catch (err) {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+    throw err;
+  }
 }
 
 function isLoggedIn() {
@@ -79,16 +84,16 @@ function isLoggedIn() {
 
 const navigateByRole = (role, navigate) => {
   switch (role) {
-    case roles[0]:
-      navigate('/groups');
+    case 'admin':
+      navigate('/admin/control-panel');
       break;
-    case roles[1]:
+    case 'teacher':
       navigate('/teacher-groups');
       break;
-    case roles[2]:
+    case 'student':
       navigate('/student-groups');
       break;
-    case roles[3]:
+    case 'director':
       navigate('/director-panel');
       break;
     default:

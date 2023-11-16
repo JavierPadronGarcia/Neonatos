@@ -18,6 +18,14 @@
       </ul>
     </li>
     <li><a href="#figma-prototype">Figma prototype</a></li>
+    <li>
+      <span>Getting started</span>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#open-the-project">Open the project</a></li>
+      </ul>
+    </li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -72,6 +80,116 @@ Finally, it is not necessary to add the guest because it can't modify the data i
 #### Figma prototype
 
 Once that I have a first view of the application, I can start to create the prototype, to create it I used Figma, here is the prototype. [Figma prototype]
+
+
+## Getting Started
+
+### Prerequisites
+
+- Have a text editor like [Visual Studio Code]
+
+- Have installed the lastest lts version of node js
+
+you can see what version is installed with:
+
+ ```sh
+  node --version
+  ```
+
+If you don't have node js <a href='https://nodejs.org/en'>click here</a> to install it
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/JavierPadronGarcia/Neonatos.git
+   ```
+
+2. Go to the new folder and Install NPM packages for the frontend
+    ```sh
+    cd Neonatos/frontend
+    npm install
+    ```
+
+3. Go to the backend folder and install the npm packages:
+
+    ```sh
+    cd Neonatos/backend
+    npm install
+    ```
+
+4. Finnaly you need to create the .env file in the main folder in the backend:
+
+    ```sh
+    cd Neonatos/backend
+    ```
+
+You will have the folder like this:
+![Image of the folder directoy backend](/readmeImages/BackendFolderDotenv.png)
+
+In the .env you need to put the following lines, this are an example,
+
+ ```sh
+  JWT_SECRET= #a difficult password for the JWT token
+
+  MYSQL_DATABASE=db_metahospitalfp
+  MYSQL_USER= #your mysql user, usually is root
+  MYSQL_PASSWORD= #your mysql password
+  MYSQL_ROOT_PASSWORD= #the mysql root password
+
+  DB_HOST=localhost
+
+  NODE_ENV=development
+```
+Once you have all the data here, you will need to create the mysql database:
+
+Open mysql workbench and login to your account.
+
+Now, in the toolbar clic here to create a database 
+![Image of the toolbar in mysql workbench](/readmeImages/MysqlToolbar.png)
+
+And put the same database name that you have in the .env:
+![Image of the creation of the database in mysql workbench](/readmeImages/MysqlCreateDatabase.png)
+
+Clic on apply and you have finished the set up of the proyect.
+
+<a name="start-the-project"></a>
+
+### Open the project
+
+ Now we have installed the proyect you need to start it like this:
+
+  - Start the backend:
+
+  To start the backend, go to the backend folder in the terminal an put this:
+  ```sh
+    npm start
+  ```
+  This command will run the server and show you something like this:
+  ![Image of the console when you start the server](/readmeImages/ConsoleStartServer.png)
+
+  And if it's the first time starting the backend it will create all the tables and relations.
+
+  Now, mysql workbench will show all the tables created:
+  ![Image of the tables created in mysql workbench after running the server](/readmeImages/TablesCreatedAfterRunningTheServer.png)
+
+  If you want to check the created endPoints of the backend 
+  <a href='https://api.postman.com/collections/29809597-ecbc8b6e-11d2-40f9-971f-d33cf5c9b96b?access_key=PMAT-01HFCDZBXCCCCJNPQ5JK45X0TZ'>click here</a>
+
+  In the link you will see all the endpoints in the database with folders for each table, if you want to see a description of the table, clic in the folder and you will see this:
+  ![Image of the description of a table in postman](/readmeImages/DescriptionOfATableInPostman.png)
+
+  - Start the frontend:
+
+  Starting the frontend is very simmilar to the backend, you only need to go to the frontend directory
+  and run this command in the terminal:
+
+  ```sh
+    npm start
+  ```
+
+  Now it will start a localhost server in the port 3000 and you can start to use it:
+  ![Image of the console when you start the frontend server](/readmeImages/FrontendConsoleStartingTheServer.png)
 
 <!-- CONTACT -->
 ## Contact

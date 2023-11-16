@@ -35,7 +35,7 @@ function Group(props) {
           <p>cantidad de estudiantes</p>
         </main>
         <footer className='group-component-footer-no-edit'>
-          <button onclick={() => navigate(`/groups/details/${ident}`)}>
+          <button onclick={() => navigate(`/admin/groups/details/${ident}`)}>
             Ver detalles
           </button>
         </footer>
@@ -57,7 +57,7 @@ function Group(props) {
             <img src="/assets/icons/trash-can.svg" alt="delete group" onClick={() => showPopDelete()} />
           </Popconfirm>
           <p>{name}</p>
-          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/groups/update/${name}/${ident}`)} />
+          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/admin/groups/update/${name}/${ident}`)} />
         </header>
         <main className='group-component-main'>
           <p>cantidad de profesores</p>
