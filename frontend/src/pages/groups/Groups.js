@@ -5,15 +5,25 @@ import './Groups.css';
 import groupsService from "../../services/groups.service";
 import Group from "../../components/group/Group";
 import Toolbar from "../../components/toolbar/Toolbar";
-import { message } from "antd";
+import { message, notification } from "antd";
 
 function Groups() {
 
   const [allGroups, setAllGroups] = useState([]);
 
   async function getAllGroups() {
-    const newGroups = await groupsService.getAllGroups();
-    setAllGroups(newGroups);
+    try {
+      const newGroups = await groupsService.getAllGroups();
+      setAllGroups(newGroups);
+    } catch (err) {
+      if (!err.response) {
+        notification.error({
+          message: 'Error de conexión',
+          description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
+          placement: 'top',
+        });
+      }
+    }
   }
 
   function deleteGroup(id) {
@@ -27,6 +37,14 @@ function Groups() {
           justifyContent: "flex-end",
         }
       })
+    }).catch(err => {
+      if (!err.response) {
+        notification.error({
+          message: 'Error de conexión',
+          description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
+          placement: 'top',
+        });
+      }
     })
   }
 

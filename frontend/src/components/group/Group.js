@@ -22,6 +22,7 @@ function Group(props) {
 
   const deleteGroup = () => {
     props.notifyDelete(props.ident);
+    setOpen(false);
   }
 
   if (!edit) {

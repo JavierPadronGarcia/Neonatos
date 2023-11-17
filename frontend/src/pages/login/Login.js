@@ -14,9 +14,69 @@ function Login() {
 
   const [inputNameStatus, setInputNameStatus] = useState('');
   const [inputPasswdStatus, setInputPasswdStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const checkAllInputsFail = (username, password) => {
+    if (!username && !password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputNameStatus('error');
+      setInputPasswdStatus('error');
+      setLoading(false);
+    }
+  }
+
+  const checkUsernameFail = (username, password) => {
+    if (!username && password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputNameStatus('error');
+      setLoading(false);
+    }
+  }
+
+  const checkPasswordFail = (username, password) => {
+    if (username && !password) {
+      message.warning("Por favor, Rellena todos los campos", 5,)
+      setInputPasswdStatus('error');
+      setLoading(false);
+    }
+  }
+
+  const handleLogin = (username, password) => {
+    authService.login({ username: username, password: password }).then((role) => {
+      RoleContext.role = role;
+      message.success({
+        content: `Sesión iniciada correctamente`,
+        duration: 1,
+      })
+      setLoading(false);
+    }).catch((err) => {
+      loginErrors(err);
+      setLoading(false);
+    })
+  }
+
+  const loginErrors = (err) => {
+    if (!err.response) {
+      notification.error({
+        message: 'No se ha podido iniciar sesión',
+        description: "Puede que no tenga conexión? Verifique su red y vuelva a intentarlo.",
+        placement: 'top',
+      });
+    }
+
+    if (err.response && err.response.status === 401) {
+      notification.error({
+        message: 'No se ha podido iniciar sesión',
+        description: "El usuario o la contraseña son correctos?",
+        placement: 'top',
+        duration: 5
+      });
+    }
+  }
 
   const login = (e) => {
     e.preventDefault();
+    setLoading(true);
     const username = e.target.user.value;
     const password = e.target.password.value;
 
@@ -25,47 +85,18 @@ function Login() {
 
     notification.destroy();
 
-    //all the inputs fail
-    if (!username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-      setInputPasswdStatus('error');
-    }
+    checkAllInputsFail(username, password);
+    checkUsernameFail(username, password);
+    checkPasswordFail(username, password);
 
-    //only username fails
-    if (!username && password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-    }
-
-    //only password fails
-    if (username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputPasswdStatus('error');
-    }
-
-    //all inputs ok
     if (username && password) {
-      authService.login({ username: username, password: password }).then((role) => {
-        RoleContext.role = role;
-        authService.navigateByRole(role, navigate);
-        message.success({
-          content: `Sesión iniciada correctamente`,
-          duration: 1,
-        })
-      }).catch((err) => {
-        notification.error({
-          message: 'No se ha podido iniciar sesión',
-          description: "El usuario o la contraseña son correctos?",
-          placement: 'top',
-          duration: 5
-        });
-      })
+      handleLogin(username, password);
     }
   }
 
   if (logged) {
-    authService.navigateByRole(RoleContext.role, navigate);
+    const role = RoleContext.role;
+    authService.navigateByRole(role, navigate);
     return (
       <div className="login-page">
         <header>
@@ -104,7 +135,7 @@ function Login() {
             </label>
           </div>
           <label>
-            <Button className='button' htmlType='submit'>Iniciar sesion</Button>
+            <Button className='button' htmlType='submit' loading={loading}>Iniciar sesion</Button>
           </label>
         </form>
       </main>

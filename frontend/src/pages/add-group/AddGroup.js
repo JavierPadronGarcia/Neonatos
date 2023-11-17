@@ -5,7 +5,7 @@ import Group from '../../components/group/Group';
 import { useState } from 'react';
 import groupsService from '../../services/groups.service';
 import Toolbar from '../../components/toolbar/Toolbar';
-import { Button, Input, message } from 'antd';
+import { Button, Input, message, notification } from 'antd';
 
 function AddGroup() {
 
@@ -25,6 +25,15 @@ function AddGroup() {
         setInputValue("");
         document.getElementById('name').value = '';
         updateTitle();
+      }).catch(err => {
+        if (!err.response) {
+          message.destroy();
+          notification.error({
+            message: 'Error de conexión',
+            description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
+            placement: 'top',
+          });
+        }
       });
     } else {
       message.info('Debe escribir un nombre', 3);
