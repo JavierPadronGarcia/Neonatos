@@ -9,7 +9,7 @@ function PrivateRoute(props) {
   const [changePage, setChangePage] = useState();
   const RoleContext = useContext(UserRolesContext);
 
-  async function checkRole() {
+  const checkRole = () => {
     const role = RoleContext.role;
 
     if (!props.logged) {

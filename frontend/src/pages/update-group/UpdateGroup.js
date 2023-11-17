@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import Group from '../../components/group/Group';
 import Toolbar from '../../components/toolbar/Toolbar';
 import groupsService from '../../services/groups.service';
-import { Button, Input, message } from 'antd';
+import { Button, Input, message, notification } from 'antd';
 
 function UpdateGroup() {
   const params = useParams();
@@ -39,6 +39,15 @@ function UpdateGroup() {
         navigate('/groups');
         message.destroy();
         message.success('Actualizado', 2);
+      }).catch(err => {
+        if (!err.response) {
+          notification.error({
+            message: 'Error de conexión',
+            description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
+            placement: 'top',
+          });
+        }
+        message.destroy();
       })
     } else {
       message.error('El curso no puede tener el mismo nombre que el anterior')

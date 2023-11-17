@@ -20,7 +20,7 @@ async function getAllGroups() {
     const groups = await response.data;
     return groups;
   } catch (err) {
-    console.log('Error getting all groups', err);
+    throw err;
   }
 }
 
@@ -28,7 +28,12 @@ async function addGroup(groupName) {
   const body = new URLSearchParams();
   body.append("name", groupName);
 
-  const response = await axios.post(endPoint, body, getOptions(localStorage.getItem("token")));
+  try {
+    const response = await axios.post(endPoint, body, getOptions(localStorage.getItem("token")));
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
   return response.status;
 }
 
@@ -36,13 +41,21 @@ async function updateGroup(updatedGroup) {
   const body = new URLSearchParams();
   body.append("name", updatedGroup.name);
 
-  const response = await axios.put(`${endPoint}/${updatedGroup.id}`, body, getOptions(localStorage.getItem("token")));
-  return response;
+  try {
+    const response = await axios.put(`${endPoint}/${updatedGroup.id}`, body, getOptions(localStorage.getItem("token")));
+    return response;
+  } catch (err) {
+    throw err;
+  }
 }
 
 async function deleteGroup(id) {
-  const response = await axios.delete(`${endPoint}/${id}`, getOptions(localStorage.getItem("token")));
-  return response
+  try {
+    const response = await axios.delete(`${endPoint}/${id}`, getOptions(localStorage.getItem("token")));
+    return response;
+  } catch (err) {
+    throw err;
+  }
 }
 
 export default {

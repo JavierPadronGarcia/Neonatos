@@ -9,6 +9,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import UserRolesContext from './utils/UserRoleContext';
 import authService from './services/auth.service';
 import AdminControlPanel from './pages/admin-control-panel/AdminControlPanel';
+import { notification } from 'antd';
 
 function App() {
 
@@ -19,7 +20,13 @@ function App() {
     authService.getMyRole().then(role => {
       setRole(role);
     }).catch(err => {
-      console.log(err);
+      if (!err.response) {
+        notification.error({
+          message: 'No se pudo conectar con el servidor',
+          description: "Puede que no tenga conexión? Verifique su red y vuelva a intentarlo.",
+          placement: 'top',
+        });
+      }
     });
   }
 
