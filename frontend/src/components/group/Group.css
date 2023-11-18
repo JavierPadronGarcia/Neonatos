@@ -7,7 +7,8 @@
   flex-direction: column;
 }
 
-.group-component-no-edit {
+.group-component-no-edit,
+.group-component-assign {
   width: 80%;
   height: 8em;
   border-radius: 1em;
@@ -25,7 +26,8 @@
   border-bottom: 1px solid black;
 }
 
-.group-component-header-no-edit {
+.group-component-header-no-edit,
+.group-component-header-assign {
   display: flex;
   align-items: center;
   flex-flow: row nowrap;
@@ -43,7 +45,8 @@
   text-align: center;
 }
 
-.group-component-header-no-edit>p {
+.group-component-header-no-edit>p,
+.group-component-header-assign>p {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -67,7 +70,8 @@
 }
 
 .group-component-footer,
-.group-component-footer-no-edit {
+.group-component-footer-no-edit,
+.group-component-footer-assign {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,4 +91,14 @@
   border: none;
   line-height: inherit;
   font-size: 0.875rem;
+}
+
+.group-component-footer-assign>button {
+  background: #2F96C4;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 1.25rem;
+  height: 1.6875rem;
+  color: #F2F2F2;
+  border: none;
+  line-height: inherit;
 }

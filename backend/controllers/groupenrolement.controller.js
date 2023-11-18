@@ -10,6 +10,8 @@ exports.create = (req, res) => {
   const groupId = req.body.GroupID;
   const date = req.body.Date;
 
+  console.log(userId, groupId, date)
+
   if (!userId || !groupId || !date) {
     return res.status(400).send({
       message: "Content can not be empty!"

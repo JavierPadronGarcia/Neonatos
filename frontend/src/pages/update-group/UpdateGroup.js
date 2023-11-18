@@ -6,6 +6,7 @@ import Group from '../../components/group/Group';
 import Toolbar from '../../components/toolbar/Toolbar';
 import groupsService from '../../services/groups.service';
 import { Button, Input, message, notification } from 'antd';
+import GoBack from '../../components/go-back/GoBack';
 
 function UpdateGroup() {
   const params = useParams();
@@ -66,9 +67,7 @@ function UpdateGroup() {
   return (
     <div className='update-group-page'>
       <Header />
-      <div className='update-group-page-arrow' onClick={() => navigate('/admin/groups')}>
-        <img src='/assets/icons/arrow-left.svg' alt='volver a los cursos' />
-      </div>
+      <GoBack link='/admin/groups' alt='volver a los cursos' />
       <main className='update-group-main'>
         <h3>Actualizando curso</h3>
         <h5>Previsualización</h5>

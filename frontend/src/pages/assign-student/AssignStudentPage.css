@@ -1,0 +1,27 @@
+.admin-students-assign-page>.return-arrow {
+  top: 4.5em;
+  left: 0.25em;
+}
+
+.admin-students-assign-container,
+.admin-students-assign-container>main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+
+.admin-students-assign-container>main>h3 {
+  width: 100%;
+}
+
+.admin-students-assign-page-groups {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.44rem;
+  padding-bottom: 5rem;
+}

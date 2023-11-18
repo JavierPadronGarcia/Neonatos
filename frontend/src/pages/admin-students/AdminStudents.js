@@ -17,11 +17,13 @@ function AdminStudents() {
     setAllStudentsNotInAGroup(studentsNotInAGroup);
   }
 
+  //this function transform the array to propperly
+  //show information like: {group1, users:[user1, user2]}
   const transformArray = (allData) => {
     let newArray = [];
     allData.forEach(groupEnrolement => {
       let foundGroup = false;
-      for (var i = 0; i < newArray.length; i++) {
+      for (let i = 0; i < newArray.length; i++) {
         if (newArray[i].id == groupEnrolement.group.id) {
           foundGroup = true;
           break;
@@ -32,14 +34,14 @@ function AdminStudents() {
           id: groupEnrolement.group.id,
           name: groupEnrolement.group.name,
           users: [{
-            "id": groupEnrolement.User.id,
-            "username": groupEnrolement.User.username
+            id: groupEnrolement.User.id,
+            username: groupEnrolement.User.username
           }]
         })
       } else {
-        for (var j = 0; j < newArray.length; j++) {
+        for (let j = 0; j < newArray.length; j++) {
           if (newArray[j].id == groupEnrolement.group.id) {
-            newArray[j].users.push({ "id": groupEnrolement.User.id, "username": groupEnrolement.User.username })
+            newArray[j].users.push({ id: groupEnrolement.User.id, username: groupEnrolement.User.username })
           }
         }
       }
@@ -64,25 +66,28 @@ function AdminStudents() {
               <section className='group-section' key={index}>
                 <h3>{group.name}</h3>
                 <ul>
-                  {group.users.map((user, index) => {
+                  {group.users.map((student, index) => {
                     return (
-                      <li key={index}><StudentCard studentName={user.username} /></li>
+                      <li key={index}><StudentCard student={student} /></li>
                     );
                   })}
                 </ul>
               </section>
             );
           })}
-          <section className='group-section'>
-            <h3>Estudiantes sin clase</h3>
-            <ul>
-              {allStudentsNotInAGroup.map((student, index) => {
-                return (
-                  <li key={index}><StudentCard studentName={student.username} assignStudent={true} /></li>
-                );
-              })}
-            </ul>
-          </section>
+          {allStudentsNotInAGroup.length !== 0 &&
+            <section className='group-section'>
+              <h3>Estudiantes sin clase</h3>
+              <ul>
+                {allStudentsNotInAGroup.map((student, index) => {
+                  return (
+                    <li key={index}><StudentCard student={student} assignStudent={true} /></li>
+                  );
+                })}
+              </ul>
+            </section>
+          }
+
         </main>
       </div>
       <Toolbar />

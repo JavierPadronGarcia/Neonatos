@@ -1,28 +1,30 @@
+import { useNavigate } from 'react-router-dom';
 import './StudentCard.css';
 import { Button } from 'antd';
 
 function StudentCard(props) {
-
-  const studentName = props.studentName;
+  const student = props.student;
   const assignStudent = props.assignStudent;
 
-  const navigate = () => {
+  const navigate = useNavigate();
 
+  const handleNavigate = (student) => {
+    const studentStringified = JSON.stringify(student);
+    navigate('/admin/students/assign/' + studentStringified);
   }
 
   if (assignStudent) {
     return (
       <item className='student-card'>
-        <span>{studentName}</span>
-        <Button onClick={() => navigate()}>Asignar</Button>
+        <span>{student.username}</span>
+        <Button onClick={() => handleNavigate(student)}>Asignar</Button>
       </item>
     );
   }
 
-
   return (
     <item className='student-card'>
-      <span>{studentName}</span>
+      <span>{student.username}</span>
     </item>
   );
 }
