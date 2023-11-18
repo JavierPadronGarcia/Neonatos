@@ -10,6 +10,8 @@ import UserRolesContext from './utils/UserRoleContext';
 import authService from './services/auth.service';
 import AdminControlPanel from './pages/admin-control-panel/AdminControlPanel';
 import { notification } from 'antd';
+import AdminStudents from './pages/admin-students/AdminStudents';
+import AssignStudentPage from './pages/assign-student/AssignStudentPage';
 
 function App() {
 
@@ -40,6 +42,8 @@ function App() {
             <Route path="/admin/groups" element={<Groups />} />
             <Route path="/admin/groups/update/:name/:id" element={<UpdateGroup />} />
             <Route path="/admin/groups/add-group" element={<AddGroup />} />
+            <Route path="/admin/students" element={<AdminStudents />} />
+            <Route path="/admin/students/assign/:student" element={<AssignStudentPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

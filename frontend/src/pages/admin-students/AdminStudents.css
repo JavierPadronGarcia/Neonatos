@@ -1,0 +1,36 @@
+.admin-students-page-header {
+  text-align: center;
+}
+
+.admin-students-page ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 1.25rem;
+}
+
+.admin-students-page li {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.admin-students-page .group-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-students-page .group-section>h3 {
+  text-align: center;
+}
+
+
+.admin-students-page .group-section:last-child {
+  padding-bottom: 3.5rem;
+}

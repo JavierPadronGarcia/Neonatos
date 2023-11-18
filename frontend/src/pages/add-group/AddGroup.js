@@ -6,6 +6,7 @@ import { useState } from 'react';
 import groupsService from '../../services/groups.service';
 import Toolbar from '../../components/toolbar/Toolbar';
 import { Button, Input, message, notification } from 'antd';
+import GoBack from '../../components/go-back/GoBack';
 
 function AddGroup() {
 
@@ -52,9 +53,7 @@ function AddGroup() {
   return (
     <div className='add-group-page'>
       <Header />
-      <div className='add-group-page-arrow' onClick={() => navigate('/admin/groups')}>
-        <img src='/assets/icons/arrow-left.svg' alt='back to groups' />
-      </div>
+      <GoBack link='/admin/groups' alt='back to groups' />
       <main className='add-group-main'>
         <h3>Nuevo curso</h3>
         <h5>Previsualización</h5>
