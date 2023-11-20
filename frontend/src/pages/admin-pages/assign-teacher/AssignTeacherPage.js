@@ -1,18 +1,18 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { message, notification } from "antd";
-import Header from "../../components/Header/Header";
-import Toolbar from "../../components/toolbar/Toolbar";
-import Group from "../../components/group/Group";
-import GoBack from "../../components/go-back/GoBack";
-import groupsService from "../../services/groups.service";
-import groupEnrolementService from "../../services/groupEnrolement.service";
-import './AssignStudentPage.css';
+import Header from "../../../components/Header/Header";
+import Toolbar from "../../../components/toolbar/Toolbar";
+import Group from "../../../components/group/Group";
+import GoBack from "../../../components/go-back/GoBack";
+import groupsService from "../../../services/groups.service";
+import './AssignTeacherPage.css';
+import teacherGroupService from "../../../services/teacherGroup.service";
 
-function AssignStudentPage() {
+function AssignTeacherPage() {
   const navigate = useNavigate();
   const params = useParams();
-  const student = JSON.parse(params.student);
+  const teacher = JSON.parse(params.teacher);
   const [availableGroups, setAvailableGroups] = useState([]);
 
   const getAllGroups = async () => {
@@ -24,13 +24,13 @@ function AssignStudentPage() {
     getAllGroups();
   }, [])
 
-  const assignStudent = (group) => {
-    groupEnrolementService.assignStudentToGroup(student.id, group.id).then(response => {
+  const assignTeacher = (group) => {
+    teacherGroupService.assignTeacherToGroup(teacher.id, group.id).then(response => {
       message.success({
-        content: `${student.username} asignado correctamente a la clase ${group.name}`,
+        content: `${teacher.username} asignado correctamente a la clase ${group.name}`,
         duration: 2,
       })
-      navigate('/admin/students');
+      navigate('/admin/teachers');
     }).catch(err => {
       if (!err.response) {
         notification.error({
@@ -43,16 +43,16 @@ function AssignStudentPage() {
   }
 
   return (
-    <div className="admin-students-assign-page">
+    <div className="admin-teachers-assign-page">
       <Header />
-      <GoBack link='/admin/students' alt='volver a todo el alumnado' />
-      <div className="admin-students-assign-container">
+      <GoBack link='/admin/teachers' alt='volver a todo el profesorado' />
+      <div className="admin-teachers-assign-container">
         <header>
           <h2>Cursos disponibles</h2>
         </header>
         <main>
-          <h3>Asignando al estudiante:<br />{student.username}</h3>
-          <section className="admin-students-assign-page-groups">
+          <h3>Asignando al profesor/a:<br />{teacher.username}</h3>
+          <section className="admin-teachers-assign-page-groups">
             {availableGroups.map((group, index) => {
               return (
                 <Group
@@ -60,7 +60,7 @@ function AssignStudentPage() {
                   name={group.name}
                   ident={group.id}
                   assign={true}
-                  notifyAssign={() => assignStudent(group)}
+                  notifyAssign={() => assignTeacher(group)}
                 />
               )
             })}
@@ -72,4 +72,4 @@ function AssignStudentPage() {
   )
 }
 
-export default AssignStudentPage;
+export default AssignTeacherPage;

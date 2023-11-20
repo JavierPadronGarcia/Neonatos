@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import Header from '../../../components/Header/Header';
 import './AddGroup.css';
-import Group from '../../components/group/Group';
+import Group from '../../../components/group/Group';
 import { useState } from 'react';
-import groupsService from '../../services/groups.service';
-import Toolbar from '../../components/toolbar/Toolbar';
+import groupsService from '../../../services/groups.service';
+import Toolbar from '../../../components/toolbar/Toolbar';
 import { Button, Input, message, notification } from 'antd';
-import GoBack from '../../components/go-back/GoBack';
+import GoBack from '../../../components/go-back/GoBack';
 
 function AddGroup() {
 

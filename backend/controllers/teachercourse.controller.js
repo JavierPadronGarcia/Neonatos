@@ -1,6 +1,7 @@
 const db = require("../models");
 const TeacherCourse = db.teachercourse;
 const User = db.users;
+const Group = db.groups;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -34,6 +35,51 @@ exports.findAll = (req, res) => {
     });
   });
 };
+
+exports.findAllOrderedByGroupDesc = (req, res) => {
+  TeacherCourse.findAll({
+    order: [['GroupID', 'DESC']],
+    include: [
+      {
+        model: User,
+        attributes: {
+          exclude: ['password']
+        }
+      },
+      {
+        model: Group,
+      },
+    ]
+  }).then(data => {
+    res.send(data);
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Error retrieving groupEnrolements"
+    });
+  });
+}
+
+exports.findAllTeachersNotInAGroup = (req, res) => {
+  User.findAll({
+    attributes: {
+      exclude: ['password']
+    },
+    include: [{
+      model: TeacherCourse,
+      attributes: []
+    }],
+    where: {
+      role: 'teacher',
+      '$TeacherCourses.UserID$': null
+    }
+  }).then(users => {
+    res.send(users);
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Error retrieving users not in a group."
+    });
+  });
+}
 
 exports.findAllTeacherInCourse = (req, res) => {
   const groupId = req.params.id;

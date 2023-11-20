@@ -1,0 +1,27 @@
+.admin-teachers-assign-page>.return-arrow {
+  top: 4.5em;
+  left: 0.25em;
+}
+
+.admin-teachers-assign-container,
+.admin-teachers-assign-container>main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+
+.admin-teachers-assign-container>main>h3 {
+  width: 100%;
+}
+
+.admin-teachers-assign-page-groups {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.44rem;
+  padding-bottom: 5rem;
+}

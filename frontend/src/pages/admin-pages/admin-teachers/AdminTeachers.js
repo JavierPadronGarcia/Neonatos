@@ -1,21 +1,14 @@
-import './AdminStudents.css';
-import Header from '../../components/Header/Header';
-import Toolbar from '../../components/toolbar/Toolbar';
-import StudentCard from '../../components/student/StudentCard';
 import { useEffect, useState } from 'react';
-import groupEnrolementService from '../../services/groupEnrolement.service';
+import Header from '../../../components/Header/Header';
+import Toolbar from '../../../components/toolbar/Toolbar';
+import teacherGroupService from '../../../services/teacherGroup.service';
+import './AdminTeachers.css';
+import TeacherCard from '../../../components/teacher/TeacherCard';
 
-function AdminStudents() {
+function AdminTeachers() {
 
-  const [allStudentsInGroups, setAllStudentsInGroups] = useState([]);
-  const [allStudentsNotInAGroup, setAllStudentsNotInAGroup] = useState([]);
-
-  const getAllData = async () => {
-    const studentsInGroups = await groupEnrolementService.getAllOrderedByGroupDesc();
-    const studentsNotInAGroup = await groupEnrolementService.getAllStudentsNotInAGroup();
-    setAllStudentsInGroups(transformArray(studentsInGroups));
-    setAllStudentsNotInAGroup(studentsNotInAGroup);
-  }
+  const [teachersByGroup, setTeachersByGroup] = useState([]);
+  const [allTeachersNotInAGroup, setAllTeachersNotInAGroup] = useState([]);
 
   //this function transform the array to propperly
   //show information like: {group1, users:[user1, user2]}
@@ -49,45 +42,51 @@ function AdminStudents() {
     return newArray;
   }
 
+  const getAllTeachers = async () => {
+    const teachersInGroups = await teacherGroupService.getAllOrderedByGroupDesc();
+    const teachersWithoutGroup = await teacherGroupService.getAllTeachersNotInAGroup();
+    setTeachersByGroup(transformArray(teachersInGroups));
+    setAllTeachersNotInAGroup(teachersWithoutGroup);
+  }
+
   useEffect(() => {
-    getAllData();
-  }, []);
+    getAllTeachers();
+  }, [])
 
   return (
-    <div className="admin-students-page">
+    <div className="admin-teachers-page">
       <Header />
-      <div>
-        <header className='admin-students-page-header'>
-          <h2>Alumnado</h2>
+      <div className='admin-teachers-page-main'>
+        <header className='admin-teachers-page-header'>
+          <h2>Profesorado</h2>
         </header>
         <main>
-          {allStudentsInGroups.map((group, index) => {
+          {teachersByGroup.map((group, index) => {
             return (
               <section className='group-section' key={index}>
                 <h3>{group.name}</h3>
                 <ul>
-                  {group.users.map((student, index) => {
+                  {group.users.map((teacher, index) => {
                     return (
-                      <li key={index}><StudentCard student={student} /></li>
+                      <li key={index}><TeacherCard teacher={teacher} /></li>
                     );
                   })}
                 </ul>
               </section>
             );
           })}
-          {allStudentsNotInAGroup.length !== 0 &&
+          {allTeachersNotInAGroup.length !== 0 &&
             <section className='group-section'>
-              <h3>Estudiantes sin clase</h3>
+              <h3>Profesores sin clase</h3>
               <ul>
-                {allStudentsNotInAGroup.map((student, index) => {
+                {allTeachersNotInAGroup.map((teacher, index) => {
                   return (
-                    <li key={index}><StudentCard student={student} assignStudent={true} /></li>
+                    <li key={index}><TeacherCard teacher={teacher} assignTeacher={true} /></li>
                   );
                 })}
               </ul>
             </section>
           }
-
         </main>
       </div>
       <Toolbar />
@@ -95,4 +94,4 @@ function AdminStudents() {
   );
 }
 
-export default AdminStudents;
+export default AdminTeachers;
