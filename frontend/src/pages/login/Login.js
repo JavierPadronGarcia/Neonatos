@@ -48,6 +48,7 @@ function Login() {
         content: `Sesión iniciada correctamente`,
         duration: 1,
       })
+      window.location.reload();
       setLoading(false);
     }).catch((err) => {
       loginErrors(err);
