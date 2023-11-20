@@ -1,5 +1,5 @@
-import Header from '../../components/Header/Header';
-import Toolbar from '../../components/toolbar/Toolbar';
+import Header from '../../../components/Header/Header';
+import Toolbar from '../../../components/toolbar/Toolbar';
 import './AdminControlPanel.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ function AdminControlPanel() {
               <div><img src='/assets/icons/students.svg' alt='ir a alumnado' /></div>
               <span>Alumnado</span>
             </item>
-            <item className="card-button" onClick={() => navigate('/admin/directos')}>
+            <item className="card-button" onClick={() => navigate('/admin/directors')}>
               <div><img src='/assets/icons/directors.svg' alt='ir a dirección' /></div>
               <span>Dirección</span>
             </item>

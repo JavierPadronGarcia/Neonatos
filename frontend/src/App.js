@@ -2,16 +2,18 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Login from './pages/login/Login';
-import Groups from './pages/groups/Groups';
-import AddGroup from './pages/add-group/AddGroup';
-import UpdateGroup from './pages/update-group/UpdateGroup';
 import PrivateRoute from './utils/PrivateRoute';
 import UserRolesContext from './utils/UserRoleContext';
 import authService from './services/auth.service';
-import AdminControlPanel from './pages/admin-control-panel/AdminControlPanel';
 import { notification } from 'antd';
-import AdminStudents from './pages/admin-students/AdminStudents';
-import AssignStudentPage from './pages/assign-student/AssignStudentPage';
+import AdminControlPanel from './pages/admin-pages/admin-control-panel/AdminControlPanel';
+import Groups from './pages/admin-pages/groups/Groups';
+import UpdateGroup from './pages/admin-pages/update-group/UpdateGroup';
+import AddGroup from './pages/admin-pages/add-group/AddGroup';
+import AdminStudents from './pages/admin-pages/admin-students/AdminStudents';
+import AssignStudentPage from './pages/admin-pages/assign-student/AssignStudentPage';
+import AdminTeachers from './pages/admin-pages/admin-teachers/AdminTeachers';
+import AssignTeacherPage from './pages/admin-pages/assign-teacher/AssignTeacherPage';
 
 function App() {
 
@@ -44,6 +46,8 @@ function App() {
             <Route path="/admin/groups/add-group" element={<AddGroup />} />
             <Route path="/admin/students" element={<AdminStudents />} />
             <Route path="/admin/students/assign/:student" element={<AssignStudentPage />} />
+            <Route path="/admin/teachers" element={<AdminTeachers />} />
+            <Route path="/admin/teachers/assign/:teacher" element={<AssignTeacherPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

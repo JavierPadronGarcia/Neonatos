@@ -1,12 +1,12 @@
 import './UpdateGroup.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Header from '../../components/Header/Header';
-import Group from '../../components/group/Group';
-import Toolbar from '../../components/toolbar/Toolbar';
-import groupsService from '../../services/groups.service';
+import Header from '../../../components/Header/Header';
+import Group from '../../../components/group/Group';
+import Toolbar from '../../../components/toolbar/Toolbar';
+import groupsService from '../../../services/groups.service';
 import { Button, Input, message, notification } from 'antd';
-import GoBack from '../../components/go-back/GoBack';
+import GoBack from '../../../components/go-back/GoBack';
 
 function UpdateGroup() {
   const params = useParams();

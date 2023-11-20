@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header/Header";
-import Add from "../../components/add/Add";
+import Header from "../../../components/Header/Header";
+import Add from "../../../components/add/Add";
 import './Groups.css';
-import groupsService from "../../services/groups.service";
-import Group from "../../components/group/Group";
-import Toolbar from "../../components/toolbar/Toolbar";
+import groupsService from "../../../services/groups.service";
+import Group from "../../../components/group/Group";
+import Toolbar from "../../../components/toolbar/Toolbar";
 import { message, notification } from "antd";
 
 function Groups() {

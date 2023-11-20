@@ -1,0 +1,52 @@
+import axios from 'axios';
+
+const endPoint = "http://localhost:8080/api/teachercourse";
+
+function getOptions(token) {
+  let bearerAccess = 'Bearer ' + token;
+
+  let options = {
+    headers: {
+      'Authorization': bearerAccess,
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+  return options;
+}
+
+async function getAllOrderedByGroupDesc() {
+  try {
+    const response = await axios.get(endPoint + '/orderdesc');
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function getAllTeachersNotInAGroup() {
+  try {
+    const response = await axios.get(endPoint + '/teachernotinagroup');
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function assignTeacherToGroup(teacherid, groupId) {
+  const body = new URLSearchParams();
+  body.append('GroupID', groupId);
+  body.append('UserID', teacherid);
+  try {
+    const response = await axios.post(endPoint, body);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+
+export default {
+  getAllOrderedByGroupDesc,
+  getAllTeachersNotInAGroup,
+  assignTeacherToGroup
+}
