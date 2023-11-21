@@ -16,7 +16,7 @@ function getOptions(token) {
 
 async function getAllOrderedByGroupDesc() {
   try {
-    const response = await axios.get(endPoint + '/orderdesc');
+    const response = await axios.get(endPoint + '/orderdesc', getOptions(localStorage.getItem('token')));
     return response.data;
   } catch (err) {
     throw err;
@@ -25,7 +25,7 @@ async function getAllOrderedByGroupDesc() {
 
 async function getAllTeachersNotInAGroup() {
   try {
-    const response = await axios.get(endPoint + '/teachernotinagroup');
+    const response = await axios.get(endPoint + '/teachernotinagroup', getOptions(localStorage.getItem('token')));
     return response.data;
   } catch (err) {
     throw err;
@@ -37,7 +37,7 @@ async function assignTeacherToGroup(teacherid, groupId) {
   body.append('GroupID', groupId);
   body.append('UserID', teacherid);
   try {
-    const response = await axios.post(endPoint, body);
+    const response = await axios.post(endPoint, body, getOptions(localStorage.getItem('token')));
     return response.data;
   } catch (err) {
     throw err;

@@ -1,31 +1,32 @@
 module.exports = app => {
   const teachercourse = require("../controllers/teachercourse.controller")
-
+  const auth = require('../controllers/auth');
+  
   var router = require("express").Router();
 
   // assign teachers to groups or groups to teachers
-  router.post("/", teachercourse.create);
+  router.post("/", auth.isAuthenticated, teachercourse.create);
 
   // retrieve all data from teachercourse
-  router.get("/", teachercourse.findAll);
+  router.get("/", auth.isAuthenticated, teachercourse.findAll);
 
   //retrieve all teachers in a group
-  router.get("/group/:id", teachercourse.findAllTeacherInCourse);
+  router.get("/group/:id", auth.isAuthenticated, teachercourse.findAllTeacherInCourse);
 
   //retrieve the count of the teachers in a group
-  router.get("/teachercount/group/:id", teachercourse.getCountOfTeachersInCourse);
+  router.get("/teachercount/group/:id", auth.isAuthenticated, teachercourse.getCountOfTeachersInCourse);
 
   //retrieve all teachers ordered by group desc
-  router.get("/orderdesc", teachercourse.findAllOrderedByGroupDesc);
+  router.get("/orderdesc", auth.isAuthenticated, teachercourse.findAllOrderedByGroupDesc);
 
   //retrieve all teachers not in this table
-  router.get("/teachernotinagroup", teachercourse.findAllTeachersNotInAGroup);
+  router.get("/teachernotinagroup", auth.isAuthenticated, teachercourse.findAllTeachersNotInAGroup);
 
   //update
-  router.put("/:userId/:groupId", teachercourse.update);
+  router.put("/:userId/:groupId", auth.isAuthenticated, teachercourse.update);
 
   //delete
-  router.delete("/:userId/:groupId", teachercourse.remove);
+  router.delete("/:userId/:groupId", auth.isAuthenticated, teachercourse.remove);
 
   app.use('/api/teachercourse', router);
 }
