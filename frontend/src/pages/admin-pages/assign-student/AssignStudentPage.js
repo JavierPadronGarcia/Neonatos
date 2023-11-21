@@ -8,6 +8,7 @@ import GoBack from "../../../components/go-back/GoBack";
 import groupsService from "../../../services/groups.service";
 import groupEnrolementService from "../../../services/groupEnrolement.service";
 import './AssignStudentPage.css';
+import errorHandler from "../../../utils/errorHandler";
 
 function AssignStudentPage() {
   const navigate = useNavigate();
@@ -16,8 +17,14 @@ function AssignStudentPage() {
   const [availableGroups, setAvailableGroups] = useState([]);
 
   const getAllGroups = async () => {
-    const allAvailableGroups = await groupsService.getAllGroups();
-    setAvailableGroups(allAvailableGroups);
+    try {
+      const allAvailableGroups = await groupsService.getAllGroups();
+      setAvailableGroups(allAvailableGroups);
+    } catch (err) {
+      if (!err.response) {
+        errorHandler.noConnectionError();
+      }
+    }
   }
 
   useEffect(() => {
@@ -33,11 +40,7 @@ function AssignStudentPage() {
       navigate('/admin/students');
     }).catch(err => {
       if (!err.response) {
-        notification.error({
-          message: 'No se pudo conectar con el servidor',
-          description: "Puede que no tenga conexión? Verifique su red y vuelva a intentarlo.",
-          placement: 'top',
-        });
+        errorHandler.noConnectionError();
       }
     });
   }

@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
     role: {
       type: Sequelize.ENUM('admin', 'teacher', 'student', 'director'),
     },
+    isDirector: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    },
     filename: {
       type: Sequelize.STRING
     }

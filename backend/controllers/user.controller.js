@@ -55,6 +55,16 @@ exports.create = (req, res) => {
   })
 }
 
+exports.findAllDirectors = (req, res) => {
+  User.findAll({ where: { role: 'director' } }).then(allDirectors => {
+    return res.send(allDirectors);
+  }).catch(err => {
+    return res.status(500).send({
+      message:
+        err.message || "Error retrieving all directors"
+    });
+  })
+}
 
 exports.findByRole = (req, res) => {
   req.send(req.user.role);
@@ -156,6 +166,54 @@ exports.updateWithImage = (req, res) => {
   }).catch(err => {
     res.status(500).send({
       message: err.message || "Error updating User with id=" + id
+    });
+  })
+}
+
+exports.assignDirector = (req, res) => {
+  const newDirector = req.params.id;
+  const previousDirector = req.body.directorId;
+
+  if (previousDirector) {
+    User.findByPk(previousDirector).then(prevDirector => {
+      prevDirector.isDirector = false;
+      prevDirector.save();
+      updateNewDirector(newDirector, res);
+    }).catch(err => {
+      return res.status(500).send({
+        message: err.message || "Could not find the user to update"
+      });
+    })
+  } else {
+    updateNewDirector(newDirector, res);
+  }
+
+}
+
+const updateNewDirector = (newDirector, res) => {
+  User.findByPk(newDirector).then(director => {
+    let newDirector = {
+      id: director.id,
+      username: director.username,
+      password: director.password,
+      role: director.role,
+      isDirector: true,
+      filename: director.filename,
+      createdAt: director.createdAt,
+      updatedAt: director.updatedAt
+    }
+
+    User.update(newDirector, { where: { id: director.id } }).then(response => {
+      console.log(response)
+      return res.send(director);
+    }).catch(err => {
+      return res.status(500).send({
+        message: err.message || "Cannot update the new director"
+      });
+    })
+  }).catch(err => {
+    return res.status(500).send({
+      message: err.message || "Cannot find the new director"
     });
   })
 }

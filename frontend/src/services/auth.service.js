@@ -83,7 +83,6 @@ function isLoggedIn() {
 }
 
 const navigateByRole = (role, navigate) => {
-  console.log('a')
   switch (role) {
     case 'admin':
       navigate('/admin/control-panel');

@@ -6,6 +6,7 @@ import groupsService from "../../../services/groups.service";
 import Group from "../../../components/group/Group";
 import Toolbar from "../../../components/toolbar/Toolbar";
 import { message, notification } from "antd";
+import errorHandler from "../../../utils/errorHandler";
 
 function Groups() {
 
@@ -17,11 +18,7 @@ function Groups() {
       setAllGroups(newGroups);
     } catch (err) {
       if (!err.response) {
-        notification.error({
-          message: 'Error de conexión',
-          description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
-          placement: 'top',
-        });
+        errorHandler.noConnectionError();
       }
     }
   }
@@ -39,11 +36,7 @@ function Groups() {
       })
     }).catch(err => {
       if (!err.response) {
-        notification.error({
-          message: 'Error de conexión',
-          description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
-          placement: 'top',
-        });
+        errorHandler.noConnectionError();
       }
     })
   }

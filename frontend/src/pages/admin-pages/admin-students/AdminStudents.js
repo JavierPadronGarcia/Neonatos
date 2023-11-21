@@ -4,6 +4,7 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import StudentCard from '../../../components/student/StudentCard';
 import { useEffect, useState } from 'react';
 import groupEnrolementService from '../../../services/groupEnrolement.service';
+import errorHandler from '../../../utils/errorHandler';
 
 function AdminStudents() {
 
@@ -11,10 +12,16 @@ function AdminStudents() {
   const [allStudentsNotInAGroup, setAllStudentsNotInAGroup] = useState([]);
 
   const getAllData = async () => {
-    const studentsInGroups = await groupEnrolementService.getAllOrderedByGroupDesc();
-    const studentsNotInAGroup = await groupEnrolementService.getAllStudentsNotInAGroup();
-    setAllStudentsInGroups(transformArray(studentsInGroups));
-    setAllStudentsNotInAGroup(studentsNotInAGroup);
+    try {
+      const studentsInGroups = await groupEnrolementService.getAllOrderedByGroupDesc();
+      const studentsNotInAGroup = await groupEnrolementService.getAllStudentsNotInAGroup();
+      setAllStudentsInGroups(transformArray(studentsInGroups));
+      setAllStudentsNotInAGroup(studentsNotInAGroup);
+    } catch (err) {
+      if (!err.response) {
+        errorHandler.noConnectionError();
+      }
+    }
   }
 
   //this function transform the array to propperly
@@ -87,7 +94,6 @@ function AdminStudents() {
               </ul>
             </section>
           }
-
         </main>
       </div>
       <Toolbar />

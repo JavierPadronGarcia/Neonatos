@@ -4,6 +4,7 @@ import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
 import { useContext, useState } from 'react';
 import UserRolesContext from '../../utils/UserRoleContext';
+import errorHandler from '../../utils/errorHandler';
 
 function Login() {
 
@@ -58,20 +59,11 @@ function Login() {
 
   const loginErrors = (err) => {
     if (!err.response) {
-      notification.error({
-        message: 'No se ha podido iniciar sesión',
-        description: "Puede que no tenga conexión? Verifique su red y vuelva a intentarlo.",
-        placement: 'top',
-      });
+      errorHandler.noConnectionError();
     }
 
     if (err.response && err.response.status === 401) {
-      notification.error({
-        message: 'No se ha podido iniciar sesión',
-        description: "El usuario o la contraseña son correctos?",
-        placement: 'top',
-        duration: 5
-      });
+      errorHandler.errorOnLogin();
     }
   }
 
@@ -86,6 +78,7 @@ function Login() {
 
     notification.destroy();
 
+    //validate form
     checkAllInputsFail(username, password);
     checkUsernameFail(username, password);
     checkPasswordFail(username, password);
