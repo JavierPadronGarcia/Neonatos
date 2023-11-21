@@ -5,7 +5,6 @@ import Login from './pages/login/Login';
 import PrivateRoute from './utils/PrivateRoute';
 import UserRolesContext from './utils/UserRoleContext';
 import authService from './services/auth.service';
-import { notification } from 'antd';
 import AdminControlPanel from './pages/admin-pages/admin-control-panel/AdminControlPanel';
 import Groups from './pages/admin-pages/groups/Groups';
 import UpdateGroup from './pages/admin-pages/update-group/UpdateGroup';
@@ -14,6 +13,8 @@ import AdminStudents from './pages/admin-pages/admin-students/AdminStudents';
 import AssignStudentPage from './pages/admin-pages/assign-student/AssignStudentPage';
 import AdminTeachers from './pages/admin-pages/admin-teachers/AdminTeachers';
 import AssignTeacherPage from './pages/admin-pages/assign-teacher/AssignTeacherPage';
+import AdminDirectorsPage from './pages/admin-pages/admin-directors/AdminDirectorsPage';
+import errorHandler from './utils/errorHandler';
 
 function App() {
 
@@ -25,11 +26,7 @@ function App() {
       setRole(role);
     }).catch(err => {
       if (!err.response) {
-        notification.error({
-          message: 'No se pudo conectar con el servidor',
-          description: "Puede que no tenga conexión? Verifique su red y vuelva a intentarlo.",
-          placement: 'top',
-        });
+        errorHandler.noConnectionError();
       }
     });
   }
@@ -48,6 +45,7 @@ function App() {
             <Route path="/admin/students/assign/:student" element={<AssignStudentPage />} />
             <Route path="/admin/teachers" element={<AdminTeachers />} />
             <Route path="/admin/teachers/assign/:teacher" element={<AssignTeacherPage />} />
+            <Route path="/admin/directors" element={<AdminDirectorsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

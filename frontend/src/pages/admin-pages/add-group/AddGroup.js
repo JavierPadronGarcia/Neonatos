@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../components/Header/Header';
 import './AddGroup.css';
 import Group from '../../../components/group/Group';
@@ -7,10 +6,10 @@ import groupsService from '../../../services/groups.service';
 import Toolbar from '../../../components/toolbar/Toolbar';
 import { Button, Input, message, notification } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
+import errorHandler from '../../../utils/errorHandler';
 
 function AddGroup() {
 
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("Nombre del curso");
   const [inputNameStatus, setInputNameStatus] = useState('');
 
@@ -27,13 +26,9 @@ function AddGroup() {
         document.getElementById('name').value = '';
         updateTitle();
       }).catch(err => {
+        message.destroy();
         if (!err.response) {
-          message.destroy();
-          notification.error({
-            message: 'Error de conexión',
-            description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
-            placement: 'top',
-          });
+          errorHandler.noConnectionError();
         }
       });
     } else {

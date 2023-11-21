@@ -7,6 +7,7 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import groupsService from '../../../services/groups.service';
 import { Button, Input, message, notification } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
+import errorHandler from '../../../utils/errorHandler';
 
 function UpdateGroup() {
   const params = useParams();
@@ -42,11 +43,7 @@ function UpdateGroup() {
         message.success('Actualizado', 2);
       }).catch(err => {
         if (!err.response) {
-          notification.error({
-            message: 'Error de conexión',
-            description: "No se ha podido establecer una conexión con el servidor, intentalo de nuevo o pruebalo más tarde",
-            placement: 'top',
-          });
+          errorHandler.noConnectionError();
         }
         message.destroy();
       })

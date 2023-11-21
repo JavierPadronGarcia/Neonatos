@@ -4,6 +4,7 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import teacherGroupService from '../../../services/teacherGroup.service';
 import './AdminTeachers.css';
 import TeacherCard from '../../../components/teacher/TeacherCard';
+import errorHandler from '../../../utils/errorHandler';
 
 function AdminTeachers() {
 
@@ -43,10 +44,17 @@ function AdminTeachers() {
   }
 
   const getAllTeachers = async () => {
-    const teachersInGroups = await teacherGroupService.getAllOrderedByGroupDesc();
-    const teachersWithoutGroup = await teacherGroupService.getAllTeachersNotInAGroup();
-    setTeachersByGroup(transformArray(teachersInGroups));
-    setAllTeachersNotInAGroup(teachersWithoutGroup);
+    try {
+      const teachersInGroups = await teacherGroupService.getAllOrderedByGroupDesc();
+      const teachersWithoutGroup = await teacherGroupService.getAllTeachersNotInAGroup();
+      setTeachersByGroup(transformArray(teachersInGroups));
+      setAllTeachersNotInAGroup(teachersWithoutGroup);
+    } catch (err) {
+      if (!err.response) {
+        errorHandler.noConnectionError();
+      }
+    }
+
   }
 
   useEffect(() => {
