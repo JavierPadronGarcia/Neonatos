@@ -52,7 +52,7 @@ function AddGroup() {
       <main className='add-group-main'>
         <h3>Nuevo curso</h3>
         <h5>Previsualización</h5>
-        <Group name={inputValue} ident={0} />
+        <Group group={{ name: inputValue }} ident={0} />
         <form onSubmit={(e) => addGroup(e)}>
           <Input
             id='name'

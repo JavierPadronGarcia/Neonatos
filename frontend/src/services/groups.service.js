@@ -16,7 +16,7 @@ function getOptions(token) {
 
 async function getAllGroups() {
   try {
-    const response = await axios.get(endPoint, getOptions(localStorage.getItem("token")));
+    const response = await axios.get(endPoint + '/withCounts', getOptions(localStorage.getItem("token")));
     const groups = await response.data;
     return groups;
   } catch (err) {

@@ -7,6 +7,9 @@ module.exports = app => {
   //create a new group
   router.post("/", auth.isAuthenticated, groups.createGroup);
 
+  //retrieve all groups with the count of the teachers and students assigned
+  router.get("/withCounts", auth.isAuthenticated, groups.findAllWithCounts);
+
   //retrieve all groups
   router.get("/", auth.isAuthenticated, groups.findAll);
 

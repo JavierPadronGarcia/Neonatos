@@ -68,7 +68,7 @@ function UpdateGroup() {
       <main className='update-group-main'>
         <h3>Actualizando curso</h3>
         <h5>Previsualización</h5>
-        <Group name={inputValue} ident={0} />
+        <Group group={{ name: inputValue }} ident={0} />
         <form onSubmit={(e) => updateGroup(e)}>
           <Input
             id='name'
