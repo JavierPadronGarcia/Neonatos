@@ -60,8 +60,7 @@ function Groups() {
             return (
               <article key={group.id}>
                 <Group
-                  name={group.name}
-                  ident={group.id}
+                  group={group}
                   edit={true}
                   notifyDelete={(id) => deleteGroup(id)}
                 />

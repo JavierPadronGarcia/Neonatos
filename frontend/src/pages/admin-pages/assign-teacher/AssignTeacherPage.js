@@ -60,8 +60,7 @@ function AssignTeacherPage() {
               return (
                 <Group
                   key={index}
-                  name={group.name}
-                  ident={group.id}
+                  group={group}
                   assign={true}
                   notifyAssign={() => assignTeacher(group)}
                 />

@@ -4,8 +4,7 @@ import { Button, Popconfirm } from 'antd';
 import { useState } from 'react';
 
 function Group(props) {
-  const name = props.name;
-  const ident = props.ident;
+  const group = props.group;
   const edit = props.edit;
   const assign = props.assign;
 
@@ -41,15 +40,15 @@ function Group(props) {
           >
             <img src="/assets/icons/trash-can.svg" alt="delete group" onClick={() => showPopDelete()} />
           </Popconfirm>
-          <p>{name}</p>
-          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/admin/groups/update/${name}/${ident}`)} />
+          <p>{group.name}</p>
+          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/admin/groups/update/${group.name}/${group.id}`)} />
         </header>
         <main className='group-component-main'>
-          <p>cantidad de profesores</p>
-          <p>cantidad de estudiantes</p>
+          <p>Profesores: {group.TeacherCount}</p>
+          <p>Estudiantes: {group.StudentCount}</p>
         </main>
         <footer className='group-component-footer'>
-          <Button onclick={() => navigate(`/groups/details/${ident}`)}>
+          <Button onclick={() => navigate(`/groups/details/${group.id}`)}>
             Ver detalles
           </Button>
         </footer>
@@ -62,11 +61,11 @@ function Group(props) {
     return (
       <article className='group-component-assign'>
         <header className='group-component-header-assign'>
-          <p>{name}</p>
+          <p>{group.name}</p>
         </header>
         <main className='group-component-main'>
-          <p>cantidad de profesores</p>
-          <p>cantidad de estudiantes</p>
+          <p>Cantidad de profesores</p>
+          <p>Cantidad de estudiantes</p>
         </main>
         <footer className='group-component-footer-assign'>
           <Button onClick={() => props.notifyAssign()}>Asignar a esta clase</Button>
@@ -78,14 +77,20 @@ function Group(props) {
   return (
     <article className='group-component-no-edit'>
       <header className='group-component-header-no-edit'>
-        <p>{name}</p>
+        <p>{group.name}</p>
       </header>
       <main className='group-component-main'>
-        <p>cantidad de profesores</p>
-        <p>cantidad de estudiantes</p>
+        {group.TeacherCount
+          ? <p>Profesores: {group.TeacherCount}</p>
+          : <p>Cantidad de profesores</p>
+        }
+        {group.StudentCount
+          ? <p>Estudiantes: {group.StudentCount}</p>
+          : <p>Cantidad de estudiantes</p>
+        }
       </main>
       <footer className='group-component-footer-no-edit'>
-        <Button onclick={() => navigate(`/admin/groups/details/${ident}`)}>
+        <Button onclick={() => navigate(`/admin/groups/details/${group.id}`)}>
           Ver detalles
         </Button>
       </footer>

@@ -60,8 +60,7 @@ function AssignStudentPage() {
               return (
                 <Group
                   key={index}
-                  name={group.name}
-                  ident={group.id}
+                  group={group}
                   assign={true}
                   notifyAssign={() => assignStudent(group)}
                 />
