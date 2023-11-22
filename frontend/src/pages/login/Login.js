@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
 import { useContext, useState } from 'react';
-import UserRolesContext from '../../utils/UserRoleContext';
-import errorHandler from '../../utils/errorHandler';
+import { errorOnLogin, noConnectionError } from '../../utils/shared/errorHandler';
+import { RolesContext } from '../../context/roles';
+import { loginValidation } from '../../utils/shared/globalFunctions';
 
 function Login() {
 
-  const RoleContext = useContext(UserRolesContext);
+  const roles = useContext(RolesContext);
   const navigate = useNavigate();
 
   const logged = authService.isLoggedIn();
@@ -17,34 +18,9 @@ function Login() {
   const [inputPasswdStatus, setInputPasswdStatus] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const checkAllInputsFail = (username, password) => {
-    if (!username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-      setInputPasswdStatus('error');
-      setLoading(false);
-    }
-  }
-
-  const checkUsernameFail = (username, password) => {
-    if (!username && password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-      setLoading(false);
-    }
-  }
-
-  const checkPasswordFail = (username, password) => {
-    if (username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputPasswdStatus('error');
-      setLoading(false);
-    }
-  }
-
   const handleLogin = (username, password) => {
-    authService.login({ username: username, password: password }).then((role) => {
-      RoleContext.role = role;
+    authService.login({ username: username, password: password }).then((newRole) => {
+      roles.role = newRole;
       message.success({
         content: `Sesión iniciada correctamente`,
         duration: 1,
@@ -59,11 +35,13 @@ function Login() {
 
   const loginErrors = (err) => {
     if (!err.response) {
-      errorHandler.noConnectionError();
+      noConnectionError();
     }
 
-    if (err.response && err.response.status === 401) {
-      errorHandler.errorOnLogin();
+    if (err.response &&
+      (err.response.status === 401
+        || err.response.status === 500)) {
+      errorOnLogin();
     }
   }
 
@@ -78,19 +56,20 @@ function Login() {
 
     notification.destroy();
 
-    //validate form
-    checkAllInputsFail(username, password);
-    checkUsernameFail(username, password);
-    checkPasswordFail(username, password);
+    const isLoginValid = loginValidation(
+      username, password,
+      setInputNameStatus,
+      setInputPasswdStatus,
+      setLoading
+    );
 
-    if (username && password) {
+    if (isLoginValid) {
       handleLogin(username, password);
     }
   }
 
   if (logged) {
-    const role = RoleContext.role;
-    authService.navigateByRole(role, navigate);
+    authService.navigateByRole(roles.role, navigate);
     return (
       <div className="login-page">
         <header>

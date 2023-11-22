@@ -5,8 +5,8 @@ import './Groups.css';
 import groupsService from "../../../services/groups.service";
 import Group from "../../../components/group/Group";
 import Toolbar from "../../../components/toolbar/Toolbar";
-import { message, notification } from "antd";
-import errorHandler from "../../../utils/errorHandler";
+import { message } from "antd";
+import { noConnectionError } from "../../../utils/shared/errorHandler";
 
 function Groups() {
 
@@ -18,7 +18,7 @@ function Groups() {
       setAllGroups(newGroups);
     } catch (err) {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     }
   }
@@ -36,7 +36,7 @@ function Groups() {
       })
     }).catch(err => {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     })
   }

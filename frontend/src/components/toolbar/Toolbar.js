@@ -2,14 +2,14 @@ import './Toolbar.css';
 
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
-import UserRolesContext from '../../utils/UserRoleContext';
 import { useContext, useState } from 'react';
 import { Popconfirm } from 'antd';
+import { RolesContext } from '../../context/roles';
 
 function Toolbar() {
 
   const navigate = useNavigate();
-  const RoleContext = useContext(UserRolesContext);
+  const RoleContext = useContext(RolesContext);
   const [openConfirmLogout, setContifmLogout] = useState(false);
 
   const handleLogOut = () => {

@@ -5,9 +5,9 @@ import Header from '../../../components/Header/Header';
 import Group from '../../../components/group/Group';
 import Toolbar from '../../../components/toolbar/Toolbar';
 import groupsService from '../../../services/groups.service';
-import { Button, Input, message, notification } from 'antd';
+import { Button, Input, message } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
-import errorHandler from '../../../utils/errorHandler';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
 
 function UpdateGroup() {
   const params = useParams();
@@ -43,7 +43,7 @@ function UpdateGroup() {
         message.success('Actualizado', 2);
       }).catch(err => {
         if (!err.response) {
-          errorHandler.noConnectionError();
+          noConnectionError();
         }
         message.destroy();
       })

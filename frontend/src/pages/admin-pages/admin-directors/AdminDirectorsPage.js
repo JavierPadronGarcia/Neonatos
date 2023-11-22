@@ -5,7 +5,7 @@ import Header from '../../../components/Header/Header';
 import Toolbar from '../../../components/toolbar/Toolbar';
 import usersService from '../../../services/users.service';
 import DirectorCard from '../../../components/director/DirectorCard';
-import errorHandler from '../../../utils/errorHandler';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
 
 function AdminDirectorsPage() {
 
@@ -19,7 +19,7 @@ function AdminDirectorsPage() {
       return { allDirectors: directors, assignedDirector: directorAssigned }
     } catch (err) {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     }
   }
@@ -48,7 +48,7 @@ function AdminDirectorsPage() {
       });
     }).catch(err => {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     })
   }
@@ -84,13 +84,13 @@ function AdminDirectorsPage() {
         </header>
         <small>Solo puede haber un director asignado a la misma vez</small>
         <main>
-          {assignedDirector.id &&
-            <DirectorCard director={assignedDirector} />
+          {(assignedDirector.id &&
+            <DirectorCard director={assignedDirector} />)
             || <p>No hay director asignado</p>
           }
           <div>
             <span>Directores sin asignar:</span>
-            {allDirectors.length != 0 &&
+            {allDirectors.length !== 0 &&
               showAllDirectors()}
           </div>
         </main>

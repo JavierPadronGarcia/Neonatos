@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import authService from "../services/auth.service";
 import { Outlet, useNavigate } from "react-router-dom";
-import UserRolesContext from "./UserRoleContext";
+import { RolesContext } from "../context/roles";
 
 function PrivateRoute(props) {
 
   const navigate = useNavigate();
   const [changePage, setChangePage] = useState();
-  const RoleContext = useContext(UserRolesContext);
+  const rolesContext = useContext(RolesContext);
 
   const checkRole = () => {
-    const role = RoleContext.role;
+    const role = rolesContext.role;
 
     if (!props.logged) {
       navigate('/');
