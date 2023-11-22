@@ -27,9 +27,9 @@ async function getAllGroups() {
 async function addGroup(groupName) {
   const body = new URLSearchParams();
   body.append("name", groupName);
-
+  let response = [];
   try {
-    const response = await axios.post(endPoint, body, getOptions(localStorage.getItem("token")));
+    response = await axios.post(endPoint, body, getOptions(localStorage.getItem("token")));
   } catch (err) {
     console.log(err);
     throw err;

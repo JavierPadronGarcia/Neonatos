@@ -4,7 +4,8 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import StudentCard from '../../../components/student/StudentCard';
 import { useEffect, useState } from 'react';
 import groupEnrolementService from '../../../services/groupEnrolement.service';
-import errorHandler from '../../../utils/errorHandler';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
+import { transformArray } from '../../../utils/shared/globalFunctions';
 
 function AdminStudents() {
 
@@ -19,41 +20,9 @@ function AdminStudents() {
       setAllStudentsNotInAGroup(studentsNotInAGroup);
     } catch (err) {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     }
-  }
-
-  //this function transform the array to propperly
-  //show information like: {group1, users:[user1, user2]}
-  const transformArray = (allData) => {
-    let newArray = [];
-    allData.forEach(groupEnrolement => {
-      let foundGroup = false;
-      for (let i = 0; i < newArray.length; i++) {
-        if (newArray[i].id == groupEnrolement.group.id) {
-          foundGroup = true;
-          break;
-        }
-      }
-      if (!foundGroup) {
-        newArray.push({
-          id: groupEnrolement.group.id,
-          name: groupEnrolement.group.name,
-          users: [{
-            id: groupEnrolement.User.id,
-            username: groupEnrolement.User.username
-          }]
-        })
-      } else {
-        for (let j = 0; j < newArray.length; j++) {
-          if (newArray[j].id == groupEnrolement.group.id) {
-            newArray[j].users.push({ id: groupEnrolement.User.id, username: groupEnrolement.User.username })
-          }
-        }
-      }
-    });
-    return newArray;
   }
 
   useEffect(() => {

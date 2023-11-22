@@ -4,9 +4,9 @@ import Group from '../../../components/group/Group';
 import { useState } from 'react';
 import groupsService from '../../../services/groups.service';
 import Toolbar from '../../../components/toolbar/Toolbar';
-import { Button, Input, message, notification } from 'antd';
+import { Button, Input, message } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
-import errorHandler from '../../../utils/errorHandler';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
 
 function AddGroup() {
 
@@ -28,7 +28,7 @@ function AddGroup() {
       }).catch(err => {
         message.destroy();
         if (!err.response) {
-          errorHandler.noConnectionError();
+          noConnectionError();
         }
       });
     } else {

@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { message, notification } from "antd";
+import { message } from "antd";
 import Header from "../../../components/Header/Header";
 import Toolbar from "../../../components/toolbar/Toolbar";
 import Group from "../../../components/group/Group";
@@ -8,7 +8,7 @@ import GoBack from "../../../components/go-back/GoBack";
 import groupsService from "../../../services/groups.service";
 import './AssignTeacherPage.css';
 import teacherGroupService from "../../../services/teacherGroup.service";
-import errorHandler from "../../../utils/errorHandler";
+import {noConnectionError} from "../../../utils/shared/errorHandler";
 
 function AssignTeacherPage() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function AssignTeacherPage() {
       setAvailableGroups(allAvailableGroups);
     } catch (err) {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     }
   }
@@ -40,7 +40,7 @@ function AssignTeacherPage() {
       navigate('/admin/teachers');
     }).catch(err => {
       if (!err.response) {
-        errorHandler.noConnectionError();
+        noConnectionError();
       }
     });
   }
