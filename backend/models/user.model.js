@@ -14,7 +14,16 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: false
     },
     filename: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    code: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    codeExpirationDate: {
+      type: Sequelize.DATE,
+      allowNull: true
     }
   })
 

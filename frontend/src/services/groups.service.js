@@ -14,6 +14,16 @@ function getOptions(token) {
   return options;
 }
 
+async function getAllGroupsWithoutCount() {
+  try {
+    const response = await axios.get(endPoint, getOptions(localStorage.getItem("token")));
+    const groups = await response.data;
+    return groups;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function getAllGroups() {
   try {
     const response = await axios.get(endPoint + '/withCounts', getOptions(localStorage.getItem("token")));
@@ -62,5 +72,6 @@ export default {
   getAllGroups,
   addGroup,
   updateGroup,
-  deleteGroup
+  deleteGroup,
+  getAllGroupsWithoutCount
 }

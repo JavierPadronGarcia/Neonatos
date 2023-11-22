@@ -8,7 +8,7 @@ import GoBack from "../../../components/go-back/GoBack";
 import groupsService from "../../../services/groups.service";
 import './AssignTeacherPage.css';
 import teacherGroupService from "../../../services/teacherGroup.service";
-import {noConnectionError} from "../../../utils/shared/errorHandler";
+import { noConnectionError } from "../../../utils/shared/errorHandler";
 
 function AssignTeacherPage() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function AssignTeacherPage() {
 
   const getAllGroups = async () => {
     try {
-      const allAvailableGroups = await groupsService.getAllGroups();
+      const allAvailableGroups = await groupsService.getAllGroupsWithoutCount();
       setAvailableGroups(allAvailableGroups);
     } catch (err) {
       if (!err.response) {
