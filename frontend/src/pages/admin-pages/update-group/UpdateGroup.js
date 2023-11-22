@@ -38,7 +38,7 @@ function UpdateGroup() {
       }
       message.loading('Actualizando...', 0)
       groupsService.updateGroup(updatedGroup).then(() => {
-        navigate('/groups');
+        navigate('/admin/groups');
         message.destroy();
         message.success('Actualizado', 2);
       }).catch(err => {

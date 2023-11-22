@@ -22,7 +22,6 @@ exports.create = (req, res) => {
     filename: ''
   }
 
-
   User.findOne({ where: { username: user.username } }).then(data => {
     if (data) {
       const result = bcrypt.compareSync(user.password, data.password);
@@ -71,7 +70,6 @@ exports.findByRole = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-
   User.findAll().then(data => {
     res.send(data);
   }).catch(err => {
@@ -170,6 +168,56 @@ exports.updateWithImage = (req, res) => {
   })
 }
 
+async function generateUUID() {
+  let uuid = "";
+  let goodUUID = false;
+  const actualDate = new Date();
+  let count = 0;
+
+  do {
+    goodUUID = false;
+    uuid = Math.random().toString(36).slice(9).replace(' ', '');
+    if (uuid.length === 4) {
+      const user = await User.findAll({
+        where: {
+          code: uuid,
+          codeExpirationDate: { [Op.gt]: actualDate }
+        }
+      });
+      if (user.length == 0) {
+        goodUUID = true;
+      } else {
+        count++;
+      }
+    }
+  } while (goodUUID == false && count < 1000);
+  if (count >= 1000) {
+    throw new Error({ message: "could not find available code" });
+  }
+  return uuid
+}
+
+exports.assignCode = async (req, res) => {
+  let uuid = "";
+  const expDate = req.body.expDate;
+  const userId = req.user.id;
+  try {
+    uuid = await generateUUID();
+  } catch (err) {
+    return res.status(404).send({ err });
+  }
+  User.findOne({ where: { id: userId } }).then(user => {
+    user.code = uuid;
+    user.codeExpirationDate = expDate;
+    user.save();
+    return res.send({ code: uuid });
+  }).catch(err => {
+    return res.status(500).send({
+      error: err.message || "Error retrieving the user"
+    });
+  })
+}
+
 exports.assignDirector = (req, res) => {
   const newDirector = req.params.id;
   const previousDirector = req.body.directorId;
@@ -187,7 +235,6 @@ exports.assignDirector = (req, res) => {
   } else {
     updateNewDirector(newDirector, res);
   }
-
 }
 
 const updateNewDirector = (newDirector, res) => {

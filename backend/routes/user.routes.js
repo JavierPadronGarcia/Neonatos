@@ -23,6 +23,9 @@ module.exports = app => {
   // Update a User with id
   router.put("/noimage/:id", auth.isAuthenticated, users.update);
 
+  // Generate uuid and assign to the user with the id
+  router.put("/assignCode", auth.isAuthenticated, users.assignCode);
+
   // Assign a user to be Director
   router.put("/assignDirector/:id", auth.isAuthenticated, users.assignDirector);
 
