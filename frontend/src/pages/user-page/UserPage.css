@@ -1,0 +1,52 @@
+.user-page {
+  height: 100%;
+}
+
+.user-page-main {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-page-main>div {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  position: relative;
+}
+
+.avatar-edit-button {
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  background: #64c2ee;
+}
+
+.modal-container {
+  position: relative;
+}
+
+.image-preview {
+  border: 1px solid red;
+  object-fit: cover;
+  height: 10rem;
+}
+
+.image-preview>img {
+  object-fit: contain;
+  height: 100%;
+}

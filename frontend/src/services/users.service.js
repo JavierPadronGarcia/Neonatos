@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const endPoint = 'http://localhost:8080/api/users';
+import { backendUsersEndpoint } from '../consts/backendEndpoints';
 
 function getOptions(token) {
   let bearerAccess = 'Bearer ' + token;
@@ -16,9 +15,24 @@ function getOptions(token) {
 
 async function getAllDirectors() {
   try {
-    const response = await axios.get(endPoint + '/directors', getOptions(localStorage.getItem('token')));
+    const response = await axios.get(backendUsersEndpoint + '/directors',
+      getOptions(localStorage.getItem('token'))
+    );
+
     const directors = await response.data;
     return directors;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function getUserById(id) {
+  try {
+    const response = await axios.get(backendUsersEndpoint + '/' + id,
+      getOptions(localStorage.getItem('token'))
+    );
+    const user = response.data;
+    return user;
   } catch (err) {
     throw err;
   }
@@ -30,7 +44,11 @@ async function assignDirector(prevDirectorId, newDirectorId) {
     if (prevDirectorId) {
       body.append('directorId', prevDirectorId);
     }
-    const response = await axios.put(`${endPoint}/assignDirector/${newDirectorId}`, body, getOptions(localStorage.getItem('token')));
+    const response = await axios.put(`${backendUsersEndpoint}/assignDirector/${newDirectorId}`,
+      body,
+      getOptions(localStorage.getItem('token'))
+    );
+    
     return response;
   } catch (err) {
     throw err;
@@ -39,5 +57,6 @@ async function assignDirector(prevDirectorId, newDirectorId) {
 
 export default {
   getAllDirectors,
-  assignDirector
+  getUserById,
+  assignDirector,
 }

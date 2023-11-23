@@ -21,6 +21,7 @@ function Toolbar() {
 
   return (
     <footer className="footer">
+
       <Popconfirm
         title="Seguro que quiere cerrar sesión?"
         open={openConfirmLogout}
@@ -30,10 +31,30 @@ function Toolbar() {
         okText='Confirmar'
         cancelText='Cancelar'
       >
-        <div><img src="/assets/icons/log-out.svg" alt='cerrar sesión' onClick={() => setContifmLogout(true)} /></div>
+        <div>
+          <img
+            src="/assets/icons/log-out.svg"
+            alt='cerrar sesión'
+            onClick={() => setContifmLogout(true)}
+          />
+        </div>
       </Popconfirm>
-      <div><img src="/assets/icons/home.svg" alt='volver al inicio' onClick={() => authService.navigateByRole(RoleContext.role, navigate)} /></div>
-      <div><img src="/assets/icons/profile.svg" alt='ver perfil' onClick={() => navigate('/user')} /></div>
+
+      <div>
+        <img
+          src="/assets/icons/home.svg"
+          alt='volver al inicio'
+          onClick={() => authService.navigateByRole(RoleContext.role, navigate)}
+        />
+      </div>
+
+      <div>
+        <img
+          src="/assets/icons/profile.svg"
+          alt='ver perfil'
+          onClick={() => navigate('/myUser')}
+        />
+      </div>
     </footer>
   );
 }
