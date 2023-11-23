@@ -5,18 +5,21 @@ import './Groups.css';
 import groupsService from "../../../services/groups.service";
 import Group from "../../../components/group/Group";
 import Toolbar from "../../../components/toolbar/Toolbar";
-import { Spin, message } from "antd";
+import { message } from "antd";
 import { noConnectionError } from "../../../utils/shared/errorHandler";
 import { LoadingOutlined } from '@ant-design/icons';
 
 function Groups() {
 
   const [allGroups, setAllGroups] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function getAllGroups() {
     try {
+      setLoading(true);
       const newGroups = await groupsService.getAllGroups();
       setAllGroups(newGroups);
+      setLoading(false);
     } catch (err) {
       if (!err.response) {
         noConnectionError();
@@ -57,8 +60,11 @@ function Groups() {
           </div>
         </header>
         <section className="groups-page-section">
-          {allGroups.length === 0 &&
+          {loading &&
             <LoadingOutlined style={{ fontSize: 60, color: '#08c' }} />
+          }
+          {allGroups.length === 0 && !loading &&
+            <p>No se encuentran cursos</p>
           }
           {allGroups.map((group) => {
             return (

@@ -23,6 +23,16 @@ async function getAllOrderedByGroupDesc() {
   }
 }
 
+async function getAllStudentsInAGroup(groupId) {
+  try {
+    const response = await axios.get(endPoint + '/group/' + groupId, getOptions(localStorage.getItem('token')))
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+
 async function getAllStudentsNotInAGroup() {
   try {
     const response = await axios.get(endPoint + '/studentsnotinagroup', getOptions(localStorage.getItem('token')));
@@ -51,5 +61,6 @@ async function assignStudentToGroup(studentId, groupId) {
 export default {
   getAllOrderedByGroupDesc,
   getAllStudentsNotInAGroup,
+  getAllStudentsInAGroup,
   assignStudentToGroup
 }
