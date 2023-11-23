@@ -48,7 +48,7 @@ function Group(props) {
           <p>Estudiantes: {group.StudentCount}</p>
         </main>
         <footer className='group-component-footer'>
-          <Button onclick={() => navigate(`/groups/details/${group.id}`)}>
+          <Button onClick={() => navigate(`/admin/groups/details/${group.id}/${group.name}`)}>
             Ver detalles
           </Button>
         </footer>

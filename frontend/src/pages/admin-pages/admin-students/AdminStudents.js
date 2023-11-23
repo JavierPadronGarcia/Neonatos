@@ -6,18 +6,22 @@ import { useEffect, useState } from 'react';
 import groupEnrolementService from '../../../services/groupEnrolement.service';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import { transformArray } from '../../../utils/shared/globalFunctions';
+import { LoadingOutlined } from '@ant-design/icons';
 
 function AdminStudents() {
 
   const [allStudentsInGroups, setAllStudentsInGroups] = useState([]);
   const [allStudentsNotInAGroup, setAllStudentsNotInAGroup] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getAllData = async () => {
     try {
+      setLoading(true);
       const studentsInGroups = await groupEnrolementService.getAllOrderedByGroupDesc();
       const studentsNotInAGroup = await groupEnrolementService.getAllStudentsNotInAGroup();
       setAllStudentsInGroups(transformArray(studentsInGroups));
       setAllStudentsNotInAGroup(studentsNotInAGroup);
+      setLoading(false);
     } catch (err) {
       if (!err.response) {
         noConnectionError();
@@ -37,6 +41,12 @@ function AdminStudents() {
           <h2>Alumnado</h2>
         </header>
         <main>
+          {loading &&
+            <LoadingOutlined style={{ fontSize: 60, color: '#08c', display: 'flex', justifyContent: 'center' }} />
+          }
+          {allStudentsInGroups.length === 0 && !loading &&
+            <p style={{ display: 'flex', justifyContent: 'center' }}>No hay estudiantes en ningún curso</p>
+          }
           {allStudentsInGroups.map((group, index) => {
             return (
               <section className='group-section' key={index}>
@@ -63,6 +73,11 @@ function AdminStudents() {
               </ul>
             </section>
           }
+          {
+            allStudentsNotInAGroup.length === 0 && !loading &&
+            <p style={{ display: 'flex', justifyContent: 'center' }}>No hay estudiantes sin clase</p>
+          }
+
         </main>
       </div>
       <Toolbar />

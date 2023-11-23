@@ -5,6 +5,7 @@ import { Button } from 'antd';
 function TeacherCard(props) {
   const teacher = props.teacher;
   const assignTeacher = props.assignTeacher;
+  console.log(teacher)
 
   const navigate = useNavigate();
 

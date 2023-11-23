@@ -15,6 +15,7 @@ import AssignTeacherPage from './pages/admin-pages/assign-teacher/AssignTeacherP
 import AdminDirectorsPage from './pages/admin-pages/admin-directors/AdminDirectorsPage';
 import { noConnectionError } from './utils/shared/errorHandler';
 import { RolesContext } from './context/roles';
+import GroupDetails from './pages/admin-pages/group-details/GroupDetails';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/admin/groups" element={<Groups />} />
           <Route path="/admin/groups/update/:name/:id" element={<UpdateGroup />} />
           <Route path="/admin/groups/add-group" element={<AddGroup />} />
+          <Route path="/admin/groups/details/:id/:name" element={<GroupDetails />} />
           <Route path="/admin/students" element={<AdminStudents />} />
           <Route path="/admin/students/assign/:student" element={<AssignStudentPage />} />
           <Route path="/admin/teachers" element={<AdminTeachers />} />

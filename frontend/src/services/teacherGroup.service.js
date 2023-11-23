@@ -32,6 +32,15 @@ async function getAllTeachersNotInAGroup() {
   }
 }
 
+async function getAllTeachersInAGroup(groupId) {
+  try {
+    const response = await axios.get(endPoint + '/group/' + groupId, getOptions(localStorage.getItem('token')))
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function assignTeacherToGroup(teacherid, groupId) {
   const body = new URLSearchParams();
   body.append('GroupID', groupId);
@@ -48,5 +57,6 @@ async function assignTeacherToGroup(teacherid, groupId) {
 export default {
   getAllOrderedByGroupDesc,
   getAllTeachersNotInAGroup,
+  getAllTeachersInAGroup,
   assignTeacherToGroup
 }
