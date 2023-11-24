@@ -174,7 +174,7 @@ Clic on apply and you have finished the set up of the proyect.
   ![Image of the tables created in mysql workbench after running the server](/readmeImages/TablesCreatedAfterRunningTheServer.png)
 
   If you want to check the created endPoints of the backend 
-  <a href='https://api.postman.com/collections/29809597-ecbc8b6e-11d2-40f9-971f-d33cf5c9b96b?access_key=PMAT-01HFCDZBXCCCCJNPQ5JK45X0TZ'>click here</a>
+  <a href='https://documenter.getpostman.com/view/29809597/2s9YeD8DNB'>click here</a>
 
   In the link you will see all the endpoints in the database with folders for each table, if you want to see a description of the table, clic in the folder and you will see this:
   ![Image of the description of a table in postman](/readmeImages/DescriptionOfATableInPostman.png)
