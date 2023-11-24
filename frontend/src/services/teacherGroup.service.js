@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const endPoint = "http://localhost:8080/api/teachercourse";
+import { backendTeacherGroupEndpoint } from '../consts/backendEndpoints';
 
 function getOptions(token) {
   let bearerAccess = 'Bearer ' + token;
@@ -16,7 +16,9 @@ function getOptions(token) {
 
 async function getAllOrderedByGroupDesc() {
   try {
-    const response = await axios.get(endPoint + '/orderdesc', getOptions(localStorage.getItem('token')));
+    const response = await axios.get(backendTeacherGroupEndpoint + '/orderdesc',
+      getOptions(localStorage.getItem('token'))
+    );
     return response.data;
   } catch (err) {
     throw err;
@@ -25,7 +27,9 @@ async function getAllOrderedByGroupDesc() {
 
 async function getAllTeachersNotInAGroup() {
   try {
-    const response = await axios.get(endPoint + '/teachernotinagroup', getOptions(localStorage.getItem('token')));
+    const response = await axios.get(backendTeacherGroupEndpoint + '/teachernotinagroup',
+      getOptions(localStorage.getItem('token'))
+    );
     return response.data;
   } catch (err) {
     throw err;
@@ -34,7 +38,9 @@ async function getAllTeachersNotInAGroup() {
 
 async function getAllTeachersInAGroup(groupId) {
   try {
-    const response = await axios.get(endPoint + '/group/' + groupId, getOptions(localStorage.getItem('token')))
+    const response = await axios.get(backendTeacherGroupEndpoint + '/group/' + groupId,
+      getOptions(localStorage.getItem('token'))
+    );
     return response.data;
   } catch (err) {
     throw err;
@@ -46,7 +52,10 @@ async function assignTeacherToGroup(teacherid, groupId) {
   body.append('GroupID', groupId);
   body.append('UserID', teacherid);
   try {
-    const response = await axios.post(endPoint, body, getOptions(localStorage.getItem('token')));
+    const response = await axios.post(backendTeacherGroupEndpoint,
+      body,
+      getOptions(localStorage.getItem('token'))
+    );
     return response.data;
   } catch (err) {
     throw err;

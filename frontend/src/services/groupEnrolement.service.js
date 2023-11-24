@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const endPoint = "http://localhost:8080/api/groupenrolement";
+import { backendGroupEnrolementEndpoint } from '../consts/backendEndpoints';
 
 function getOptions(token) {
   let bearerAccess = 'Bearer ' + token;
@@ -16,7 +16,10 @@ function getOptions(token) {
 
 async function getAllOrderedByGroupDesc() {
   try {
-    const response = await axios.get(endPoint + '/orderdesc', getOptions(localStorage.getItem('token')));
+    const response = await axios.get(backendGroupEnrolementEndpoint + '/orderdesc',
+      getOptions(localStorage.getItem('token'))
+    );
+
     return response.data;
   } catch (err) {
     throw err;
@@ -25,7 +28,10 @@ async function getAllOrderedByGroupDesc() {
 
 async function getAllStudentsInAGroup(groupId) {
   try {
-    const response = await axios.get(endPoint + '/group/' + groupId, getOptions(localStorage.getItem('token')))
+    const response = await axios.get(backendGroupEnrolementEndpoint + '/group/' + groupId,
+      getOptions(localStorage.getItem('token'))
+    );
+
     return response.data;
   } catch (err) {
     throw err;
@@ -35,7 +41,11 @@ async function getAllStudentsInAGroup(groupId) {
 
 async function getAllStudentsNotInAGroup() {
   try {
-    const response = await axios.get(endPoint + '/studentsnotinagroup', getOptions(localStorage.getItem('token')));
+    const response = await axios.get(
+      backendGroupEnrolementEndpoint + '/studentsnotinagroup',
+      getOptions(localStorage.getItem('token'))
+    );
+
     return response.data;
   } catch (err) {
     throw err;
@@ -49,7 +59,10 @@ async function assignStudentToGroup(studentId, groupId) {
   body.append('UserID', studentId);
   body.append('Date', date);
   try {
-    const response = await axios.post(endPoint, body, getOptions(localStorage.getItem('token')));
+    const response = await axios.post(backendGroupEnrolementEndpoint,
+      body,
+      getOptions(localStorage.getItem('token'))
+    );
 
     return response.data;
   } catch (err) {

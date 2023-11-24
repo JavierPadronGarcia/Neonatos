@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const endPoint = "http://localhost:8080/api/groups";
+import { backendGroupsEndpoint } from '../consts/backendEndpoints';
 
 function getOptions(token) {
   let bearerAccess = 'Bearer ' + token;
@@ -16,7 +15,9 @@ function getOptions(token) {
 
 async function getAllGroupsWithoutCount() {
   try {
-    const response = await axios.get(endPoint, getOptions(localStorage.getItem("token")));
+    const response = await axios.get(backendGroupsEndpoint,
+      getOptions(localStorage.getItem("token"))
+    );
     const groups = await response.data;
     return groups;
   } catch (err) {
@@ -26,7 +27,9 @@ async function getAllGroupsWithoutCount() {
 
 async function getAllGroups() {
   try {
-    const response = await axios.get(endPoint + '/withCounts', getOptions(localStorage.getItem("token")));
+    const response = await axios.get(backendGroupsEndpoint + '/withCounts',
+      getOptions(localStorage.getItem("token"))
+    );
     const groups = await response.data;
     return groups;
   } catch (err) {
@@ -39,7 +42,10 @@ async function addGroup(groupName) {
   body.append("name", groupName);
   let response = [];
   try {
-    response = await axios.post(endPoint, body, getOptions(localStorage.getItem("token")));
+    response = await axios.post(backendGroupsEndpoint,
+      body,
+      getOptions(localStorage.getItem("token"))
+    );
   } catch (err) {
     console.log(err);
     throw err;
@@ -52,7 +58,10 @@ async function updateGroup(updatedGroup) {
   body.append("name", updatedGroup.name);
 
   try {
-    const response = await axios.put(`${endPoint}/${updatedGroup.id}`, body, getOptions(localStorage.getItem("token")));
+    const response = await axios.put(`${backendGroupsEndpoint}/${updatedGroup.id}`,
+      body,
+      getOptions(localStorage.getItem("token"))
+    );
     return response;
   } catch (err) {
     throw err;
@@ -61,7 +70,10 @@ async function updateGroup(updatedGroup) {
 
 async function deleteGroup(id) {
   try {
-    const response = await axios.delete(`${endPoint}/${id}`, getOptions(localStorage.getItem("token")));
+    const response = await axios.delete(`${backendGroupsEndpoint}/${id}`,
+      getOptions(localStorage.getItem("token"))
+    );
+
     return response;
   } catch (err) {
     throw err;

@@ -5,6 +5,10 @@ import { RolesContext } from "../context/roles";
 
 function PrivateRoute(props) {
 
+  const logged = props.logged;
+  const permittedRole = props.permittedRole;
+  const onlyLogged = props.onlyLogged;
+
   const navigate = useNavigate();
   const [changePage, setChangePage] = useState();
   const rolesContext = useContext(RolesContext);
@@ -12,12 +16,14 @@ function PrivateRoute(props) {
   const checkRole = () => {
     const role = rolesContext.role;
 
-    if (!props.logged) {
+
+
+    if (!logged) {
       navigate('/');
       return false;
     }
 
-    if (role !== props.permittedRole) {
+    if (role !== permittedRole) {
       authService.navigateByRole(role, navigate);
       return false;
     }
@@ -25,9 +31,25 @@ function PrivateRoute(props) {
     return true;
   }
 
+  const checkIsLogged = () => {
+    if (!logged) {
+      navigate('/');
+      return false;
+    }
+
+    return true;
+  }
+
   useEffect(() => {
-    const accessGranted = checkRole();
-    setChangePage(accessGranted)
+    if (!onlyLogged) {
+      //need a role to access
+      const accessGranted = checkRole();
+      setChangePage(accessGranted)
+    } else {
+      //don't need a role, only need to be logged
+      const accessGranted = checkIsLogged();
+      setChangePage(accessGranted);
+    }
   }, [])
 
   if (changePage) {
