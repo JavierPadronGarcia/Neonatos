@@ -2,7 +2,7 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { errorOnLogin, noConnectionError } from '../../utils/shared/errorHandler';
 import { RolesContext } from '../../context/roles';
 import { loginValidation } from '../../utils/shared/globalFunctions';
@@ -25,7 +25,7 @@ function Login() {
         content: `Sesión iniciada correctamente`,
         duration: 1,
       })
-      window.location.reload();
+      authService.navigateByRole(newRole, navigate);
       setLoading(false);
     }).catch((err) => {
       loginErrors(err);
@@ -68,19 +68,16 @@ function Login() {
     }
   }
 
-  if (logged) {
-    authService.navigateByRole(roles.role, navigate);
-    return (
-      <div className="login-page">
-        <header>
-          <h1>Sesión iniciada, redirigiendo...</h1>
-        </header>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (logged) {
+      authService.navigateByRole('admin', navigate);
+    }
+  }, [])
+
 
   return (
-    <div className="login-page">
+    < div className="login-page" >
+
       <header>
         <h1>MetaHospitalFP</h1>
       </header>
@@ -112,9 +109,15 @@ function Login() {
           </label>
         </form>
       </main>
-    </div>
+
+    </div >
+
   );
 }
+
+
+
+
 
 
 export default Login;

@@ -79,9 +79,6 @@ const navigateByRole = (role, navigate) => {
     case 'director':
       navigate('/director-panel');
       break;
-    default:
-      navigate('/')
-      break;
   }
 }
 
