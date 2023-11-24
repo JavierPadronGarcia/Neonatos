@@ -95,9 +95,9 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   let user = {
-    username: req.body.username,
+    username: req.body.username || '',
     password: '',
-    role: req.body.role,
+    role: req.body.role || '',
     filename: ''
   }
 
@@ -106,6 +106,9 @@ exports.update = (req, res) => {
     if (!data) {
       return res.status(404).send({ message: "Cannot update the user because don't exists" })
     }
+
+    if (user.username == '') { user.username = data.username }
+    if (user.role == '') { user.role = data.role }
 
     user.password = data.password;
     user.filename = data.filename;
@@ -134,9 +137,11 @@ exports.update = (req, res) => {
 exports.updateWithImage = (req, res) => {
   const userDecoded = utils.decodeToken(req.headers['authorization']);
   const previousImage = req.body.previousImage;
+  const newUsername = req.body.newUsername;
+
   const updatedUser = {
     id: userDecoded.id,
-    username: userDecoded.username,
+    username: newUsername || userDecoded.username,
     password: userDecoded.password,
     role: userDecoded.role,
     filename: req.file ? req.file.filename : null
@@ -158,7 +163,7 @@ exports.updateWithImage = (req, res) => {
         message: "User was updated successfully."
       })
     }
-    res.send({
+    return res.status(500).send({
       message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
     })
   }).catch(err => {
