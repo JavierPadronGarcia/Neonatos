@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "*"
 }
 
 app.use(cors(corsOptions));
@@ -76,3 +76,5 @@ require("./routes/grade.routes")(app);
 app.listen(port, () => {
   console.log('Server is runing on: ' + port);
 });
+
+module.exports = app;
