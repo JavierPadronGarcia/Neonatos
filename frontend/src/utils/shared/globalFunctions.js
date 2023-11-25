@@ -1,4 +1,5 @@
 import { message } from "antd";
+import { jwtDecode } from 'jwt-decode';
 
 export const transformArray = (allData) => {
   const groupsMap = new Map();
@@ -17,6 +18,12 @@ export const transformArray = (allData) => {
   }
 
   return Array.from(groupsMap.values());
+}
+
+export const decodeToken = () => {
+  const token = localStorage.getItem('token');
+  const tokenDecoded = jwtDecode(token);
+  return tokenDecoded;
 }
 
 export const loginValidation = (username, password, setInputNameStatus, setInputPasswdStatus, setLoading) => {

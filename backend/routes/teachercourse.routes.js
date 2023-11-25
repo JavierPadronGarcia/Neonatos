@@ -1,7 +1,7 @@
 module.exports = app => {
   const teachercourse = require("../controllers/teachercourse.controller")
   const auth = require('../controllers/auth');
-  
+
   var router = require("express").Router();
 
   // assign teachers to groups or groups to teachers
@@ -9,6 +9,7 @@ module.exports = app => {
 
   // retrieve all data from teachercourse
   router.get("/", auth.isAuthenticated, teachercourse.findAll);
+
 
   //retrieve all teachers in a group
   router.get("/group/:id", auth.isAuthenticated, teachercourse.findAllTeacherInCourse);
@@ -22,10 +23,13 @@ module.exports = app => {
   //retrieve all teachers not in this table
   router.get("/teachernotinagroup", auth.isAuthenticated, teachercourse.findAllTeachersNotInAGroup);
 
-  //update
+  //retrieve all teachers not in this table
+  router.get("/allGroupsAssignedToTeacher/:id", auth.isAuthenticated, teachercourse.findAllGroupsByTeacher);
+
+  //update the teacherCourse table with the userId and groupId
   router.put("/:userId/:groupId", auth.isAuthenticated, teachercourse.update);
 
-  //delete
+  //delete the teacherCourse data with the userId and groupId
   router.delete("/:userId/:groupId", auth.isAuthenticated, teachercourse.remove);
 
   app.use('/api/teachercourse', router);

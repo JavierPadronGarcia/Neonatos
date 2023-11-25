@@ -98,6 +98,21 @@ exports.findAllTeacherInCourse = (req, res) => {
     });
 };
 
+exports.findAllGroupsByTeacher = (req, res) => {
+  const teacherId = req.params.id;
+  TeacherCourse.findAll({
+    where: { UserID: teacherId },
+    include: [{ model: Group }]
+  }).then(data => {
+    res.send(data);
+  }).catch(err => {
+    console.error(err);
+    res.status(500).send({
+      message: err.message || "Error retrieving data"
+    });
+  })
+}
+
 exports.getCountOfTeachersInCourse = (req, res) => {
   const groupId = req.params.id
   TeacherCourse.count({

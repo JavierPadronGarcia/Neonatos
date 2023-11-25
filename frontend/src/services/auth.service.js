@@ -71,7 +71,7 @@ const navigateByRole = (role, navigate) => {
       navigate('/admin/control-panel');
       break;
     case 'teacher':
-      navigate('/teacher-groups');
+      navigate('/teacher/main');
       break;
     case 'student':
       navigate('/student-groups');
