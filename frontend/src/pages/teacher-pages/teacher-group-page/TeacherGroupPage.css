@@ -1,0 +1,11 @@
+.teacher-group-page>h2 {
+  text-align: center;
+}
+
+.teacher-group-page-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 4rem;
+}

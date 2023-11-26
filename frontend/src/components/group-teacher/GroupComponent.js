@@ -37,7 +37,7 @@ function GroupComponent({ group, index }) {
       <Icon
         component={iconEnter}
         className='group-component-icon enter'
-        onClick={() => navigate(`./group/${group.id}`)}
+        onClick={() => navigate(`./group/${group.name}/${group.id}`)}
       />
     </div>
   )
