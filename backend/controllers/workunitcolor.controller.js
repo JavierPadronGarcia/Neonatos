@@ -1,5 +1,7 @@
 const db = require("../models");
 const WorkUnitColor = db.workUnitColor;
+const Color = db.color;
+const WorkUnit = db.workUnit;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -25,14 +27,50 @@ exports.create = (req, res) => {
   });
 }
 
+const transformArray = (array) => {
+  return array.reduce((acc, obj) => {
+    const propertyName = obj.visibility ? 'visible' : 'invisible';
+    const colorObject = {
+      id: obj.color.id,
+      primaryColor: obj.color.primaryColor,
+      secondaryColor: obj.color.secondaryColor,
+      text: obj.color.text
+    };
+
+    acc[obj.workUnit.name] = acc[obj.workUnit.name] || {
+      id: obj.workUnit.id,
+      name: obj.workUnit.name,
+      visibility: obj.visibility,
+      colors: {}
+    };
+
+    acc[obj.workUnit.name].colors[propertyName] = colorObject;
+
+    return acc;
+  }, {});
+}
+
 exports.findAll = (req, res) => {
-  WorkUnitColor.findAll().then(data => {
-    return res.send(data);
-  }).catch(err => {
-    return res.status(500).send({
-      message: err.message || "Error retrieving all"
-    });
-  })
+  WorkUnitColor.findAll(
+    {
+      include: [
+        {
+          model: Color,
+          attributes: ['id', 'primaryColor', 'secondaryColor', 'text']
+        },
+        {
+          model: WorkUnit,
+          attributes: ['id', 'name']
+        },
+      ]
+    }).then(data => {
+      const transformedArray = Object.values(transformArray(data));
+      return res.send(transformedArray);
+    }).catch(err => {
+      return res.status(500).send({
+        message: err.message || "Error retrieving all Work units colors"
+      });
+    })
 }
 
 exports.findOne = (req, res) => {

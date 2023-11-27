@@ -59,6 +59,7 @@ function App() {
         <Route element={<PrivateRoute permittedRole='teacher' logged={logged} />}>
           <Route path="/teacher/main" element={<TeacherMainPage />} />
           <Route path="/teacher/main/group/:name/:id" element={<TeacherGroupPage />} />
+          {/* each work unit page -> /teacher/main/group/:name/:id/unit/:workUnitId */}
         </Route>
 
       </Routes>

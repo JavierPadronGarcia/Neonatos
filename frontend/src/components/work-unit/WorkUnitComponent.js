@@ -50,6 +50,7 @@ function WorkUnitComponent({ workUnit }) {
       <Icon
         component={iconEnter}
         className='work-unit-component-icon enter'
+        onClick={() => navigate(`./unit/${workUnit.id}`)}
       />
     </div>
   )
@@ -60,7 +61,7 @@ function WorkUnitComponent({ workUnit }) {
       <span>
         <Button
           onClick={() => changeVisibility()}
-          style={{ background: colors.button, border: '1px solid black' }}
+          style={{ background: colors.secondaryColor, border: '1px solid black' }}
         >
           Cambiar visibilidad
         </Button>
@@ -71,12 +72,11 @@ function WorkUnitComponent({ workUnit }) {
   return (
     <div
       className='work-unit-component-selection'
-      style={{ background: colors.background }}
+      style={{ background: colors.primaryColor }}
       ref={componentRef}
     >
       {showFirsLine()}
-      {
-        containerExpanded &&
+      {containerExpanded &&
         showSecondLine()
       }
     </div>

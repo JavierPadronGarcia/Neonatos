@@ -9,3 +9,8 @@ export const backendTeacherGroupEndpoint = `${backendEndpoint}/api/teachercourse
 export const backendGroupsEndpoint = `${backendEndpoint}/api/groups`;
 
 export const backendGroupEnrolementEndpoint = `${backendEndpoint}/api/groupenrolement`;
+
+export const backendWorkUnitsEndpoint = `${backendEndpoint}/api/workunit`;
+
+export const backendWorkUnitsColorsEndpoint = `${backendEndpoint}/api/workunitcolors`;
+
