@@ -74,6 +74,7 @@ require("./routes/exercise.routes")(app);
 require("./routes/grade.routes")(app);
 require("./routes/color.routes")(app);
 require("./routes/workunitcolors.routes")(app);
+require("./routes/workunitgroup.routes")(app);
 
 
 app.listen(port, () => {
