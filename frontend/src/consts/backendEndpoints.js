@@ -14,3 +14,4 @@ export const backendWorkUnitsEndpoint = `${backendEndpoint}/api/workunit`;
 
 export const backendWorkUnitsColorsEndpoint = `${backendEndpoint}/api/workunitcolors`;
 
+export const backendWorkUnitsGroupsEndpoint = `${backendEndpoint}/api/workunitgroups`;

@@ -5,7 +5,8 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import WorkUnitComponent from '../../../components/work-unit/WorkUnitComponent';
-import workUnitService from '../../../services/workUnitsColors.service';
+import workUnitGroupService from '../../../services/workUnitGroups.service';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
 
 function TeacherGroupPage() {
 
@@ -14,8 +15,14 @@ function TeacherGroupPage() {
   const [allWorkUnits, setAllWorkUnits] = useState([]);
 
   const getAllWorkUnits = async () => {
-    const workUnits = await workUnitService.getAllWorkUnitsWithColors();
-    setAllWorkUnits(workUnits);
+    try {
+      const workUnits = await workUnitGroupService.getAllWorkUnitsWithColorsByGroup(id);
+      setAllWorkUnits(workUnits);
+    } catch (err) {
+      if (!err.response) {
+        noConnectionError();
+      }
+    }
     setLoading(false)
   }
 
@@ -23,9 +30,24 @@ function TeacherGroupPage() {
     getAllWorkUnits();
   }, []);
 
+  const handleUpdateVisibility = async (workUnitId, visibility) => {
+    try {
+      await workUnitGroupService.updateWorkUnitVisibility(id, workUnitId, visibility);
+    } catch (err) {
+      if (!err.response) {
+        noConnectionError();
+      }
+    }
+  }
+
   const showWorkUnits = () => (
-    allWorkUnits.map((workUnit) => (
-      <WorkUnitComponent workUnit={workUnit} key={workUnit.id} />
+    allWorkUnits.map((workUnitGroup) => (
+      <WorkUnitComponent
+        workUnit={workUnitGroup.workUnit}
+        unitVisibility={workUnitGroup.visibility}
+        key={workUnitGroup.workUnit.id}
+        notifyUpdateVisibility={(workUnitId, visibility) => handleUpdateVisibility(workUnitId, visibility)}
+      />
     ))
   )
 

@@ -91,72 +91,84 @@ const transformArray = (array) => {
 
 exports.findAllByGroup = async (req, res) => {
   const { GroupID } = req.params;
-
-  const workUnitGroup = await WorkUnitGroup.findAll(
-    { where: { GroupID: GroupID } }
-  );
-
-  const workUnitColor = await WorkUnitColor.findAll({
-    include: [
-      {
-        model: Color,
-        attributes: ['id', 'primaryColor', 'secondaryColor', 'text']
-      },
-      {
-        model: WorkUnit,
-        attributes: ['id', 'name']
-      },
-    ]
-  })
+  let workUnitColor = [];
+  let workUnitGroup = [];
+  let workUnitColorsIds = [];
+  let newArray = [];
+  try {
+    workUnitColor = await WorkUnitColor.findAll({
+      include: [
+        {
+          model: Color,
+          attributes: ['id', 'primaryColor', 'secondaryColor', 'text']
+        },
+        {
+          model: WorkUnit,
+          attributes: ['id', 'name']
+        },
+      ]
+    })
+  } catch (err) {
+    return res.status(500).send(
+      { message: `Error getting all work units for group ${GroupID}` }
+    )
+  }
   const workUnitColorTransformed = Object.values(await transformArray(workUnitColor));
 
-  const combinedresult = workUnitColorTransformed.map(workUnitColor => {
-    const matchingGroup = workUnitGroup.find(workUnitGroup =>
-      workUnitGroup.WorkUnitID === workUnitColor.id
-    )
-    console.log(matchingGroup)
+  workUnitColorTransformed.map((data, index) => {
+    workUnitColorsIds[index] = data.id;
   })
 
+  try {
+    workUnitGroup = await WorkUnitGroup.findAll({
+      where: {
+        GroupID: GroupID,
+        WorkUnitID: {
+          [Op.in]: workUnitColorsIds
+        }
+      },
+      include: [
+        { model: WorkUnit }
+      ]
+    });
+  } catch (err) {
+    return res.status(500).send({
+      message: `Error getting all work units with colors for group ${GroupID}`
+    })
+  }
 
-  res.send(workUnitColorTransformed);
+  workUnitGroup.map((data, index) => {
+    data = data.get({ plain: true });
+    const workUnitWithColor = workUnitColorTransformed.find(workUnitColor => workUnitColor.id === data.WorkUnitID);
+    data.workUnit = workUnitWithColor;
+    newArray[index] = data;
+  })
+
+  return res.send(newArray);
 }
 
 exports.update = (req, res) => {
   const { GroupID, WorkUnitID } = req.params;
 
-  if (!req.body.GroupID || !req.body.WorkUnitID) {
-    return res.status(500).send({
-      message: "Content cannot be empty!"
-    })
-  }
-
-  const updatedWorkUnitGroup = {
-    GroupID: req.body.GroupID,
-    WorkUnitID: req.body.WorkUnitID,
-    visibility: req.body.visibility || false
-  }
-
-  WorkUnitGroup.update(updatedWorkUnitGroup, {
+  WorkUnitGroup.findOne({
     where: {
-      GroupId: GroupID,
+      GroupID: GroupID,
       WorkUnitID: WorkUnitID
     }
-  }).then(num => {
-    if (num == 1) {
-      return res.send({
-        message: "workUnitGroup was updated successfully!"
-      });
+  }).then(workUnitGroup => {
+    if (!workUnitGroup) {
+      return res.status(404).send({
+        message: "Work Unit not found"
+      })
     }
-
-    return res.status(500).send({
-      message: `Cannot update the workUnitGroup with id=${id}. Maybe workUnitGroup was not found or req.body is empty!`
-    })
-
+    workUnitGroup.visibility = req.body.visibility || false;
+    workUnitGroup.save();
+    return res.send({ message: 'WorkUnitGroup updated succesfully' });
   }).catch(err => {
     return res.status(500).send({
-      message: `Error updating the workUnitGroup with id=${id}: \n${err}`
-    });
-  });
+      message: err.message || "Some error occurred while updating the WorkUnitGroup."
+    })
+  })
 }
 
 exports.delete = (req, res) => {

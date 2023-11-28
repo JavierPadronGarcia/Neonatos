@@ -5,14 +5,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 
-function WorkUnitComponent({ workUnit }) {
+function WorkUnitComponent({ workUnit, unitVisibility, notifyUpdateVisibility }) {
 
   const navigate = useNavigate();
   const componentRef = useRef(null);
   const [containerExpanded, setContainerExpanded] = useState(false);
-  const [visibility, setVisibility] = useState(workUnit.visibility);
+  const [visibility, setVisibility] = useState(unitVisibility);
   const [colors, setColors] = useState(visibility ? workUnit.colors.visible : workUnit.colors.invisible);
-
 
   useEffect(() => {
     setColors(visibility ? workUnit.colors.visible : workUnit.colors.invisible);
@@ -36,6 +35,7 @@ function WorkUnitComponent({ workUnit }) {
   }
 
   const changeVisibility = () => {
+    notifyUpdateVisibility(workUnit.id, !visibility);
     setVisibility(!visibility);
     toggleExpandContainer();
   }
