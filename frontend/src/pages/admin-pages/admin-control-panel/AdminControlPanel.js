@@ -16,24 +16,24 @@ function AdminControlPanel() {
         </header>
         <main className='buttons-section'>
           <div className='first-row'>
-            <item className="card-button" onClick={() => navigate('/admin/groups')}>
+            <div className="card-button" onClick={() => navigate('/admin/groups')}>
               <div><img src='/assets/icons/groups.svg' alt='ir a grupos' /></div>
               <span>Cursos</span>
-            </item>
-            <item className="card-button" onClick={() => navigate('/admin/teachers')}>
+            </div>
+            <div className="card-button" onClick={() => navigate('/admin/teachers')}>
               <div><img src='/assets/icons/teachers.svg' alt='ir a profesorado' /></div>
               <span>Profesorado</span>
-            </item>
+            </div>
           </div>
           <div className='second-row'>
-            <item className="card-button" onClick={() => navigate('/admin/students')}>
+            <div className="card-button" onClick={() => navigate('/admin/students')}>
               <div><img src='/assets/icons/students.svg' alt='ir a alumnado' /></div>
               <span>Alumnado</span>
-            </item>
-            <item className="card-button" onClick={() => navigate('/admin/directors')}>
+            </div>
+            <div className="card-button" onClick={() => navigate('/admin/directors')}>
               <div><img src='/assets/icons/directors.svg' alt='ir a dirección' /></div>
               <span>Dirección</span>
-            </item>
+            </div>
           </div>
         </main>
       </div>

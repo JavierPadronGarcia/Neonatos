@@ -5,7 +5,6 @@ import { Button } from 'antd';
 function TeacherCard(props) {
   const teacher = props.teacher;
   const assignTeacher = props.assignTeacher;
-  console.log(teacher)
 
   const navigate = useNavigate();
 
@@ -16,17 +15,17 @@ function TeacherCard(props) {
 
   if (assignTeacher) {
     return (
-      <item className='teacher-card'>
+      <div className='teacher-card'>
         <span>{teacher.username}</span>
         <Button onClick={() => handleNavigate(teacher)}>Asignar</Button>
-      </item>
+      </div>
     );
   }
 
   return (
-    <item className='teacher-card'>
+    <div className='teacher-card'>
       <span>{teacher.username}</span>
-    </item>
+    </div>
   );
 }
 

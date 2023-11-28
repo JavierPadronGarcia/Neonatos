@@ -25,7 +25,7 @@ function TeacherMainPage() {
 
   const showGroups = () => (
     allGroups.map((item, index) =>
-      <GroupComponent key={item.id} group={item.group} index={index} />
+      <GroupComponent key={index} group={item.group} index={index} />
     )
   )
 

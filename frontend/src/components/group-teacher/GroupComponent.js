@@ -12,8 +12,8 @@ function GroupComponent({ group, index }) {
 
   const iconEnter = () => (
     <svg width="1em" height="1em" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14.9182 2.22925H18.9454C23.3938 2.22925 27 4.66685 27 7.67378V21.2851C27 24.292 23.3938 26.7297 18.9454 26.7297H14.9182" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M2 14.4794H18.9455M18.9455 14.4794L12.9045 10.396M18.9455 14.4794L12.9045 18.5628" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M14.9182 2.22925H18.9454C23.3938 2.22925 27 4.66685 27 7.67378V21.2851C27 24.292 23.3938 26.7297 18.9454 26.7297H14.9182" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M2 14.4794H18.9455M18.9455 14.4794L12.9045 10.396M18.9455 14.4794L12.9045 18.5628" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 

@@ -63,7 +63,6 @@ function AdminDirectorsPage() {
   }
 
   const setUpDirectors = () => {
-
     getAllDirectors().then(data => {
       setElements(data);
     });
