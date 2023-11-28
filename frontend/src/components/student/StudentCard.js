@@ -15,17 +15,17 @@ function StudentCard(props) {
 
   if (assignStudent) {
     return (
-      <item className='student-card'>
+      <div className='student-card'>
         <span>{student.username}</span>
         <Button onClick={() => handleNavigate(student)}>Asignar</Button>
-      </item>
+      </div>
     );
   }
 
   return (
-    <item className='student-card'>
+    <div className='student-card'>
       <span>{student.username}</span>
-    </item>
+    </div>
   );
 }
 
