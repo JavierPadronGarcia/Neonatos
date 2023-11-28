@@ -6,7 +6,7 @@ const Group = db.groups;
 const api = supertest(app);
 
 //test token
-let TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqYXZpZXIiLCJwYXNzd29yZCI6IiQyYSQxMCRmOGFFWXIueTYyVnNwd25WT3Y2SFhPa3Y4YW8xQVltTkM2cC4uczdVSEdqc3pnYUhvbXhkTyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcwMDg2ODIxOSwiZXhwIjoxNzAwOTU0NjE5fQ.TgpkRWA5paFEj5Yh8P-Sz-JD85U2be5CVN7oQi4H0qs";
+let TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqYXZpZXJUZXN0IiwicGFzc3dvcmQiOiIkMmEkMTAkRzJPcS5GTS5ILzguNUhHaFdVRzluLktJREliYzA5cnBCSmpBRHBVb0d2Y3VtelNCZ2MzYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDEwOTg3MzMsImV4cCI6MTcwMTE4NTEzM30.i1BUd7fMJHqrLKU9criFIA2_6hUyKXnl8famJOrDfs0";
 
 beforeAll(async () => {
   await db.sequelize.sync();

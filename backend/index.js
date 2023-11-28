@@ -72,6 +72,10 @@ require("./routes/case.routes")(app);
 require("./routes/item.routes")(app);
 require("./routes/exercise.routes")(app);
 require("./routes/grade.routes")(app);
+require("./routes/color.routes")(app);
+require("./routes/workunitcolors.routes")(app);
+require("./routes/workunitgroup.routes")(app);
+
 
 app.listen(port, () => {
   console.log('Server is runing on: ' + port);

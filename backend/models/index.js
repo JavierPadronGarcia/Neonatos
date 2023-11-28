@@ -24,6 +24,9 @@ db.case = require('./case.model.js')(sequelize, Sequelize);
 db.item = require('./item.model.js')(sequelize, Sequelize);
 db.exercise = require('./exercise.model.js')(sequelize, Sequelize);
 db.grade = require('./grade.model.js')(sequelize, Sequelize);
+db.color = require('./color.model.js')(sequelize, Sequelize);
+db.workUnitColor = require('./workUnitColor.model.js')(sequelize, Sequelize);
+db.workUnitGroup = require('./workunitGroup.model.js')(sequelize, Sequelize);
 
 //teacher - groups relations
 db.users.hasMany(db.teachercourse, { foreignKey: 'UserID' });
@@ -41,6 +44,20 @@ db.groupEnrolement.belongsTo(db.groups, { foreignKey: 'GroupID' });
 
 //work unit - case relations
 db.workUnit.hasMany(db.case, { foreignKey: 'WorkUnitId' });
+
+//work unit - color relations
+db.workUnit.hasMany(db.workUnitColor, { foreignKey: 'WorkUnitId' });
+db.color.hasMany(db.workUnitColor, { foreignKey: 'ColorId' });
+
+db.workUnitColor.belongsTo(db.workUnit, { foreignKey: 'WorkUnitId' });
+db.workUnitColor.belongsTo(db.color, { foreignKey: 'ColorId' });
+
+//work unit - groups relations
+db.groups.hasMany(db.workUnitGroup, { foreignKey: 'GroupID' });
+db.workUnit.hasMany(db.workUnitGroup, { foreignKey: 'WorkUnitID' });
+
+db.workUnitGroup.belongsTo(db.groups, { foreignKey: 'GroupID' });
+db.workUnitGroup.belongsTo(db.workUnit, { foreignKey: 'WorkUnitID' });
 
 //items - cases relations
 db.case.hasMany(db.item, { foreignKey: 'CaseId' });

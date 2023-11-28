@@ -18,6 +18,7 @@ import AdminDirectorsPage from './pages/admin-pages/admin-directors/AdminDirecto
 import GroupDetails from './pages/admin-pages/group-details/GroupDetails';
 import UserPage from './pages/user-page/UserPage';
 import TeacherMainPage from './pages/teacher-pages/teacher-main-page/TeacherMainPage';
+import TeacherGroupPage from './pages/teacher-pages/teacher-group-page/TeacherGroupPage';
 
 function App() {
 
@@ -57,6 +58,8 @@ function App() {
 
         <Route element={<PrivateRoute permittedRole='teacher' logged={logged} />}>
           <Route path="/teacher/main" element={<TeacherMainPage />} />
+          <Route path="/teacher/main/group/:name/:id" element={<TeacherGroupPage />} />
+          {/* each work unit page -> /teacher/main/group/:name/:id/unit/:workUnitId */}
         </Route>
 
       </Routes>
