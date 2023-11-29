@@ -6,6 +6,7 @@ function Add(props) {
   const link = props.link;
   const alt = props.alt;
 
+
   return (
     <div onClick={() => navigate(link)}>
       <img src="/assets/icons/add.svg" alt={alt} />

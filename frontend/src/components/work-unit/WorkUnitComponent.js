@@ -40,6 +40,11 @@ function WorkUnitComponent({ workUnit, unitVisibility, notifyUpdateVisibility })
     toggleExpandContainer();
   }
 
+  const handleNavigateToWorkUnit = () => {
+    localStorage.setItem('colors', JSON.stringify(colors));
+    navigate(`./unit/${workUnit.id}/${workUnit.name}`);
+  }
+
   const showFirsLine = () => (
     <div className="work-unit-component-selection-first-line">
       <SettingOutlined
@@ -50,7 +55,7 @@ function WorkUnitComponent({ workUnit, unitVisibility, notifyUpdateVisibility })
       <Icon
         component={iconEnter}
         className='work-unit-component-icon enter'
-        onClick={() => navigate(`./unit/${workUnit.id}`)}
+        onClick={() => handleNavigateToWorkUnit()}
       />
     </div>
   )
