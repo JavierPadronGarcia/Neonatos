@@ -41,7 +41,7 @@ function WorkUnitComponent({ workUnit, unitVisibility, notifyUpdateVisibility })
   }
 
   const handleNavigateToWorkUnit = () => {
-    localStorage.setItem('colors', JSON.stringify(colors));
+    sessionStorage.setItem('colors', JSON.stringify(colors));
     navigate(`./unit/${workUnit.id}/${workUnit.name}`);
   }
 

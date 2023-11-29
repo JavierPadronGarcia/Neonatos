@@ -10,12 +10,13 @@
 
 .teacher-activities-page-main .activity-section {
   position: relative;
-  height: 100%;
   width: 90%;
   margin-top: 1.25rem;
   border-radius: 1rem;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 4rem;
 }
 
 .teacher-activities-page-main .activity-section .return-arrow {
@@ -34,4 +35,39 @@
   line-height: 1.375rem;
   text-align: center;
   text-decoration-line: underline;
+}
+
+.teacher-activities-page-main .add-icon-component {
+  display: flex;
+  position: absolute;
+  right: 0.44rem;
+  top: 0.35rem;
+  height: fit-content;
+  border-radius: 50px;
+}
+
+.teacher-activities-page-main .activity-section>main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.teacher-activities-page-main header {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.teacher-activities-page-main :where(.evaluable-activities, .non-evaluable-activities) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teacher-activities-page-main .evaluable-activities>main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -61,7 +61,7 @@ function App() {
 
           <Route path="/teacher/main" element={<TeacherMainPage />} />
           <Route path="/teacher/main/group/:name/:id" element={<TeacherGroupPage />} />
-          
+          <Route path="/teacher/main/group/:name/:id/unit/:workUnitId/:workUnitName" element={<TeacherActivitiesPage />} />
 
         </Route>
 
