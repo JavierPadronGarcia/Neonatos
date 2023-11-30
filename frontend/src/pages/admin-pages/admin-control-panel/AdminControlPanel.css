@@ -6,7 +6,6 @@
 
 .admin-control-panel-page>header {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   font-family: 'Roboto';
   font-size: 0.8rem;

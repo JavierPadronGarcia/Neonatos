@@ -8,11 +8,13 @@ import Toolbar from "../../../components/toolbar/Toolbar";
 import { message } from "antd";
 import { noConnectionError } from "../../../utils/shared/errorHandler";
 import { LoadingOutlined } from '@ant-design/icons';
+import TabsComponent from "../../../components/tabs/TabsComponent";
 
 function Groups() {
 
   const [allGroups, setAllGroups] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   async function getAllGroups() {
     try {
@@ -54,10 +56,10 @@ function Groups() {
       <Header />
       <main>
         <header className="groups-page-header">
-          <h2>Cursos</h2>
           <div className="groups-page-add" >
             <Add link="/admin/groups/add-group" alt="add group" />
           </div>
+          <TabsComponent pageType='admin' keySelected='2' />
         </header>
         <section className="groups-page-section">
           {loading &&

@@ -1,8 +1,5 @@
 .header-component {
   font-family: 'Alegreya Sans SC', 'Roboto';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background: #21759B;
   color: #D9D9D9;
   text-align: center;
@@ -13,6 +10,44 @@
   height: 3.5rem;
 }
 
-.header-component>h1 {
+.header-component h1 {
   margin: 0;
+}
+
+.header-component :where(.user-icon, .page-name) {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-component {
+    position: relative;
+    height: 2.5rem;
+  }
+
+  .header-component .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin-inline: 1rem;
+  }
+
+  .header-component .page-name {
+    position: absolute;
+    left: 0;
+    height: 2.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-name {
+    font-size: 0.7rem;
+  }
+
+  .header-component .user-icon {
+    display: flex;
+  }
 }
