@@ -1,5 +1,9 @@
 const db = require("../models");
 const Exercise = db.exercise;
+const Case = db.case;
+const WorkUnit = db.workUnit;
+const WorkUnitGroup = db.workUnitGroup;
+const Group = db.groups;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -41,6 +45,27 @@ exports.findOne = (req, res) => {
       error: err.message || "Some error occurred while retrieving one Exercise"
     })
   })
+}
+
+exports.findAllExercisesInAGroup = async (req, res) => {
+  const { groupId, assigned } = req.params;
+  try {
+    const result = await db.sequelize.query(`
+      SELECT c.id, c.name, ex.assigned, ex.CaseID
+      FROM \`${Group.tableName}\` AS g
+      JOIN \`${WorkUnitGroup.tableName}\` AS wkug ON wkug.GroupID = g.id 
+      JOIN \`${WorkUnit.tableName}\` AS wku ON wku.id = wkug.WorkUnitID
+      JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
+      JOIN \`${Exercise.tableName}\` AS ex ON ex.CaseID = c.id
+      WHERE g.id = ${groupId} AND ex.assigned = ${assigned}
+      GROUP BY c.id, c.WorkUnitId, c.name, ex.assigned, ex.CaseID;
+    `, { type: db.Sequelize.QueryTypes.SELECT });
+    return res.send(result);
+  } catch (err) {
+    return res.status(500).send({
+      error: err.message || "Some error occurred while retrieving the cases and their exercises."
+    });
+  }
 }
 
 exports.update = (req, res) => {
