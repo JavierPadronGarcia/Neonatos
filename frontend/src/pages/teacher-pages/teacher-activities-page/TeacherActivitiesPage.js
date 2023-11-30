@@ -4,30 +4,31 @@ import Header from '../../../components/Header/Header';
 import Toolbar from '../../../components/toolbar/Toolbar';
 import GoBack from '../../../components/go-back/GoBack';
 import Add from '../../../components/add/Add';
-import { Card } from 'antd';
-import { DeleteOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
-
-const { Meta } = Card;
-
+import ActivityCard from '../../../components/activity-card/ActivityCard';
+import { useEffect } from 'react';
+import exercisesService from '../../../services/exercises.service';
 function TeacherActivitiesPage() {
 
   const { name, id, workUnitId, workUnitName } = useParams();
   const colors = JSON.parse(sessionStorage.getItem('colors'));
 
-  const showCard = () => (
-    <Card
-      style={{ width: '80%' }}
-      className='activities-card'
-      bordered={true}
-      actions={[
-        <DeleteOutlined key='delete' />,
-        <EditOutlined key='edit' />,
-        <EllipsisOutlined key='ellipsis' />
-      ]}
-    >
-      <Meta title='titulo' description='prueba' />
-    </Card>
-  )
+  const activity = {
+    title: "titulo-prueba",
+    description: "descripcion-prueba",
+  }
+
+  const getAllExercises = () => {
+
+  }
+
+  useEffect(() => {
+
+  }, [])
+
+
+  const handleDelete = (activityId) => {
+    console.log(activityId)
+  }
 
   return (
     <div className='teacher-activities-page'>
@@ -49,7 +50,30 @@ function TeacherActivitiesPage() {
                 <span>Actividades evaluadas</span>
               </header>
               <main>
-                {showCard()}
+
+                <ActivityCard
+                  edit={true}
+                  id={1}
+                  title={activity.title}
+                  description={activity.description}
+                  notifyDelete={(activityId) => handleDelete(activityId)}
+                />
+
+                <ActivityCard
+                  edit={true}
+                  id={2}
+                  title={activity.title}
+                  description={activity.description}
+                  notifyDelete={(activityId) => handleDelete(activityId)}
+                />
+
+                <ActivityCard
+                  edit={true}
+                  id={3}
+                  title={activity.title}
+                  description={activity.description}
+                  notifyDelete={(activityId) => handleDelete(activityId)}
+                />
               </main>
             </section>
 
@@ -58,7 +82,9 @@ function TeacherActivitiesPage() {
                 <span>Actividades no evaluadas</span>
               </header>
               <main>
-
+                <ActivityCard edit={true} title={activity.title} />
+                <ActivityCard edit={true} title={activity.title} />
+                <ActivityCard edit={true} title={activity.title} />
               </main>
             </section>
 
