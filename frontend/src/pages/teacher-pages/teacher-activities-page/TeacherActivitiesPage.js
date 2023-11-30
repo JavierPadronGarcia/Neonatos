@@ -5,30 +5,60 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import GoBack from '../../../components/go-back/GoBack';
 import Add from '../../../components/add/Add';
 import ActivityCard from '../../../components/activity-card/ActivityCard';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import exercisesService from '../../../services/exercises.service';
 function TeacherActivitiesPage() {
 
   const { name, id, workUnitId, workUnitName } = useParams();
   const colors = JSON.parse(sessionStorage.getItem('colors'));
 
-  const activity = {
-    title: "titulo-prueba",
-    description: "descripcion-prueba",
-  }
+  const [assignedExercises, setAssignedExercises] = useState([]);
+  const [unAssignedExercises, setUnAssignedExercises] = useState([]);
 
   const getAllExercises = () => {
-
+    exercisesService.getAllExercisesOfTheGroup(id, workUnitId).then(exercises => {
+      setAssignedExercises(exercises.filter(exercise => exercise.assigned == true));
+      setUnAssignedExercises(exercises.filter(exercise => exercise.assigned == false));
+    });
   }
 
   useEffect(() => {
-
+    getAllExercises();
   }, [])
 
 
   const handleDelete = (activityId) => {
     console.log(activityId)
   }
+
+  const showAssignedExercises = () => (
+    assignedExercises.map(exercise => {
+      return (
+        <ActivityCard
+          key={exercise.id}
+          edit={true}
+          id={exercise.id}
+          title={exercise.name}
+          description={'hola'}
+          notifyDelete={(activityId) => handleDelete(activityId)}
+        />
+      )
+    })
+  )
+
+  const showUnAssignedExercises = () => (
+    unAssignedExercises.map(exercise => {
+      return (
+        <ActivityCard
+          key={exercise.id}
+          edit={true}
+          id={exercise.id}
+          title={exercise.name}
+          notifyDelete={(activityId) => handleDelete(activityId)}
+        />
+      )
+    })
+  )
 
   return (
     <div className='teacher-activities-page'>
@@ -50,30 +80,7 @@ function TeacherActivitiesPage() {
                 <span>Actividades evaluadas</span>
               </header>
               <main>
-
-                <ActivityCard
-                  edit={true}
-                  id={1}
-                  title={activity.title}
-                  description={activity.description}
-                  notifyDelete={(activityId) => handleDelete(activityId)}
-                />
-
-                <ActivityCard
-                  edit={true}
-                  id={2}
-                  title={activity.title}
-                  description={activity.description}
-                  notifyDelete={(activityId) => handleDelete(activityId)}
-                />
-
-                <ActivityCard
-                  edit={true}
-                  id={3}
-                  title={activity.title}
-                  description={activity.description}
-                  notifyDelete={(activityId) => handleDelete(activityId)}
-                />
+                {showAssignedExercises()}
               </main>
             </section>
 
@@ -82,9 +89,7 @@ function TeacherActivitiesPage() {
                 <span>Actividades no evaluadas</span>
               </header>
               <main>
-                <ActivityCard edit={true} title={activity.title} />
-                <ActivityCard edit={true} title={activity.title} />
-                <ActivityCard edit={true} title={activity.title} />
+                {showUnAssignedExercises()}
               </main>
             </section>
 

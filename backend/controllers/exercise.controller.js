@@ -47,8 +47,8 @@ exports.findOne = (req, res) => {
   })
 }
 
-exports.findAllExercisesInAGroup = async (req, res) => {
-  const { groupId, assigned } = req.params;
+exports.findAllExercisesInAGroupByWorkUnit = async (req, res) => {
+  const { groupId, workUnitId } = req.params;
   try {
     const result = await db.sequelize.query(`
       SELECT c.id, c.name, ex.assigned, ex.CaseID
@@ -57,7 +57,7 @@ exports.findAllExercisesInAGroup = async (req, res) => {
       JOIN \`${WorkUnit.tableName}\` AS wku ON wku.id = wkug.WorkUnitID
       JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
       JOIN \`${Exercise.tableName}\` AS ex ON ex.CaseID = c.id
-      WHERE g.id = ${groupId} AND ex.assigned = ${assigned}
+      WHERE g.id = ${groupId} and wku.id = ${workUnitId}
       GROUP BY c.id, c.WorkUnitId, c.name, ex.assigned, ex.CaseID;
     `, { type: db.Sequelize.QueryTypes.SELECT });
     return res.send(result);

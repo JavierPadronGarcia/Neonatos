@@ -15,9 +15,11 @@ function getOptions(token) {
   return options;
 }
 
-async function getAllExercisesOfTheGroup(groupId) {
+async function getAllExercisesOfTheGroup(groupId, workUnitId) {
   try {
-    const response = axios.get(backendExercisesEndpoint, getOptions(localStorage.getItem('token')));
+    const response = axios.get(`${backendExercisesEndpoint}/exercisesinagroup/${groupId}/${workUnitId}`,
+      getOptions(localStorage.getItem('token'))
+    );
     return (await response).data;
   } catch (err) {
     throw err;

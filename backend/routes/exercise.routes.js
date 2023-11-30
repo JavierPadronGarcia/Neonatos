@@ -7,8 +7,11 @@ module.exports = app => {
   //create a new exercise
   router.post("/", auth.isAuthenticated, exercises.create);
 
-  //retrieve all exercises
-  router.get("/exercisesinagroup/:groupId/:assigned", auth.isAuthenticated, exercises.findAllExercisesInAGroup);
+  //retrieve all exercises in a workUnit assigned to a group
+  router.get("/exercisesinagroup/:groupId/:workUnitId",
+    auth.isAuthenticated,
+    exercises.findAllExercisesInAGroupByWorkUnit
+  );
 
   //retrieve all exercises
   router.get("/", auth.isAuthenticated, exercises.findAll);
