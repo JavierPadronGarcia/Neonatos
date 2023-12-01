@@ -1,5 +1,5 @@
 import './UserPage.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Avatar, Button } from "antd";
 import { EditOutlined, UserOutlined } from "@ant-design/icons";
 import { backendImageEndpoint } from '../../consts/backendEndpoints';
@@ -10,6 +10,8 @@ import Header from "../../components/Header/Header";
 import ImageProfileUploader from '../../components/image-profile-uploader/ImageProfileUploader';
 import AuthCodeGenerator from '../../components/auth-code-generator/AuthCodeGenerator';
 import { useNavigate } from 'react-router-dom';
+import authService from '../../services/auth.service';
+import { RolesContext } from '../../context/roles';
 
 function UserPage() {
 
@@ -17,6 +19,7 @@ function UserPage() {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [userImage, setUserImage] = useState('');
   const navigate = useNavigate();
+  const rolesContext = useContext(RolesContext);
 
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
@@ -37,10 +40,13 @@ function UserPage() {
   return (
     <div className="user-page">
       <Header />
-
       <div className="user-page-main">
-        <div onClick={() => navigate('../..')}>
-          volver
+        <div className='back-to-home'>
+          <img
+            src="/assets/icons/home.svg"
+            alt='volver al inicio'
+            onClick={() => authService.navigateByRole(rolesContext.role, navigate)}
+          />
         </div>
         <div className='avatar-container'>
           <div className='avatar'>
