@@ -46,7 +46,7 @@ function Header() {
         <ul>
           <li onClick={() => navigate('/myUser')}>
             <span> Mi Perfil</span>
-            <UserOutlined />
+            <UserOutlined className='icon' />
           </li>
           <Popconfirm
             title="Seguro que quiere cerrar sesión?"
@@ -59,7 +59,7 @@ function Header() {
           >
             <li onClick={() => setContifmLogout(true)}>
               <span>Cerrar Sesión</span>
-              <LogoutOutlined />
+              <LogoutOutlined className='icon' />
             </li>
           </Popconfirm>
         </ul>

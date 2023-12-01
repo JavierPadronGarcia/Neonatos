@@ -64,6 +64,21 @@
     display: flex;
   }
 
+  .more-info ul,
+  .more-info.expanded ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .more-info li,
+  .more-info.expanded li {
+    text-align: start;
+  }
+
+
   .more-info,
   .more-info.expanded {
     position: absolute;
@@ -83,28 +98,31 @@
 
   .more-info>ul,
   .more-info.expanded>ul {
-    list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 100%;
     height: 100%;
   }
 
   .more-info>ul>li,
   .more-info.expanded>ul>li {
-    padding: 0.5rem;
-    display: flex;
+    padding-block: 0.5rem;
   }
 
   .more-info>ul>li>span:first-child,
   .more-info.expanded>ul>li>span:first-child {
     width: 100%;
+    margin-left: 0.5rem;
   }
 
   .more-info>ul>li:first-child,
   .more-info.expanded>ul>li:first-child {
     border-bottom: 1px solid black;
   }
+
+  .more-info .icon {
+    margin-right: 0.5rem;
+  }
+
 }
 
 @keyframes expandMenu {
