@@ -1,0 +1,90 @@
+.user-page {
+  height: 100%;
+}
+
+.user-page-main {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-page-main>div {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar {
+  position: relative;
+}
+
+.avatar-edit-button {
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  background: #64c2ee;
+}
+
+.modal-container {
+  position: relative;
+}
+
+#image-preview {
+  width: 90%;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edit-images {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+.label-for-file {
+  width: fit-content;
+  background-color: #337796;
+  border-radius: 4px;
+  padding-inline: 8px;
+  color: white;
+}
+
+#file-input {
+  display: none;
+}
+
+@media screen and (min-width:768px) {
+  .avatar-container {
+    margin-top: 3rem;
+  }
+
+  .back-to-home {
+    position: relative;
+    font-size: 2rem;
+  }
+
+  .back-to-home>span {
+    position: absolute;
+    left: 1rem;
+    top: 3rem;
+    border-radius: 50px;
+    padding: 0.4rem;
+    background-color: #64c2ee;
+  }
+}

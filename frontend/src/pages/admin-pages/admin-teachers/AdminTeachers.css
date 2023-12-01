@@ -1,0 +1,63 @@
+.admin-teachers-page-header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-teachers-page ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 1.25rem;
+}
+
+.admin-teachers-page li {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.admin-teachers-page .group-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-teachers-page .group-section>h3 {
+  text-align: center;
+}
+
+.admin-teachers-page .group-section:last-child {
+  padding-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+
+  .teacher-mobile-format {
+    display: none;
+  }
+
+  .admin-teachers-page-header {
+    padding-top: 3rem;
+  }
+
+  .admin-teachers-page-header>h2 {
+    display: none;
+  }
+
+  .tables-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tables-section {
+    padding-bottom: 2rem;
+  }
+
+}

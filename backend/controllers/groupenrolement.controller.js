@@ -1,6 +1,7 @@
 const db = require("../models");
 const GroupEnrolement = db.groupEnrolement;
 const User = db.users;
+const Group = db.groups;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -8,6 +9,8 @@ exports.create = (req, res) => {
   const userId = req.body.UserID;
   const groupId = req.body.GroupID;
   const date = req.body.Date;
+
+  console.log(userId, groupId, date)
 
   if (!userId || !groupId || !date) {
     return res.status(400).send({
@@ -39,6 +42,50 @@ exports.findAll = (req, res) => {
     });
   });
 };
+
+exports.findAllOrderedByGroupDesc = (req, res) => {
+  GroupEnrolement.findAll({
+    attributes: ['id', 'Date', 'createdAt', 'updatedAt'],
+    order: [['GroupID', 'DESC']],
+    include: [
+      {
+        model: User,
+        attributes: ['id', 'username', 'role', 'filename', 'createdAt', 'updatedAt']
+      },
+      {
+        model: Group,
+      },
+    ]
+  }).then(data => {
+    res.send(data);
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Error retrieving groupEnrolements"
+    });
+  });
+}
+
+exports.findAllStudentsNotInAGroup = (req, res) => {
+  User.findAll({
+    attributes: {
+      exclude: ['password']
+    },
+    include: [{
+      model: GroupEnrolement,
+      attributes: []
+    }],
+    where: {
+      role: 'student',
+      '$groupEnrolements.id$': null
+    }
+  }).then(users => {
+    res.send(users);
+  }).catch(err => {
+    res.status(500).send({
+      message: err.message || "Error retrieving users not in a group."
+    });
+  });
+}
 
 exports.findAllStudentsInGroup = (req, res) => {
   const groupId = req.params.id;

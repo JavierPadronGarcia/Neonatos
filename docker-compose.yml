@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    env_file:
+      - ./backend/.env
+    ports:
+      - 43306:3306
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - app-network
+  api:
+    image: javier_metahospitalfp_api
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports: 
+      - '12080:12080'
+    expose:
+      - '12080'
+    networks:
+      - app-network
+    depends_on:
+      - db
+  app:
+    image: javier_metahospitalfp_app
+    tty: true
+    build: ./frontend
+    env_file:
+      - ./frontend/.env
+    ports: 
+      - '12081:12081'
+    expose:
+      - '12081'
+    stdin_open: true
+    networks:
+      - app-network
+    depends_on:
+      - api
+volumes:
+  my-db:
+    driver: local
+networks:
+  app-network:
+    driver: bridge

@@ -2,21 +2,52 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { Button, Input, message, notification } from 'antd';
-import { useContext, useState } from 'react';
-import UserRolesContext from '../../utils/UserRoleContext';
+import { useContext, useEffect, useState } from 'react';
+import { errorOnLogin, noConnectionError } from '../../utils/shared/errorHandler';
+import { RolesContext } from '../../context/roles';
+import { loginValidation } from '../../utils/shared/globalFunctions';
 
 function Login() {
 
-  const RoleContext = useContext(UserRolesContext);
+  const roles = useContext(RolesContext);
   const navigate = useNavigate();
 
   const logged = authService.isLoggedIn();
 
   const [inputNameStatus, setInputNameStatus] = useState('');
   const [inputPasswdStatus, setInputPasswdStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = (username, password) => {
+    authService.login({ username: username, password: password }).then((newRole) => {
+      roles.role = newRole;
+      message.success({
+        content: `Sesión iniciada correctamente`,
+        duration: 1,
+      })
+      authService.navigateByRole(newRole, navigate);
+      setLoading(false);
+    }).catch((err) => {
+      loginErrors(err);
+      setLoading(false);
+    })
+  }
+
+  const loginErrors = (err) => {
+    if (!err.response) {
+      noConnectionError();
+    }
+
+    if (err.response &&
+      (err.response.status === 401
+        || err.response.status === 500)) {
+      errorOnLogin();
+    }
+  }
 
   const login = (e) => {
     e.preventDefault();
+    setLoading(true);
     const username = e.target.user.value;
     const password = e.target.password.value;
 
@@ -25,58 +56,28 @@ function Login() {
 
     notification.destroy();
 
-    //all the inputs fail
-    if (!username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-      setInputPasswdStatus('error');
-    }
-
-    //only username fails
-    if (!username && password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputNameStatus('error');
-    }
-
-    //only password fails
-    if (username && !password) {
-      message.warning("Por favor, Rellena todos los campos", 5,)
-      setInputPasswdStatus('error');
-    }
-
-    //all inputs ok
-    if (username && password) {
-      authService.login({ username: username, password: password }).then((role) => {
-        RoleContext.role = role;
-        authService.navigateByRole(role, navigate);
-        message.success({
-          content: `Sesión iniciada correctamente`,
-          duration: 1,
-        })
-      }).catch((err) => {
-        notification.error({
-          message: 'No se ha podido iniciar sesión',
-          description: "El usuario o la contraseña son correctos?",
-          placement: 'top',
-          duration: 5
-        });
-      })
-    }
-  }
-
-  if (logged) {
-    authService.navigateByRole(RoleContext.role, navigate);
-    return (
-      <div className="login-page">
-        <header>
-          <h1>Sesión iniciada, redirigiendo...</h1>
-        </header>
-      </div>
+    const isLoginValid = loginValidation(
+      username, password,
+      setInputNameStatus,
+      setInputPasswdStatus,
+      setLoading
     );
+
+    if (isLoginValid) {
+      handleLogin(username, password);
+    }
   }
+
+  useEffect(() => {
+    if (logged) {
+      authService.navigateByRole('admin', navigate);
+    }
+  }, [])
+
 
   return (
-    <div className="login-page">
+    < div className="login-page" >
+
       <header>
         <h1>MetaHospitalFP</h1>
       </header>
@@ -104,13 +105,19 @@ function Login() {
             </label>
           </div>
           <label>
-            <Button className='button' htmlType='submit'>Iniciar sesion</Button>
+            <Button className='button' htmlType='submit' loading={loading}>Iniciar sesion</Button>
           </label>
         </form>
       </main>
-    </div>
+
+    </div >
+
   );
 }
+
+
+
+
 
 
 export default Login;

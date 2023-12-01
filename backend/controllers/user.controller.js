@@ -22,7 +22,6 @@ exports.create = (req, res) => {
     filename: ''
   }
 
-
   User.findOne({ where: { username: user.username } }).then(data => {
     if (data) {
       const result = bcrypt.compareSync(user.password, data.password);
@@ -55,13 +54,22 @@ exports.create = (req, res) => {
   })
 }
 
+exports.findAllDirectors = (req, res) => {
+  User.findAll({ where: { role: 'director' } }).then(allDirectors => {
+    return res.send(allDirectors);
+  }).catch(err => {
+    return res.status(500).send({
+      message:
+        err.message || "Error retrieving all directors"
+    });
+  })
+}
 
 exports.findByRole = (req, res) => {
   req.send(req.user.role);
 }
 
 exports.findAll = (req, res) => {
-
   User.findAll().then(data => {
     res.send(data);
   }).catch(err => {
@@ -87,9 +95,9 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   let user = {
-    username: req.body.username,
+    username: req.body.username || '',
     password: '',
-    role: req.body.role,
+    role: req.body.role || '',
     filename: ''
   }
 
@@ -98,6 +106,9 @@ exports.update = (req, res) => {
     if (!data) {
       return res.status(404).send({ message: "Cannot update the user because don't exists" })
     }
+
+    if (user.username == '') { user.username = data.username }
+    if (user.role == '') { user.role = data.role }
 
     user.password = data.password;
     user.filename = data.filename;
@@ -126,9 +137,11 @@ exports.update = (req, res) => {
 exports.updateWithImage = (req, res) => {
   const userDecoded = utils.decodeToken(req.headers['authorization']);
   const previousImage = req.body.previousImage;
+  const newUsername = req.body.newUsername;
+
   const updatedUser = {
     id: userDecoded.id,
-    username: userDecoded.username,
+    username: newUsername || userDecoded.username,
     password: userDecoded.password,
     role: userDecoded.role,
     filename: req.file ? req.file.filename : null
@@ -150,12 +163,109 @@ exports.updateWithImage = (req, res) => {
         message: "User was updated successfully."
       })
     }
-    res.send({
+    return res.status(500).send({
       message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
     })
   }).catch(err => {
     res.status(500).send({
       message: err.message || "Error updating User with id=" + id
+    });
+  })
+}
+
+async function generateUUID() {
+  let uuid = "";
+  let goodUUID = false;
+  const actualDate = new Date();
+  let count = 0;
+
+  do {
+    goodUUID = false;
+    uuid = Math.random().toString(36).slice(9).replace(' ', '');
+    if (uuid.length === 4) {
+      const user = await User.findAll({
+        where: {
+          code: uuid,
+          codeExpirationDate: { [Op.gt]: actualDate }
+        }
+      });
+      if (user.length == 0) {
+        goodUUID = true;
+      } else {
+        count++;
+      }
+    }
+  } while (goodUUID == false && count < 1000);
+  if (count >= 1000) {
+    throw new Error({ message: "could not find available code" });
+  }
+  return uuid
+}
+
+exports.assignCode = async (req, res) => {
+  let uuid = "";
+  const expDate = req.body.expDate;
+  const userId = req.user.id;
+  try {
+    uuid = await generateUUID();
+  } catch (err) {
+    return res.status(404).send({ err });
+  }
+  User.findOne({ where: { id: userId } }).then(user => {
+    user.code = uuid;
+    user.codeExpirationDate = expDate;
+    user.save();
+    return res.send({ code: uuid });
+  }).catch(err => {
+    return res.status(500).send({
+      error: err.message || "Error retrieving the user"
+    });
+  })
+}
+
+exports.assignDirector = (req, res) => {
+  const newDirector = req.params.id;
+  const previousDirector = req.body.directorId;
+
+  if (previousDirector) {
+    User.findByPk(previousDirector).then(prevDirector => {
+      prevDirector.isDirector = false;
+      prevDirector.save();
+      updateNewDirector(newDirector, res);
+    }).catch(err => {
+      return res.status(500).send({
+        message: err.message || "Could not find the user to update"
+      });
+    })
+  } else {
+    updateNewDirector(newDirector, res);
+  }
+}
+
+const updateNewDirector = (newDirector, res) => {
+  User.findByPk(newDirector).then(director => {
+    let newDirector = {
+      id: director.id,
+      username: director.username,
+      password: director.password,
+      role: director.role,
+      isDirector: true,
+      filename: director.filename,
+      createdAt: director.createdAt,
+      updatedAt: director.updatedAt
+    }
+
+    User.update(newDirector, { where: { id: director.id } }).then(response => {
+      console.log(response)
+      return res.send(director);
+    }).catch(err => {
+      return res.status(500).send({
+        message: err.message || "Cannot update the new director"
+      });
+    })
+  }).catch(err => {
+    return res.status(500).send({
+      message: err.message || "Cannot find the new director"
     });
   })
 }

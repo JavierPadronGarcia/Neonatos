@@ -48,7 +48,7 @@ exports.isAuthenticated = (req, res, next) => {
     })
 
     User.findByPk(user.id).then(data => {
-      if (!user.id) {
+      if (!data) {
         return res.status(401).json({
           error: true,
           message: "Invalid user."
@@ -65,5 +65,11 @@ exports.isAuthenticated = (req, res, next) => {
 }
 
 exports.getRole = (req, res) => {
-  res.json({ role: req.user.role })
+  if (req.user) {
+    return res.json({ role: req.user.role })
+  }
+  return res.status(404).json({
+    error: true,
+    message: "User not found"
+  })
 }

@@ -1,0 +1,67 @@
+.work-unit-component-selection {
+  width: 90%;
+  height: 3rem;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  text-align: center;
+  transition: height .3s ease-in-out;
+}
+
+.work-unit-component-icon {
+  font-size: 2rem;
+}
+
+.work-unit-component-selection-first-line,
+.work-unit-component-selection-second-line {
+  height: 3rem;
+  display: flex;
+  padding-inline: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.work-unit-component-selection-first-line {
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
+}
+
+.work-unit-component-selection-second-line {
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
+  align-items: center;
+  animation: changeSecondLineAnimation 0.3s ease-in-out alternate;
+}
+
+.work-unit-component-selection .setting {
+  transition: transform .3s ease-in-out;
+}
+
+.work-unit-component-selection.expanded {
+  height: 6rem;
+}
+
+.work-unit-component-selection.expanded .work-unit-component-selection-second-line {
+  border-top: 1px solid black;
+  animation: changeSecondLineAnimation 0.3s ease-in-out alternate;
+}
+
+.work-unit-component-selection.expanded .setting {
+  transform: rotate(-90deg);
+}
+
+@keyframes changeSecondLineAnimation {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 3rem;
+  }
+}

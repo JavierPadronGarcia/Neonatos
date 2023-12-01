@@ -10,7 +10,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "*"
 }
 
 app.use(cors(corsOptions));
@@ -72,7 +72,28 @@ require("./routes/case.routes")(app);
 require("./routes/item.routes")(app);
 require("./routes/exercise.routes")(app);
 require("./routes/grade.routes")(app);
+require("./routes/color.routes")(app);
+require("./routes/workunitcolors.routes")(app);
+require("./routes/workunitgroup.routes")(app);
 
-app.listen(port, () => {
+
+let server = null;
+
+if (process.env.HTTPS == "true") {
+  const https = require('https');
+  const fs = require('fs');
+  const options = {
+    key: fs.readFileSync('.cert/certificate.key'),
+    cert: fs.readFileSync('.cert/certificate.crt')
+  };
+  server = https.createServer(options, app);
+} else {
+  const http = require('http');
+  server = http.createServer(app);
+}
+
+server.listen(port, () => {
   console.log('Server is runing on: ' + port);
 });
+
+module.exports = server;

@@ -1,0 +1,89 @@
+.group-details-page {
+    height: 100%;
+}
+
+.group-details-page-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+}
+
+.group-details-page-main>main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    height: 100%;
+}
+
+.group-details-page-main :where(.teachers, .students) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.group-details-page-main :where(.teacher-container, .student-container) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.group-details-page-main .student-container {
+    padding-bottom: 4rem;
+}
+
+.group-details-page-main :where(.student-card:first-child, .teacher-card:first-child) {
+    margin-top: 1rem;
+}
+
+.group-details-page-main :where(.student-card:last-child, .teacher-card:last-child) {
+    margin-bottom: 1rem;
+}
+
+.group-mobile-format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
+    .group-details-page-main>header {
+        margin-top: 2rem;
+    }
+
+    .group-mobile-format {
+        display: none;
+    }
+
+    .group-details-page .table-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+    .group-details-page .table-section {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .group-details-page .table-container {
+        width: 40%;
+    }
+
+}

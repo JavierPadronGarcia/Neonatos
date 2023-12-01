@@ -1,12 +1,12 @@
 import './Group.css';
 import { useNavigate } from 'react-router-dom';
-import { Popconfirm } from 'antd';
+import { Button, Popconfirm } from 'antd';
 import { useState } from 'react';
 
 function Group(props) {
-  const name = props.name;
-  const ident = props.ident;
+  const group = props.group;
   const edit = props.edit;
+  const assign = props.assign;
 
   const navigate = useNavigate();
 
@@ -21,27 +21,11 @@ function Group(props) {
   }
 
   const deleteGroup = () => {
-    props.notifyDelete(props.ident);
+    props.notifyDelete(group.id);
+    setOpen(false);
   }
 
-  if (!edit) {
-    return (
-      <article className='group-component-no-edit'>
-        <header className='group-component-header-no-edit'>
-          <p>{name}</p>
-        </header>
-        <main className='group-component-main'>
-          <p>cantidad de profesores</p>
-          <p>cantidad de estudiantes</p>
-        </main>
-        <footer className='group-component-footer-no-edit'>
-          <button onclick={() => navigate(`/admin/groups/details/${ident}`)}>
-            Ver detalles
-          </button>
-        </footer>
-      </article>
-    )
-  } else {
+  if (edit) {
     return (
       <article className='group-component'>
         <header className='group-component-header'>
@@ -56,23 +40,65 @@ function Group(props) {
           >
             <img src="/assets/icons/trash-can.svg" alt="delete group" onClick={() => showPopDelete()} />
           </Popconfirm>
-          <p>{name}</p>
-          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/admin/groups/update/${name}/${ident}`)} />
+          <p>{group.name}</p>
+          <img src="/assets/icons/pencil.svg" alt="edit group" onClick={() => navigate(`/admin/groups/update/${group.name}/${group.id}`)} />
         </header>
         <main className='group-component-main'>
-          <p>cantidad de profesores</p>
-          <p>cantidad de estudiantes</p>
+          <p>Profesores: {group.TeacherCount}</p>
+          <p>Estudiantes: {group.StudentCount}</p>
         </main>
         <footer className='group-component-footer'>
-          <button onclick={() => navigate(`/groups/details/${ident}`)}>
+          <Button onClick={() => navigate(`/admin/groups/details/${group.id}/${group.name}`)}>
             Ver detalles
-          </button>
+          </Button>
         </footer>
       </article>
     )
   }
 
 
+  if (assign) {
+    return (
+      <article className='group-component-assign'>
+        <header className='group-component-header-assign'>
+          <p>{group.name}</p>
+        </header>
+        <main className='group-component-main'>
+          <p>Cantidad de profesores</p>
+          <p>Cantidad de estudiantes</p>
+        </main>
+        <footer className='group-component-footer-assign'>
+          <Button onClick={() => props.notifyAssign()}>Asignar a esta clase</Button>
+        </footer>
+      </article>
+    )
+  }
+
+  return (
+    <article className='group-component-no-edit'>
+      <header className='group-component-header-no-edit'>
+        <p>{group.name}</p>
+      </header>
+      <main className='group-component-main'>
+        {group.TeacherCount
+          ? <p>Profesores: {group.TeacherCount}</p>
+          : <p>Cantidad de profesores</p>
+        }
+        {group.StudentCount
+          ? <p>Estudiantes: {group.StudentCount}</p>
+          : <p>Cantidad de estudiantes</p>
+        }
+      </main>
+      <footer className='group-component-footer-no-edit'>
+        <Button onclick={() => navigate(`/admin/groups/details/${group.id}`)}>
+          Ver detalles
+        </Button>
+      </footer>
+    </article>
+  )
 }
+
+
+
 
 export default Group;
