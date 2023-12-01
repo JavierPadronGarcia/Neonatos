@@ -76,6 +76,7 @@
   .more-info li,
   .more-info.expanded li {
     text-align: start;
+    display: flex;
   }
 
 

@@ -9,12 +9,14 @@ import Toolbar from "../../components/toolbar/Toolbar";
 import Header from "../../components/Header/Header";
 import ImageProfileUploader from '../../components/image-profile-uploader/ImageProfileUploader';
 import AuthCodeGenerator from '../../components/auth-code-generator/AuthCodeGenerator';
+import { useNavigate } from 'react-router-dom';
 
 function UserPage() {
 
   const [user, setUser] = useState({});
   const [modalVisibility, setModalVisibility] = useState(false);
   const [userImage, setUserImage] = useState('');
+  const navigate = useNavigate();
 
   const getUserInfo = async () => {
     const token = localStorage.getItem('token');
@@ -35,7 +37,11 @@ function UserPage() {
   return (
     <div className="user-page">
       <Header />
+
       <div className="user-page-main">
+        <div onClick={() => navigate('../..')}>
+          volver
+        </div>
         <div className='avatar-container'>
           <div className='avatar'>
             <div className='avatar-edit'>

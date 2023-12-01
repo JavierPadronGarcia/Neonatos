@@ -77,8 +77,23 @@ require("./routes/workunitcolors.routes")(app);
 require("./routes/workunitgroup.routes")(app);
 
 
-app.listen(port, () => {
+let server = null;
+
+if (process.env.HTTPS == "true") {
+  const https = require('https');
+  const fs = require('fs');
+  const options = {
+    key: fs.readFileSync('.cert/certificate.key'),
+    cert: fs.readFileSync('.cert/certificate.crt')
+  };
+  server = https.createServer(options, app);
+} else {
+  const http = require('http');
+  server = http.createServer(app);
+}
+
+server.listen(port, () => {
   console.log('Server is runing on: ' + port);
 });
 
-module.exports = app;
+module.exports = server;
