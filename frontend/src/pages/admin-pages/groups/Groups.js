@@ -5,9 +5,9 @@ import './Groups.css';
 import groupsService from "../../../services/groups.service";
 import Group from "../../../components/group/Group";
 import Toolbar from "../../../components/toolbar/Toolbar";
-import { Button, message } from "antd";
+import { message } from "antd";
 import { noConnectionError } from "../../../utils/shared/errorHandler";
-import { DeleteOutlined, LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import TabsComponent from "../../../components/tabs/TabsComponent";
 import TableComponent from "../../../components/table/TableComponent";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 function Groups() {
 
   const [allGroups, setAllGroups] = useState([]);
-  const [tableContent, setTableContent] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -25,7 +24,6 @@ function Groups() {
       setLoading(true);
       const newGroups = await groupsService.getAllGroups();
       setAllGroups(newGroups);
-      setTableContent(newGroups);
       setLoading(false);
     } catch (err) {
       if (!err.response) {
@@ -95,11 +93,14 @@ function Groups() {
         <section className="table-container">
           <TableComponent
             tableHeader={tableColumns}
-            tableContent={tableContent}
+            tableContent={allGroups}
             notifyDetails={(group) => navigate(`/admin/groups/details/${group.id}/${group.name}`)}
             notifyDelete={(group) => deleteGroup(group.id)}
             notifyUpdate={(group) => navigate(`/admin/groups/update/${group.name}/${group.id}`)}
+            showOptions={true}
             showDetails={true}
+            showEdit={true}
+            showDelete={true}
           />
         </section>
       </main>

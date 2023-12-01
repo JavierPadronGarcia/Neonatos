@@ -32,7 +32,21 @@
   text-align: center;
 }
 
-
 .admin-students-page .group-section:last-child {
   padding-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+
+  .student-mobile-format {
+    display: none;
+  }
+
+  .admin-students-page-header {
+    padding-top: 3rem;
+  }
+
+  .admin-students-page-header>h2 {
+    display: none;
+  }
 }

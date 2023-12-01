@@ -1,13 +1,12 @@
 import React from 'react';
 import { DeleteOutlined, EditOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import './TableComponent.css';
-import { Table, Popconfirm } from 'antd';
+import { Table, Popconfirm, Button } from 'antd';
 
-function TableComponent({ tableHeader, tableContent, notifyUpdate, notifyDelete, notifyDetails, showDetails }) {
-
+function TableComponent({ tableHeader, tableContent, notifyUpdate, notifyDelete, notifyDetails, showDetails, showEdit, showDelete, showOptions, title, textButton }) {
 
   const addOptionsToTableHeader = () => {
-    if (tableHeader[tableHeader.length - 1].key !== 'options') {
+    if (tableHeader[tableHeader.length - 1].key !== 'options' && showOptions) {
       tableHeader.push({
         title: 'Opciones',
         key: 'options',
@@ -15,15 +14,18 @@ function TableComponent({ tableHeader, tableContent, notifyUpdate, notifyDelete,
           return (
             <div className='custom-options'>
               {showDetails && <InfoCircleOutlined onClick={() => notifyDetails(record)} />}
-              <EditOutlined onClick={() => notifyUpdate(record)} />
-              <Popconfirm
+              {showEdit && <EditOutlined onClick={() => notifyUpdate(record)} />}
+              {showDelete && <Popconfirm
                 title="¿Eliminar este registro?"
                 onConfirm={() => notifyDelete(record)}
                 okText="Sí"
                 cancelText="No"
               >
                 <DeleteOutlined />
-              </Popconfirm>
+              </Popconfirm>}
+              {textButton &&
+                <Button onClick={() => notifyUpdate(record)}>{textButton}</Button>
+              }
             </div>
           );
         }
@@ -32,6 +34,16 @@ function TableComponent({ tableHeader, tableContent, notifyUpdate, notifyDelete,
   }
 
   addOptionsToTableHeader();
+
+  if (title) {
+    return <Table
+      className='table'
+      columns={tableHeader}
+      dataSource={tableContent}
+      pagination={false}
+      title={() => title}
+    />;
+  }
 
   return <Table
     className='table'

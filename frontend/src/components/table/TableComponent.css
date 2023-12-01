@@ -20,6 +20,14 @@
     color: brown;
   }
 
+  .ant-table-title {
+    text-align: center;
+    background-color: #c5c5c5;
+    border: 1px solid #dddddd;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
   .ant-table-content {
     background-color: #d4d4d4;
     border-radius: 8px;

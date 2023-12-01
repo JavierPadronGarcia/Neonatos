@@ -45,6 +45,10 @@
     display: none;
   }
 
+  .groups-page-header {
+    padding-top: 3rem;
+  }
+
   .groups-page>main {
     display: flex;
     flex-direction: column;
@@ -54,5 +58,19 @@
   .table-container {
     width: 90%;
     margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .table-container {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+
+  .table-container {
+    width: 70%;
   }
 }

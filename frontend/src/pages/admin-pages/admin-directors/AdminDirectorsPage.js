@@ -8,6 +8,7 @@ import DirectorCard from '../../../components/director/DirectorCard';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import { LoadingOutlined } from '@ant-design/icons';
 import TabsComponent from '../../../components/tabs/TabsComponent';
+import TableComponent from '../../../components/table/TableComponent';
 
 function AdminDirectorsPage() {
 
@@ -73,6 +74,10 @@ function AdminDirectorsPage() {
     setUpDirectors();
   }, [])
 
+  const tableColumns = [
+    { title: 'Usuario', dataIndex: 'username', key: 'username', align: 'center' },
+  ]
+
   const showAllDirectors = () => {
     return allDirectors.map((director) => {
       return (
@@ -90,25 +95,43 @@ function AdminDirectorsPage() {
       <Header />
       <div className="admin-directors-page-main">
         <header className='admin-directors-page-header'>
+          <h2>Dirección</h2>
           <TabsComponent pageType='admin' keySelected='5' />
         </header>
         <small>Solo puede haber un director asignado a la misma vez</small>
         <main>
-          {loading &&
-            <LoadingOutlined style={{ fontSize: 60, color: '#08c', display: 'flex', justifyContent: 'center' }} />
-          }
-          {(assignedDirector.id &&
-            <DirectorCard director={assignedDirector} />)
-            || <p>No hay director asignado</p>
-          }
-          <div>
-            <span>Directores sin asignar:</span>
-            {allDirectors.length === 0 && !loading &&
-              <p style={{ display: 'flex', justifyContent: 'center' }}>No se encuentran directores</p>
+          <div className='directors-mobile-format'>
+            {loading &&
+              <LoadingOutlined style={{ fontSize: 60, color: '#08c', display: 'flex', justifyContent: 'center' }} />
             }
-            {allDirectors.length !== 0
-              && showAllDirectors()
+            {(assignedDirector.id &&
+              <DirectorCard director={assignedDirector} />)
+              || <p>No hay director asignado</p>
             }
+            <div>
+              <span>Directores sin asignar:</span>
+              {allDirectors.length === 0 && !loading &&
+                <p style={{ display: 'flex', justifyContent: 'center' }}>No se encuentran directores</p>
+              }
+              {allDirectors.length !== 0
+                && showAllDirectors()
+              }
+            </div>
+          </div>
+          <div className='tables-section'>
+            {(assignedDirector.id &&
+              <DirectorCard director={assignedDirector} className='assigned-director' />)
+              || <p>No hay director asignado</p>
+            }
+            <section className="table-container">
+              <TableComponent
+                tableHeader={tableColumns}
+                tableContent={allDirectors}
+                textButton='Asignar director'
+                showOptions={true}
+                title='Directores disponibles'
+              />
+            </section>
           </div>
         </main>
       </div>

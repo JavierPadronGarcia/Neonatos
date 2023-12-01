@@ -54,7 +54,12 @@ function TabsComponent({ pageType, keySelected }) {
       }
     }
 
-    return <Tabs defaultActiveKey={keySelected} items={adminItems} onChange={changePage} className='tabs' />
+    return <Tabs
+      defaultActiveKey={keySelected}
+      items={adminItems}
+      onChange={changePage}
+      className='tabs'
+    />
   }
 
 }

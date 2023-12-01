@@ -12,6 +12,7 @@ function AdminControlPanel() {
       <Header />
       <div className="admin-control-panel-page">
         <header>
+          <h2>Panel de Control</h2>
           <TabsComponent pageType='admin' keySelected='1' />
         </header>
         <main className='buttons-section'>

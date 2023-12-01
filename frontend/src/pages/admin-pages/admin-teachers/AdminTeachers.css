@@ -32,7 +32,32 @@
   text-align: center;
 }
 
-
 .admin-teachers-page .group-section:last-child {
   padding-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+
+  .teacher-mobile-format {
+    display: none;
+  }
+
+  .admin-teachers-page-header {
+    padding-top: 3rem;
+  }
+
+  .admin-teachers-page-header>h2 {
+    display: none;
+  }
+
+  .tables-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tables-section {
+    padding-bottom: 2rem;
+  }
+
 }
