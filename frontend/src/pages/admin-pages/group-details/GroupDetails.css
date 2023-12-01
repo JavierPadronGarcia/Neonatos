@@ -45,3 +45,45 @@
 .group-details-page-main :where(.student-card:last-child, .teacher-card:last-child) {
     margin-bottom: 1rem;
 }
+
+.group-mobile-format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
+    .group-details-page-main>header {
+        margin-top: 2rem;
+    }
+
+    .group-mobile-format {
+        display: none;
+    }
+
+    .group-details-page .table-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+
+    .group-details-page .table-section {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .group-details-page .table-container {
+        width: 40%;
+    }
+
+}
