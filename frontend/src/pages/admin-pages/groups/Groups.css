@@ -37,3 +37,22 @@
 .groups-page-section>article:last-child {
   padding-bottom: 4em;
 }
+
+@media screen and (min-width: 768px) {
+
+  .groups-page-header>h2,
+  .groups-page-section {
+    display: none;
+  }
+
+  .groups-page>main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table-container {
+    width: 90%;
+    margin-top: 3rem;
+  }
+}

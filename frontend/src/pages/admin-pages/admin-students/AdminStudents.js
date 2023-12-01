@@ -7,6 +7,7 @@ import groupEnrolementService from '../../../services/groupEnrolement.service';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import { transformArray } from '../../../utils/shared/globalFunctions';
 import { LoadingOutlined } from '@ant-design/icons';
+import TabsComponent from '../../../components/tabs/TabsComponent';
 
 function AdminStudents() {
 
@@ -38,7 +39,7 @@ function AdminStudents() {
       <Header />
       <div>
         <header className='admin-students-page-header'>
-          <h2>Alumnado</h2>
+          <TabsComponent pageType='admin' keySelected='4' />
         </header>
         <main>
           {loading &&

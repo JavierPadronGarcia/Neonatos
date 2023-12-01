@@ -7,6 +7,7 @@ import TeacherCard from '../../../components/teacher/TeacherCard';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import { transformArray } from '../../../utils/shared/globalFunctions';
 import { LoadingOutlined } from '@ant-design/icons';
+import TabsComponent from '../../../components/tabs/TabsComponent';
 
 function AdminTeachers() {
 
@@ -38,7 +39,7 @@ function AdminTeachers() {
       <Header />
       <div className='admin-teachers-page-main'>
         <header className='admin-teachers-page-header'>
-          <h2>Profesorado</h2>
+          <TabsComponent pageType='admin' keySelected='3' />
         </header>
         <main>
           {loading &&

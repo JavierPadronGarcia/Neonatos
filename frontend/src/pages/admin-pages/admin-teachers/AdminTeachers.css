@@ -1,5 +1,7 @@
 .admin-teachers-page-header {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .admin-teachers-page ul {

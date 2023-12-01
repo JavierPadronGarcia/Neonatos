@@ -7,6 +7,7 @@ import usersService from '../../../services/users.service';
 import DirectorCard from '../../../components/director/DirectorCard';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import { LoadingOutlined } from '@ant-design/icons';
+import TabsComponent from '../../../components/tabs/TabsComponent';
 
 function AdminDirectorsPage() {
 
@@ -89,7 +90,7 @@ function AdminDirectorsPage() {
       <Header />
       <div className="admin-directors-page-main">
         <header className='admin-directors-page-header'>
-          <h2>Directores</h2>
+          <TabsComponent pageType='admin' keySelected='5' />
         </header>
         <small>Solo puede haber un director asignado a la misma vez</small>
         <main>
