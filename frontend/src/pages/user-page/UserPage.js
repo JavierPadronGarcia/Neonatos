@@ -1,7 +1,7 @@
 import './UserPage.css';
 import { useContext, useEffect, useState } from "react";
 import { Avatar, Button } from "antd";
-import { EditOutlined, UserOutlined } from "@ant-design/icons";
+import { EditOutlined, HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { backendImageEndpoint } from '../../consts/backendEndpoints';
 import { jwtDecode } from 'jwt-decode';
 import usersService from "../../services/users.service";
@@ -42,11 +42,7 @@ function UserPage() {
       <Header />
       <div className="user-page-main">
         <div className='back-to-home'>
-          <img
-            src="/assets/icons/home.svg"
-            alt='volver al inicio'
-            onClick={() => authService.navigateByRole(rolesContext.role, navigate)}
-          />
+          <HomeOutlined onClick={() => authService.navigateByRole(rolesContext.role, navigate)} />
         </div>
         <div className='avatar-container'>
           <div className='avatar'>
