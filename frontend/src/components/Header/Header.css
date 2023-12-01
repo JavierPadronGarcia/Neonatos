@@ -8,6 +8,11 @@
   font-style: normal;
   font-weight: 400;
   height: 3.5rem;
+  position: relative;
+}
+
+.more-info {
+  display: none;
 }
 
 .header-component h1 {
@@ -19,6 +24,12 @@
 }
 
 @media only screen and (min-width: 768px) {
+
+  .more-info,
+  .more-info.expanded {
+    display: flex;
+  }
+
   .header-component {
     position: relative;
     height: 2.5rem;
@@ -38,6 +49,7 @@
     left: 0;
     height: 2.5rem;
     width: 100%;
+    z-index: -1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +60,59 @@
   }
 
   .header-component .user-icon {
+    position: relative;
     display: flex;
+  }
+
+  .more-info,
+  .more-info.expanded {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: -100px;
+    flex-direction: column;
+    width: 11rem;
+    background: #D9D9D9;
+    border-bottom-left-radius: 8px;
+  }
+
+  .more-info.expanded {
+    top: 2.5rem;
+    animation: expandMenu 0.3s ease-in-out;
+  }
+
+  .more-info>ul,
+  .more-info.expanded>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .more-info>ul>li,
+  .more-info.expanded>ul>li {
+    padding: 0.5rem;
+    display: flex;
+  }
+
+  .more-info>ul>li>span:first-child,
+  .more-info.expanded>ul>li>span:first-child {
+    width: 100%;
+  }
+
+  .more-info>ul>li:first-child,
+  .more-info.expanded>ul>li:first-child {
+    border-bottom: 1px solid black;
+  }
+}
+
+@keyframes expandMenu {
+  0% {
+    top: -100px;
+  }
+
+  100% {
+    top: 2.5rem;
   }
 }

@@ -56,8 +56,8 @@ function Groups() {
 
   const tableColumns = [
     { title: 'Nombre', dataIndex: 'name', key: 'name' },
-    { title: 'Num. Profesores', dataIndex: 'TeacherCount', key: 'teacherNum' },
-    { title: 'Num. Estudiantes', dataIndex: 'StudentCount', key: 'studentNum' },
+    { title: 'Num. Profesores', dataIndex: 'TeacherCount', key: 'teacherNum', align: 'center' },
+    { title: 'Num. Estudiantes', dataIndex: 'StudentCount', key: 'studentNum', align: 'center' },
   ]
 
   return (

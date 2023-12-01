@@ -51,19 +51,21 @@ function AddGroup() {
       <GoBack link='/admin/groups' alt='back to groups' />
       <main className='add-group-main'>
         <h3>Nuevo curso</h3>
-        <h5>Previsualización</h5>
-        <Group group={{ name: inputValue }} ident={0} />
-        <form onSubmit={(e) => addGroup(e)}>
-          <Input
-            id='name'
-            name='name'
-            type='text'
-            placeholder='Nombre del curso'
-            status={inputNameStatus}
-            onKeyUp={(e) => updateTitle(e)}
-          />
-          <Button htmlType='submit'>Agregar</Button>
-        </form>
+        <div>
+          <h5>Previsualización</h5>
+          <Group group={{ name: inputValue }} ident={0} />
+          <form onSubmit={(e) => addGroup(e)}>
+            <Input
+              id='name'
+              name='name'
+              type='text'
+              placeholder='Nombre del curso'
+              status={inputNameStatus}
+              onKeyUp={(e) => updateTitle(e)}
+            />
+            <Button htmlType='submit'>Agregar</Button>
+          </form>
+        </div>
       </main>
       <Toolbar />
     </div>

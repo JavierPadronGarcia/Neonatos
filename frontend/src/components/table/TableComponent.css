@@ -10,7 +10,7 @@
   .custom-options {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 30px;
     cursor: pointer;
     font-size: 1.5rem;
     width: 100%;
@@ -26,6 +26,7 @@
     border: 1px solid #dddddd;
     font-size: 1.2rem;
     font-weight: bold;
+    padding: 6px !important;
   }
 
   .ant-table-content {
@@ -34,6 +35,23 @@
   }
 
   .table th {
+    padding: 5px !important;
     background-color: #a5a5a5 !important;
+  }
+
+  .table th:first-child {
+    width: 100%;
+  }
+
+  .table th:last-child {
+    width: 20%;
+  }
+
+  .table th:not(.table th:first-child, .table th:last-child){
+    padding-inline: 15px !important;
+  }
+
+  .table tr>td {
+    padding-block: 5px !important;
   }
 }

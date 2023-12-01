@@ -10,6 +10,7 @@ function TableComponent({ tableHeader, tableContent, notifyUpdate, notifyDelete,
       tableHeader.push({
         title: 'Opciones',
         key: 'options',
+        align: 'center',
         render: (_, record) => {
           return (
             <div className='custom-options'>

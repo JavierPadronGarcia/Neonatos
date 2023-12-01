@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.update-group-main>h3 {
+.update-group-main h3 {
   display: flex;
   width: 100%;
   height: 3.5rem;
@@ -18,7 +18,7 @@
   margin: 1.5em 0 1em 0;
 }
 
-.update-group-main>h5 {
+.update-group-main h5 {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -27,7 +27,7 @@
   margin: 0 0 1em 0;
 }
 
-.update-group-main>form {
+.update-group-main form {
   margin-top: 2em;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   gap: 3rem;
 }
 
-.update-group-main>form>input {
+.update-group-main form>input {
   display: flex;
   width: 16.5rem;
   height: 2rem;
@@ -46,7 +46,14 @@
   padding-left: 0.5em;
 }
 
-.update-group-main>form>button {
+.update-group-main>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.update-group-main form>button {
   display: flex;
   width: 7.875rem;
   height: 2rem;
@@ -60,11 +67,31 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  flex-shrink: 0;
 }
 
 .update-group-page-arrow {
   position: absolute;
   top: 3.5em;
   left: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  .update-group-main .group-component-no-edit {
+    width: 20rem;
+  }
+
+  .update-group-main .group-component-main {
+    font-size: 0.9rem;
+  }
+
+  .update-group-main>div {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .update-group-main>div {
+    margin-top: 6rem;
+  }
 }

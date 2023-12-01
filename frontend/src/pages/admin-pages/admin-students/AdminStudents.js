@@ -101,8 +101,9 @@ function AdminStudents() {
                     <TableComponent
                       tableHeader={tableColumns}
                       tableContent={group.users}
-                      showDetails={false}
-                      showOptions={false}
+                      showOptions={true}
+                      textButton='Asignar estudiante'
+                      notifyUpdate={(student) => handleAssign(student)}
                       title={`Curso: ${group.name}`}
                     />
                   </section>
@@ -114,7 +115,7 @@ function AdminStudents() {
                 tableHeader={tableColumns}
                 tableContent={allStudentsNotInAGroup}
                 showOptions={true}
-                showEdit={true}
+                textButton='Asignar estudiante'
                 notifyUpdate={(student) => handleAssign(student)}
                 title={`Sin curso asignado`}
               />
