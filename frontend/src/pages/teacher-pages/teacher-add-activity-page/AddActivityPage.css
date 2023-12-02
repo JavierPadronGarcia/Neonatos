@@ -1,0 +1,35 @@
+.add-activity-page {
+  height: 100%;
+}
+
+.add-activity-page-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+@media screen and (min-width: 768px) {
+  .add-activity-page-form {
+    margin-top: 10rem;
+  }
+
+  .add-activity-page-form .add-activity-form {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .add-activity-page-form .add-activity-form {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .add-activity-page-form {
+    margin-top: 17rem;
+  }
+
+  .add-activity-page-form .add-activity-form {
+    width: 40%;
+  }
+}

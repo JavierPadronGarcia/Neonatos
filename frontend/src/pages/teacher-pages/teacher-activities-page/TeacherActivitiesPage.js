@@ -68,7 +68,7 @@ function TeacherActivitiesPage() {
             <GoBack link={`/teacher/main/group/${name}/${id}`} alt='volver a todas las unidades' />
             <span className='workUnitName' style={{ color: colors.text }}>{workUnitName}</span>
             <Add
-              link={`./addActivity`}
+              link={`./add`}
               colors={{ background: colors.secondaryColor, text: colors.text }}
             />
           </header>

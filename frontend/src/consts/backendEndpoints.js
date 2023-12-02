@@ -17,3 +17,5 @@ export const backendWorkUnitsColorsEndpoint = `${backendEndpoint}/api/workunitco
 export const backendWorkUnitsGroupsEndpoint = `${backendEndpoint}/api/workunitgroups`;
 
 export const backendExercisesEndpoint = `${backendEndpoint}/api/exercises`;
+
+export const backendCasesEndpoint = `${backendEndpoint}/api/cases`;

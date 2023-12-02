@@ -20,6 +20,7 @@ import UserPage from './pages/user-page/UserPage';
 import TeacherMainPage from './pages/teacher-pages/teacher-main-page/TeacherMainPage';
 import TeacherGroupPage from './pages/teacher-pages/teacher-group-page/TeacherGroupPage';
 import TeacherActivitiesPage from './pages/teacher-pages/teacher-activities-page/TeacherActivitiesPage';
+import AddActivityPage from './pages/teacher-pages/teacher-add-activity-page/AddActivityPage';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
           <Route path="main" element={<TeacherMainPage />} />
           <Route path="main/group/:name/:id" element={<TeacherGroupPage />} />
           <Route path="main/group/:name/:id/unit/:workUnitId/:workUnitName" element={<TeacherActivitiesPage />} />
+          <Route path="main/group/:name/:id/unit/:workUnitId/:workUnitName/add" element={<AddActivityPage />} />
         </Route>
 
       </Routes>

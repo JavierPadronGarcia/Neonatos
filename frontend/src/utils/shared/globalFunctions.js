@@ -52,3 +52,27 @@ export const loginValidation = (username, password, setInputNameStatus, setInput
 
   return true;
 }
+
+
+export const activityFormValidation = (selectedCase, selectedStudents, setStatus) => {
+
+  if (!selectedCase && selectedStudents.length === 0) {
+    message.warning('Por favor, Rellena todos los campos');
+    setStatus({ caseStatus: 'error', studentStatus: 'error' });
+    return false;
+  }
+
+  if (!selectedCase && selectedStudents.length !== 0) {
+    message.warning('Por favor, Selecciona un caso');
+    setStatus({ caseStatus: 'error', studentStatus: '' });
+    return false;
+  }
+
+  if (selectedCase && selectedStudents.length === 0) {
+    message.warning('Por favor, Selecciona al menos a un estudiante');
+    setStatus({ caseStatus: '', studentStatus: 'error' });
+    return false;
+  }
+
+  return true;
+}
