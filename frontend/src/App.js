@@ -38,11 +38,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<PrivateRoute logged={logged} onlyLogged={true} />}>
+        <Route element={<PrivateRoute onlyLogged={true} />}>
           <Route path="/myUser" element={<UserPage />} />
         </Route>
 
-        <Route element={<PrivateRoute permittedRole='admin' logged={logged} />}>
+        <Route element={<PrivateRoute permittedRole='admin' />}>
           <Route path='/admin'>
             <Route path="control-panel" element={<AdminControlPanel />} />
             <Route path="groups" element={<Groups />}></Route>
@@ -57,7 +57,7 @@ function App() {
           </Route>
         </Route>
 
-        <Route element={<PrivateRoute permittedRole='teacher' logged={logged} />}>
+        <Route element={<PrivateRoute permittedRole='teacher' />}>
 
           <Route path="/teacher/main" element={<TeacherMainPage />} />
           <Route path="/teacher/main/group/:name/:id" element={<TeacherGroupPage />} />

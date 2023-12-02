@@ -70,7 +70,7 @@ function Login() {
 
   useEffect(() => {
     if (logged) {
-      authService.navigateByRole('admin', navigate);
+      authService.navigateByRole(roles.role, navigate);
     }
   }, [])
 
