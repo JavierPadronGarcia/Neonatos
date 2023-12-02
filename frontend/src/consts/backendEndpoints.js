@@ -1,4 +1,4 @@
-const backendEndpoint = 'http://localhost:8080';
+const backendEndpoint = process.env.REACT_APP_BACKEND_URL;
 
 export const backendImageEndpoint = `${backendEndpoint}/images`;
 

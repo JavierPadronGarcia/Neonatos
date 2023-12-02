@@ -43,18 +43,18 @@ function App() {
         </Route>
 
         <Route element={<PrivateRoute permittedRole='admin' logged={logged} />}>
-
-          <Route path="/admin/control-panel" element={<AdminControlPanel />} />
-          <Route path="/admin/groups" element={<Groups />} />
-          <Route path="/admin/groups/update/:name/:id" element={<UpdateGroup />} />
-          <Route path="/admin/groups/add-group" element={<AddGroup />} />
-          <Route path="/admin/groups/details/:id/:name" element={<GroupDetails />} />
-          <Route path="/admin/students" element={<AdminStudents />} />
-          <Route path="/admin/students/assign/:student" element={<AssignStudentPage />} />
-          <Route path="/admin/teachers" element={<AdminTeachers />} />
-          <Route path="/admin/teachers/assign/:teacher" element={<AssignTeacherPage />} />
-          <Route path="/admin/directors" element={<AdminDirectorsPage />} />
-
+          <Route path='/admin'>
+            <Route path="control-panel" element={<AdminControlPanel />} />
+            <Route path="groups" element={<Groups />}></Route>
+            <Route path="groups/update/:name/:id" element={<UpdateGroup />} />
+            <Route path="groups/add-group" element={<AddGroup />} />
+            <Route path="groups/details/:id/:name" element={<GroupDetails />} />
+            <Route path="students" element={<AdminStudents />} />
+            <Route path="students/assign/:student" element={<AssignStudentPage />} />
+            <Route path="teachers" element={<AdminTeachers />} />
+            <Route path="teachers/assign/:teacher" element={<AssignTeacherPage />} />
+            <Route path="directors" element={<AdminDirectorsPage />} />
+          </Route>
         </Route>
 
         <Route element={<PrivateRoute permittedRole='teacher' logged={logged} />}>

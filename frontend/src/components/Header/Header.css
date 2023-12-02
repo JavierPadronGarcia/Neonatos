@@ -1,8 +1,5 @@
 .header-component {
   font-family: 'Alegreya Sans SC', 'Roboto';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background: #21759B;
   color: #D9D9D9;
   text-align: center;
@@ -11,8 +8,130 @@
   font-style: normal;
   font-weight: 400;
   height: 3.5rem;
+  position: relative;
 }
 
-.header-component>h1 {
+.more-info {
+  display: none;
+}
+
+.header-component h1 {
   margin: 0;
+}
+
+.header-component :where(.user-icon, .page-name) {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .more-info,
+  .more-info.expanded {
+    display: flex;
+  }
+
+  .header-component {
+    position: relative;
+    height: 2.5rem;
+  }
+
+  .header-component .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin-inline: 1rem;
+  }
+
+  .header-component .page-name {
+    position: absolute;
+    left: 0;
+    height: 2.5rem;
+    width: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-name {
+    font-size: 0.7rem;
+  }
+
+  .header-component .user-icon {
+    position: relative;
+    display: flex;
+  }
+
+  .more-info ul,
+  .more-info.expanded ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .more-info li,
+  .more-info.expanded li {
+    text-align: start;
+    display: flex;
+  }
+
+
+  .more-info,
+  .more-info.expanded {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    top: -100px;
+    flex-direction: column;
+    width: 11rem;
+    background: #D9D9D9;
+    border-bottom-left-radius: 8px;
+  }
+
+  .more-info.expanded {
+    top: 2.5rem;
+    animation: expandMenu 0.3s ease-in-out;
+  }
+
+  .more-info>ul,
+  .more-info.expanded>ul {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  .more-info>ul>li,
+  .more-info.expanded>ul>li {
+    padding-block: 0.5rem;
+  }
+
+  .more-info>ul>li>span:first-child,
+  .more-info.expanded>ul>li>span:first-child {
+    width: 100%;
+    margin-left: 0.5rem;
+  }
+
+  .more-info>ul>li:first-child,
+  .more-info.expanded>ul>li:first-child {
+    border-bottom: 1px solid black;
+  }
+
+  .more-info .icon {
+    margin-right: 0.5rem;
+  }
+
+}
+
+@keyframes expandMenu {
+  0% {
+    top: -100px;
+  }
+
+  100% {
+    top: 2.5rem;
+  }
 }

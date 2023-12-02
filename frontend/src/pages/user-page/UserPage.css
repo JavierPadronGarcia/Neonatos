@@ -68,3 +68,23 @@
 #file-input {
   display: none;
 }
+
+@media screen and (min-width:768px) {
+  .avatar-container {
+    margin-top: 3rem;
+  }
+
+  .back-to-home {
+    position: relative;
+    font-size: 2rem;
+  }
+
+  .back-to-home>span {
+    position: absolute;
+    left: 1rem;
+    top: 3rem;
+    border-radius: 50px;
+    padding: 0.4rem;
+    background-color: #64c2ee;
+  }
+}
