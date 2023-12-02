@@ -52,7 +52,7 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
 
   return (
     <Card
-      style={{ width: '80%' }}
+      style={{ width: '100%' }}
       className='activities-card'
       actions={[
         <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />

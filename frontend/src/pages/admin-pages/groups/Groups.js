@@ -62,7 +62,7 @@ function Groups() {
 
   return (
     <div className="groups-page">
-      <Header />
+      <Header pageName='Administración' />
       <main>
         <header className="groups-page-header">
           <div className="groups-page-add" >

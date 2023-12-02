@@ -26,7 +26,6 @@ function TeacherActivitiesPage() {
     getAllExercises();
   }, [])
 
-
   const handleDelete = (activityId) => {
     console.log(activityId)
   }
@@ -62,7 +61,7 @@ function TeacherActivitiesPage() {
 
   return (
     <div className='teacher-activities-page'>
-      <Header />
+      <Header pageName={name} />
       <div className='teacher-activities-page-main'>
         <div style={{ background: colors.primaryColor }} className='activity-section'>
           <header>

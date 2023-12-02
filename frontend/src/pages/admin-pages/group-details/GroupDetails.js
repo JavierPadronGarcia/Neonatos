@@ -98,7 +98,7 @@ function GroupDetails() {
 
   return (
     <div className="group-details-page">
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/groups' alt='go to all groups' />
       <div className="group-details-page-main">
         <header>

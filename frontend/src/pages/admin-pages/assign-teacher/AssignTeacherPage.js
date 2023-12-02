@@ -9,6 +9,7 @@ import groupsService from "../../../services/groups.service";
 import './AssignTeacherPage.css';
 import teacherGroupService from "../../../services/teacherGroup.service";
 import { noConnectionError } from "../../../utils/shared/errorHandler";
+import TableComponent from "../../../components/table/TableComponent";
 
 function AssignTeacherPage() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function AssignTeacherPage() {
     getAllGroups();
   }, [])
 
+
   const assignTeacher = (group) => {
     teacherGroupService.assignTeacherToGroup(teacher.id, group.id).then(response => {
       message.success({
@@ -45,27 +47,45 @@ function AssignTeacherPage() {
     });
   }
 
+  const tableColumns = [
+    { title: 'Nombre', dataIndex: 'name', key: 'name' },
+  ]
+
   return (
     <div className="admin-teachers-assign-page">
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/teachers' alt='volver a todo el profesorado' />
       <div className="admin-teachers-assign-container">
         <header>
           <h2>Cursos disponibles</h2>
         </header>
         <main>
-          <h3>Asignando al profesor/a:<br />{teacher.username}</h3>
-          <section className="admin-teachers-assign-page-groups">
-            {availableGroups.map((group, index) => {
-              return (
-                <Group
-                  key={index}
-                  group={group}
-                  assign={true}
-                  notifyAssign={() => assignTeacher(group)}
-                />
-              )
-            })}
+          <div className='teacher-mobile-format'>
+            <h3>Asignando al profesor/a:<br />{teacher.username}</h3>
+            <section className="admin-teachers-assign-page-groups">
+              {availableGroups.map((group, index) => {
+                return (
+                  <Group
+                    key={index}
+                    group={group}
+                    assign={true}
+                    notifyAssign={() => assignTeacher(group)}
+                  />
+                )
+              })}
+            </section>
+          </div>
+
+          <section className='table-section'>
+            <h3>Asignando a {teacher.username}</h3>
+            <TableComponent
+              tableHeader={tableColumns}
+              tableContent={availableGroups}
+              showOptions={true}
+              textButton='Asignar a este curso'
+              notifyUpdate={(group) => assignTeacher(group)}
+              title='Cursos'
+            />
           </section>
         </main>
       </div>

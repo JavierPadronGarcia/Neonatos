@@ -9,3 +9,34 @@
   gap: 40px;
   padding-bottom: 4rem;
 }
+
+.teacher-group-page-main .work-unit-component-selection {
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .teacher-group-page>h2 {
+    display: none;
+  }
+
+  .teacher-group-page-main {
+    margin-top: 7rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 40px;
+    padding-bottom: 4rem;
+  }
+
+  .teacher-group-page-main .work-unit-component-selection {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .teacher-group-page-main .work-unit-component-selection {
+    width: 30%;
+  }
+}

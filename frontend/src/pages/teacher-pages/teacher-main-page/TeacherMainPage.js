@@ -31,7 +31,7 @@ function TeacherMainPage() {
 
   return (
     <div className="teacher-page">
-      <Header />
+      <Header pageName='Tus cursos' />
       <h2>Tus cursos</h2>
       <div className='teacher-page-main'>
         {loading &&

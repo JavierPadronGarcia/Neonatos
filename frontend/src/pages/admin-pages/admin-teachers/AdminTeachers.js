@@ -48,7 +48,7 @@ function AdminTeachers() {
 
   return (
     <div className="admin-teachers-page">
-      <Header />
+      <Header pageName='Administración' />
       <div className='admin-teachers-page-main'>
         <header className='admin-teachers-page-header'>
           <h2>Profesorado</h2>

@@ -92,7 +92,7 @@ function AdminDirectorsPage() {
 
   return (
     <div className="admin-directors-page">
-      <Header />
+      <Header pageName='Administración' />
       <div className="admin-directors-page-main">
         <header className='admin-directors-page-header'>
           <h2>Dirección</h2>

@@ -3,6 +3,10 @@
   left: 0.25em;
 }
 
+.admin-teachers-assign-container {
+  margin-top: 2rem;
+}
+
 .admin-teachers-assign-container,
 .admin-teachers-assign-container>main {
   display: flex;
@@ -24,4 +28,14 @@
   width: 100%;
   gap: 1.44rem;
   padding-bottom: 5rem;
+}
+
+.teacher-mobile-format {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-teachers-assign-container .table-section {
+    width: 90%;
+  }
 }
