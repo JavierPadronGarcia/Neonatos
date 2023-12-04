@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BOOLEAN,
       allowNull: false
     },
+    finishDate: {
+      type: Sequelize.DATE,
+      allowNull: true
+    },
     CaseID: {
       type: Sequelize.INTEGER,
       allowNull: false

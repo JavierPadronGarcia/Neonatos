@@ -28,20 +28,31 @@ exports.create = (req, res) => {
 
 exports.createSomeExercises = (req, res) => {
 
-  const { CaseID, Students, assigned } = req.body;
+  const { CaseID, Students, assigned, finishDate } = req.body;
 
   const creationExercises = [];
   const splittedStudents = Students.split(',');
-  splittedStudents.forEach(studentId => {
-    creationExercises.push({
-      assigned: assigned,
-      CaseID: CaseID,
-      UserID: studentId
-    })
-  });
+
+  if (finishDate) {
+    splittedStudents.forEach(studentId => {
+      creationExercises.push({
+        assigned: assigned,
+        CaseID: CaseID,
+        UserID: studentId,
+        finishDate: finishDate
+      })
+    });
+  } else {
+    splittedStudents.forEach(studentId => {
+      creationExercises.push({
+        assigned: assigned,
+        CaseID: CaseID,
+        UserID: studentId,
+      })
+    });
+  }
 
   Exercise.bulkCreate(creationExercises).then(data => {
-    console.log(data)
     return res.send(data)
   })
 }
@@ -71,14 +82,14 @@ exports.findAllExercisesInAGroupByWorkUnit = async (req, res) => {
   const { groupId, workUnitId } = req.params;
   try {
     const result = await db.sequelize.query(`
-      SELECT c.id, c.name, ex.assigned, ex.CaseID
+      SELECT c.id, c.name, ex.finishDate, ex.assigned, ex.CaseID
       FROM \`${Group.tableName}\` AS g
       JOIN \`${WorkUnitGroup.tableName}\` AS wkug ON wkug.GroupID = g.id 
       JOIN \`${WorkUnit.tableName}\` AS wku ON wku.id = wkug.WorkUnitID
       JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
       JOIN \`${Exercise.tableName}\` AS ex ON ex.CaseID = c.id
       WHERE g.id = ${groupId} and wku.id = ${workUnitId}
-      GROUP BY c.id, c.WorkUnitId, c.name, ex.assigned, ex.CaseID;
+      GROUP BY c.id, c.WorkUnitId, c.name, ex.assigned, ex.finishDate, ex.CaseID;
     `, { type: db.Sequelize.QueryTypes.SELECT });
     return res.send(result);
   } catch (err) {

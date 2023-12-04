@@ -1,10 +1,10 @@
 import './ActivityForm.css';
-import { Button, Checkbox, Select, message } from 'antd';
+import { Button, Checkbox, DatePicker, Select, message } from 'antd';
 import { useEffect, useState } from 'react';
 import casesService from '../../services/cases.service';
 import groupEnrolementService from '../../services/groupEnrolement.service';
 import { noConnectionError } from '../../utils/shared/errorHandler';
-import { activityFormValidation } from '../../utils/shared/globalFunctions';
+import { activityFormValidation, activityFormValidationWithDate } from '../../utils/shared/globalFunctions';
 import exercisesService from '../../services/exercises.service';
 
 function ActivityForm({ groupId, workUnitId }) {
@@ -15,9 +15,10 @@ function ActivityForm({ groupId, workUnitId }) {
   const [allCases, setAllCases] = useState([]);
   const [selectedCase, setSelectedCase] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [checked, setChecked] = useState([false, false]);
   const [disabled, setDisabled] = useState(false);
-  const [formStatus, setStatus] = useState({ caseStatus: '', studentStatus: '' });
+  const [formStatus, setStatus] = useState({ caseStatus: '', studentStatus: '', dateStatus: '' });
 
   const getAllCases = async () => {
     try {
@@ -79,17 +80,25 @@ function ActivityForm({ groupId, workUnitId }) {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    setStatus({ caseStatus: '', studentStatus: '' });
+    setStatus({ caseStatus: '', studentStatus: '', dateStatus: '' });
     const activityCase = selectedCase;
     const students = checked[0] ? getStudentIds(allStudents) : selectedItems;
+    const date = selectedDate;
 
-    const validForm = activityFormValidation(activityCase, students, setStatus);
+    let validForm = false;
+
+    if (!checked[1]) {
+      validForm = activityFormValidation(activityCase, students, setStatus);
+    } else {
+      validForm = activityFormValidationWithDate(activityCase, students, date, setStatus);
+    }
 
     if (validForm) {
-      exercisesService.addExercises(activityCase, students, checked[1]).then(response => {
+      exercisesService.addExercises(activityCase, students, checked[1], date).then(response => {
         message.success('Actividad agregada correctamente', 2);
         setSelectedCase(null);
         setSelectedItems([]);
+        setSelectedDate(null);
         setChecked(false);
         setDisabled(false);
       });
@@ -100,6 +109,10 @@ function ActivityForm({ groupId, workUnitId }) {
     setChecked(prevState => [e.target.checked, prevState[1]]);
     setDisabled(e.target.checked);
   };
+
+  const changeDate = (e) => {
+    setSelectedDate(e?.$d);
+  }
 
   return (
     <div className='add-activity-form' style={{ background: colors.primaryColor }}>
@@ -135,6 +148,14 @@ function ActivityForm({ groupId, workUnitId }) {
                 value: item.id,
                 label: item.username,
               }))}
+            />
+          </label>
+          <label>
+            <DatePicker
+              status={formStatus.dateStatus}
+              disabled={!checked[1]}
+              onChange={changeDate}
+              placeholder='fecha de finalización'
             />
           </label>
         </div>
