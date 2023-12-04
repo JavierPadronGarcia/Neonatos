@@ -42,8 +42,19 @@ async function addExercises(caseId, students, assigned) {
   }
 }
 
+async function deleteExercise(groupId, workUnitId, caseId, assigned) {
+  try {
+    const response = axios.delete(`${backendExercisesEndpoint}/${groupId}/${workUnitId}/${caseId}/${assigned}`,
+      getOptions(localStorage.getItem('token'))
+    );
+    return (await response).data;
+  } catch (err) {
+    throw err;
+  }
+}
 
 export default {
   getAllExercisesOfTheGroup,
-  addExercises
+  addExercises,
+  deleteExercise
 }

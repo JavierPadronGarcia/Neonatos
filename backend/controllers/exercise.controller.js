@@ -113,11 +113,37 @@ exports.update = (req, res) => {
     })
 }
 
-exports.delete = (req, res) => {
-  let id = req.params.id;
-  Exercise.destroy({ where: { id: id } })
-    .then(() => res.send("Deletion Successful"))
-    .catch(err => {
-      res.status(500).send({ error: err })
-    })
+exports.delete = async (req, res) => {
+  try {
+    const { groupId, workUnitId, caseId, assigned } = req.params;
+    const idsToDelete = [];
+    const result = await db.sequelize.query(`
+      SELECT ex.id
+      FROM \`${Group.tableName}\` AS g
+      JOIN \`${WorkUnitGroup.tableName}\` AS wkug ON wkug.GroupID = g.id 
+      JOIN \`${WorkUnit.tableName}\` AS wku ON wku.id = wkug.WorkUnitID
+      JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
+      JOIN \`${Exercise.tableName}\` AS ex ON ex.CaseID = c.id
+      WHERE g.id = ${groupId} 
+      and wku.id = ${workUnitId} 
+      and ex.assigned = ${assigned}
+      and ex.CaseID = ${caseId}
+      GROUP BY ex.id, c.WorkUnitId;
+    `, { type: db.Sequelize.QueryTypes.SELECT });
+
+    result.forEach(exercise => {
+      idsToDelete.push(exercise.id);
+    });
+
+    Exercise.destroy({ where: { id: idsToDelete } }).then(() => {
+      return res.send("Deletion Successful");
+    }).catch(err => {
+      return res.status(500).send({ error: err });
+    });
+
+  } catch (err) {
+    return res.status(500).send({
+      error: err.message || "Some error occurred while deleting the exercises"
+    });
+  }
 }

@@ -7,6 +7,8 @@ import Add from '../../../components/add/Add';
 import ActivityCard from '../../../components/activity-card/ActivityCard';
 import { useEffect, useState } from 'react';
 import exercisesService from '../../../services/exercises.service';
+import { noConnectionError } from '../../../utils/shared/errorHandler';
+import { message } from 'antd';
 function TeacherActivitiesPage() {
 
   const { name, id, workUnitId, workUnitName } = useParams();
@@ -26,8 +28,15 @@ function TeacherActivitiesPage() {
     getAllExercises();
   }, [])
 
-  const handleDelete = (activityId) => {
-    console.log(activityId)
+  const handleDelete = (activityId, assigned) => {
+    exercisesService.deleteExercise(id, workUnitId, activityId, assigned).then(response => {
+      message.success('Actividad eliminada correctamente', 2);
+      getAllExercises();
+    }).catch(err => {
+      if (!err.response) {
+        noConnectionError();
+      }
+    })
   }
 
   const showAssignedExercises = () => (
@@ -39,7 +48,7 @@ function TeacherActivitiesPage() {
           id={exercise.id}
           title={exercise.name}
           description={'hola'}
-          notifyDelete={(activityId) => handleDelete(activityId)}
+          notifyDelete={(activityId) => handleDelete(activityId, true)}
         />
       )
     })
@@ -53,7 +62,7 @@ function TeacherActivitiesPage() {
           edit={true}
           id={exercise.id}
           title={exercise.name}
-          notifyDelete={(activityId) => handleDelete(activityId)}
+          notifyDelete={(activityId) => handleDelete(activityId, false)}
         />
       )
     })

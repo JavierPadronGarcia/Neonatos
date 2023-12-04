@@ -82,6 +82,11 @@
     margin-top: 4rem;
   }
 
+  .add-icon-component,
+  .return-arrow {
+    cursor: pointer;
+  }
+
   .teacher-activities-page-main :where(.evaluable-activities>main, .non-evaluable-activities>main) {
     flex-flow: row wrap;
     justify-content: center;
