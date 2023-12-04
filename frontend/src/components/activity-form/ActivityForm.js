@@ -1,10 +1,11 @@
 import './ActivityForm.css';
-import { Button, Checkbox, Select } from 'antd';
+import { Button, Checkbox, Select, message } from 'antd';
 import { useEffect, useState } from 'react';
 import casesService from '../../services/cases.service';
 import groupEnrolementService from '../../services/groupEnrolement.service';
 import { noConnectionError } from '../../utils/shared/errorHandler';
 import { activityFormValidation } from '../../utils/shared/globalFunctions';
+import exercisesService from '../../services/exercises.service';
 
 function ActivityForm({ groupId, workUnitId }) {
 
@@ -55,6 +56,7 @@ function ActivityForm({ groupId, workUnitId }) {
     })
     return newStudentArray;
   }
+
   const getStudentIds = (studentArray) => {
     let studentIdsArray = [];
     studentArray.map((student) => {
@@ -84,10 +86,13 @@ function ActivityForm({ groupId, workUnitId }) {
     const validForm = activityFormValidation(activityCase, students, setStatus);
 
     if (validForm) {
-      console.log(activityCase)
-      console.log(students)
-      console.log(checked[1])
-      //TODO -> pass all to the backend and bulk create all activities by one case and many students
+      exercisesService.addExercises(activityCase, students, checked[1]).then(response => {
+        message.success('Actividad agregada correctamente', 2);
+        setSelectedCase(null);
+        setSelectedItems([]);
+        setChecked(false);
+        setDisabled(false);
+      });
     }
   }
 

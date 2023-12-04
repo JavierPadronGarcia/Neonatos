@@ -26,6 +26,26 @@ exports.create = (req, res) => {
   });
 };
 
+exports.createSomeExercises = (req, res) => {
+
+  const { CaseID, Students, assigned } = req.body;
+
+  const creationExercises = [];
+  const splittedStudents = Students.split(',');
+  splittedStudents.forEach(studentId => {
+    creationExercises.push({
+      assigned: assigned,
+      CaseID: CaseID,
+      UserID: studentId
+    })
+  });
+
+  Exercise.bulkCreate(creationExercises).then(data => {
+    console.log(data)
+    return res.send(data)
+  })
+}
+
 exports.findAll = (req, res) => {
   Exercise.findAll().then(data => {
     res.json(data);

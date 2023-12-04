@@ -26,7 +26,24 @@ async function getAllExercisesOfTheGroup(groupId, workUnitId) {
   }
 }
 
+async function addExercises(caseId, students, assigned) {
+  const body = new URLSearchParams();
+  body.append('CaseID', caseId);
+  body.append('Students', students);
+  body.append('assigned', assigned);
+  try {
+    const response = axios.post(`${backendExercisesEndpoint}/addExercises`,
+      body,
+      getOptions(localStorage.getItem('token'))
+    );
+    return (await response).data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 
 export default {
-  getAllExercisesOfTheGroup
+  getAllExercisesOfTheGroup,
+  addExercises
 }

@@ -18,6 +18,10 @@
   justify-content: center;
 }
 
+.user-page-main .back-to-home {
+  display: none;
+}
+
 .avatar-container {
   display: flex;
   flex-direction: column;
@@ -74,7 +78,8 @@
     margin-top: 3rem;
   }
 
-  .back-to-home {
+  .user-page-main .back-to-home {
+    display: block;
     position: relative;
     font-size: 2rem;
   }
