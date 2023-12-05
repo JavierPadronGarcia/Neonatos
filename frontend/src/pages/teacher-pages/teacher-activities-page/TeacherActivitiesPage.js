@@ -8,7 +8,7 @@ import ActivityCard from '../../../components/activity-card/ActivityCard';
 import { useEffect, useState } from 'react';
 import exercisesService from '../../../services/exercises.service';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
-import { message } from 'antd';
+import { Modal, Popover, message } from 'antd';
 function TeacherActivitiesPage() {
 
   const { name, id, workUnitId, workUnitName } = useParams();
@@ -48,6 +48,7 @@ function TeacherActivitiesPage() {
           id={exercise.id}
           title={exercise.name}
           description={exercise.finishDate}
+          assigned={true}
           notifyDelete={(activityId, finishDate) => handleDelete(activityId, true, finishDate)}
         />
       )
@@ -62,6 +63,7 @@ function TeacherActivitiesPage() {
           edit={true}
           id={exercise.id}
           title={exercise.name}
+          assigned={false}
           notifyDelete={(activityId) => handleDelete(activityId, false)}
         />
       )

@@ -43,6 +43,28 @@ async function addExercises(caseId, students, assigned, date) {
   }
 }
 
+async function updateExercises(updateData) {
+  const body = new URLSearchParams();
+  body.append('GroupID', updateData.groupId);
+  body.append('WorkUnitID', updateData.workUnitId);
+  body.append('prevCaseID', updateData.prevCaseId);
+  body.append('CaseID', updateData.caseId);
+  body.append('Students', updateData.students);
+  body.append('prevAssigned', updateData.prevAssigned);
+  body.append('assigned', updateData.assigned);
+  body.append('prevDate', updateData.prevDate)
+  body.append('finishDate', updateData.finishDate);
+  try {
+    const response = axios.put(`${backendExercisesEndpoint}/updateExercises`,
+      body,
+      getOptions(localStorage.getItem('token'))
+    );
+    return (await response).data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function deleteExercise(groupId, workUnitId, caseId, assigned, date) {
   try {
     const response = axios.delete(`${backendExercisesEndpoint}/${groupId}/${workUnitId}/${caseId}/${assigned}/${date}`,
@@ -54,8 +76,21 @@ async function deleteExercise(groupId, workUnitId, caseId, assigned, date) {
   }
 }
 
+async function getAllStudentsAssignedInActivity(groupId, workUnitId, caseId, assigned, date) {
+  try {
+    const response = axios.get(`${backendExercisesEndpoint}/studentsAssignedToExercise/${groupId}/${workUnitId}/${caseId}/${assigned}/${date}`,
+      getOptions(localStorage.getItem('token'))
+    );
+    return (await response).data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export default {
   getAllExercisesOfTheGroup,
   addExercises,
-  deleteExercise
+  updateExercises,
+  deleteExercise,
+  getAllStudentsAssignedInActivity
 }

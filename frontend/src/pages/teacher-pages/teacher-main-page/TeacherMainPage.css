@@ -15,6 +15,11 @@
 }
 
 @media screen and (min-width: 768px) {
+
+  #root :where(.teacher-page) {
+    overflow: hidden;
+  }
+
   .teacher-page>h2 {
     display: none;
   }

@@ -16,14 +16,17 @@ module.exports = app => {
     exercises.findAllExercisesInAGroupByWorkUnit
   );
 
+  router.get('/studentsAssignedToExercise/:groupId/:workUnitId/:caseId/:assigned/:finishDate',
+    auth.isAuthenticated,
+    exercises.getAllStudentsAssignedToExercise);
+
   //retrieve all exercises
   router.get("/", auth.isAuthenticated, exercises.findAll);
 
   //retrieve a single exercise by id
   router.get("/:id", auth.isAuthenticated, exercises.findOne);
-
   //update an exercise with given id
-  router.put("/:id", auth.isAuthenticated, exercises.update);
+  router.put("/updateExercises", auth.isAuthenticated, exercises.update);
 
   //delete an exercise with given id and filtered with assigned
   router.delete("/:groupId/:workUnitId/:caseId/:assigned/:finishDate", auth.isAuthenticated, exercises.delete);

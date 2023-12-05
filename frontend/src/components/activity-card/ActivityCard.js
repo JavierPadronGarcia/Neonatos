@@ -1,11 +1,16 @@
-import { Card, Popconfirm } from 'antd';
+import { Card, Input, Popconfirm, Popover } from 'antd';
 import { DeleteOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import ActivityForm from '../activity-form/ActivityForm';
+import { useParams } from 'react-router-dom';
 
 const { Meta } = Card;
 
-function ActivityCard({ edit, id, title, description, notifyDelete }) {
+function ActivityCard({ edit, id, title, description, assigned, notifyDelete }) {
   const [isOpen, setOpen] = useState(false);
+  const params = useParams();
+  const groupId = params.id;
+  const workUnitId = params.workUnitId;
 
   const handleOpenDetails = () => {
 
@@ -31,10 +36,6 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
       setOpen(false);
     }
 
-    const handleUpdate = () => {
-
-    }
-
     const deleteElement = () => (
       <Popconfirm
         title='¿Eliminar esta actividad?'
@@ -48,13 +49,31 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
       </Popconfirm>
     )
 
+    const formUpdateContent = () => (
+      <div>
+        <ActivityForm
+          groupId={groupId}
+          workUnitId={workUnitId}
+          isUpdateForm={true}
+          updateFormContent={{ case: { id: id, name: title }, date: description, assigned: assigned }} />
+      </div>
+    )
+
+    const editElement = () => (
+      <Popover content={formUpdateContent}
+        trigger='click'
+      >
+        <EditOutlined key='edit' />
+      </Popover>
+    )
+
     return (
       <Card
         style={{ width: '80%' }}
         className='activities-card'
         actions={[
           (deleteElement()),
-          <EditOutlined key='edit' onClick={() => handleUpdate()} />,
+          (editElement()),
           <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />
         ]}
       >
