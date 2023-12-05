@@ -11,10 +11,23 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
 
   }
 
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+
+    const year = newDate.getFullYear();
+    const month = newDate.getMonth() + 1;
+    const day = newDate.getDate();
+
+    var formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+
+    return formattedDate;
+  }
+
+
   if (edit) {
 
     const handleDelete = () => {
-      notifyDelete(id);
+      notifyDelete(id, description);
       setOpen(false);
     }
 
@@ -45,7 +58,7 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
           <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />
         ]}
       >
-        <Meta title={title} description={description} />
+        <Meta title={title} description={description ? formatDate(description) : ''} />
       </Card>
     );
   }
@@ -58,7 +71,7 @@ function ActivityCard({ edit, id, title, description, notifyDelete }) {
         <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />
       ]}
     >
-      <Meta title={title} description={description} />
+      <Meta title={title} description={description ? formatDate(description) : ''} />
     </Card>
   );
 }

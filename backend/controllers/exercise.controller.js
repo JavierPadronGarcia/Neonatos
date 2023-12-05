@@ -126,8 +126,23 @@ exports.update = (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const { groupId, workUnitId, caseId, assigned } = req.params;
+    const { groupId, workUnitId, caseId, assigned, finishDate } = req.params;
     const idsToDelete = [];
+    let formattedDate = null;
+    if (finishDate) {
+
+      const date = new Date(finishDate);
+
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hour = date.getHours().toString().padStart(2, '0');
+      const minute = date.getMinutes().toString().padStart(2, '0');
+      const second = date.getSeconds().toString().padStart(2, '0');
+
+      formattedDate = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+    }
+
     const result = await db.sequelize.query(`
       SELECT ex.id
       FROM \`${Group.tableName}\` AS g
@@ -139,7 +154,7 @@ exports.delete = async (req, res) => {
       and wku.id = ${workUnitId} 
       and ex.assigned = ${assigned}
       and ex.CaseID = ${caseId}
-      GROUP BY ex.id, c.WorkUnitId;
+      and ex.finishDate like '${formattedDate}'
     `, { type: db.Sequelize.QueryTypes.SELECT });
 
     result.forEach(exercise => {

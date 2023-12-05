@@ -28,8 +28,8 @@ function TeacherActivitiesPage() {
     getAllExercises();
   }, [])
 
-  const handleDelete = (activityId, assigned) => {
-    exercisesService.deleteExercise(id, workUnitId, activityId, assigned).then(response => {
+  const handleDelete = (activityId, assigned, finishDate) => {
+    exercisesService.deleteExercise(id, workUnitId, activityId, assigned, finishDate).then(response => {
       message.success('Actividad eliminada correctamente', 2);
       getAllExercises();
     }).catch(err => {
@@ -39,19 +39,6 @@ function TeacherActivitiesPage() {
     })
   }
 
-  const formatDate = (date) => {
-    const newDate = new Date(date);
-
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth() + 1;
-    const day = newDate.getDate();
-
-    var formattedDate = `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
-
-    return formattedDate;
-  }
-
-
   const showAssignedExercises = () => (
     assignedExercises.map(exercise => {
       return (
@@ -60,8 +47,8 @@ function TeacherActivitiesPage() {
           edit={true}
           id={exercise.id}
           title={exercise.name}
-          description={formatDate(exercise.finishDate)}
-          notifyDelete={(activityId) => handleDelete(activityId, true)}
+          description={exercise.finishDate}
+          notifyDelete={(activityId, finishDate) => handleDelete(activityId, true, finishDate)}
         />
       )
     })

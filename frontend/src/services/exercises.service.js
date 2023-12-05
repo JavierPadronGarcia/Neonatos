@@ -43,9 +43,9 @@ async function addExercises(caseId, students, assigned, date) {
   }
 }
 
-async function deleteExercise(groupId, workUnitId, caseId, assigned) {
+async function deleteExercise(groupId, workUnitId, caseId, assigned, date) {
   try {
-    const response = axios.delete(`${backendExercisesEndpoint}/${groupId}/${workUnitId}/${caseId}/${assigned}`,
+    const response = axios.delete(`${backendExercisesEndpoint}/${groupId}/${workUnitId}/${caseId}/${assigned}/${date}`,
       getOptions(localStorage.getItem('token'))
     );
     return (await response).data;
