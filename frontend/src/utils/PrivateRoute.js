@@ -5,9 +5,9 @@ import { RolesContext } from "../context/roles";
 
 function PrivateRoute(props) {
 
-  const logged = props.logged;
   const permittedRole = props.permittedRole;
   const onlyLogged = props.onlyLogged;
+  const logged = localStorage.getItem('token') ? true : false
 
   const navigate = useNavigate();
   const [changePage, setChangePage] = useState();
@@ -15,8 +15,6 @@ function PrivateRoute(props) {
 
   const checkRole = () => {
     const role = rolesContext.role;
-
-
 
     if (!logged) {
       navigate('/');

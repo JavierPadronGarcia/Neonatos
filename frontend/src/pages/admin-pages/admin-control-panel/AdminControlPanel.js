@@ -9,7 +9,7 @@ function AdminControlPanel() {
   const navigate = useNavigate();
   return (
     <>
-      <Header />
+      <Header pageName='Administración' />
       <div className="admin-control-panel-page">
         <header>
           <h2>Panel de Control</h2>

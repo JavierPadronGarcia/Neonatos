@@ -31,9 +31,9 @@
   border-bottom-left-radius: 11px;
   border-bottom-right-radius: 11px;
   display: flex;
-  justify-content: center;
-  gap: 1.75rem;
+  justify-content: space-around;
   align-items: center;
+  gap: 1.75rem;
   animation: changeSecondLineAnimation 0.3s ease-in-out alternate;
 }
 

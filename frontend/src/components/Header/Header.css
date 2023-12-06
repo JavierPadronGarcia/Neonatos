@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.user-icon {
+  cursor: pointer;
+}
+
 .more-info {
   display: none;
 }
@@ -76,6 +80,7 @@
   .more-info li,
   .more-info.expanded li {
     text-align: start;
+    cursor: pointer;
     display: flex;
   }
 

@@ -6,7 +6,7 @@ import { RolesContext } from '../../context/roles';
 import authService from '../../services/auth.service';
 import { Popconfirm } from 'antd';
 
-function Header() {
+function Header({ pageName }) {
   const menuRef = useRef(null);
   const navigate = useNavigate();
   const RoleContext = useContext(RolesContext);
@@ -27,7 +27,7 @@ function Header() {
     <>
       <header className="header-component">
         <div className='page-name'>
-          Administración
+          {pageName}
         </div>
         <div className='content'>
           <div className='logo-name'>

@@ -1,27 +1,43 @@
 const db = require("../models");
 const Group = db.groups;
+const WorkUnit = db.workUnit;
 const GroupEnrolement = db.groupEnrolement;
 const Teachercourse = db.teachercourse;
+const WorkUnitGroup = db.workUnitGroup;
 const Op = db.Sequelize.Op;
 
 exports.createGroup = (req, res) => {
   const name = req.body.name;
+  const workUnitGroupCreation = [];
+
   if (!name) {
     return res.status(400).send({
       error: "You must provide a name"
     });
   }
   const newGroup = { name: name };
-  Group.create(newGroup)
-    .then((data) => {
-      res.send(data);
+
+  Group.create(newGroup).then((group) => {
+    //find all the work units to assign them to the new group
+    WorkUnit.findAll().then(allWorkUnits => {
+      //create all the rows to assign al work units to its group
+      allWorkUnits.forEach(workUnit => {
+        workUnitGroupCreation.push({
+          GroupID: group.id,
+          WorkUnitID: workUnit.id,
+          visibility: false
+        })
+      })
+      //create all whe workUnitGroups
+      WorkUnitGroup.bulkCreate(workUnitGroupCreation).then(response => {
+        res.send(group);
+      })
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send({
-        error: err
-      });
+  }).catch((err) => {
+    res.status(500).send({
+      error: err
     });
+  });
 };
 
 exports.findAllWithCounts = async (req, res) => {

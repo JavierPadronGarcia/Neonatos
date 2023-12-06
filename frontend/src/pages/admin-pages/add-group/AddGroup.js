@@ -47,7 +47,7 @@ function AddGroup() {
 
   return (
     <div className='add-group-page'>
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/groups' alt='back to groups' />
       <main className='add-group-main'>
         <h3>Nuevo curso</h3>

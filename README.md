@@ -125,6 +125,7 @@ If you don't have node js <a href='https://nodejs.org/en'>click here</a> to inst
     ```
 
 You will have the folder like this:
+
 ![Image of the folder directoy backend](/readmeImages/BackendFolderDotenv.png)
 
 In the .env you need to put the following lines, this are an example,
@@ -133,6 +134,7 @@ In the .env you need to put the following lines, this are an example,
   JWT_SECRET= #a difficult password for the JWT token
 
   MYSQL_DATABASE=db_metahospitalfp
+  MYSQL_TEST_DATABASE=db_metahospitalfp_test
   MYSQL_USER= #your mysql user, usually is root
   MYSQL_PASSWORD= #your mysql password
   MYSQL_ROOT_PASSWORD= #the mysql root password
@@ -146,9 +148,11 @@ Once you have all the data here, you will need to create the mysql database:
 Open mysql workbench and login to your account.
 
 Now, in the toolbar clic here to create a database 
+
 ![Image of the toolbar in mysql workbench](/readmeImages/MysqlToolbar.png)
 
 And put the same database name that you have in the .env:
+
 ![Image of the creation of the database in mysql workbench](/readmeImages/MysqlCreateDatabase.png)
 
 Clic on apply and you have finished the set up of the proyect.
@@ -166,17 +170,20 @@ Clic on apply and you have finished the set up of the proyect.
     npm start
   ```
   This command will run the server and show you something like this:
+
   ![Image of the console when you start the server](/readmeImages/ConsoleStartServer.png)
 
   And if it's the first time starting the backend it will create all the tables and relations.
 
   Now, mysql workbench will show all the tables created:
+
   ![Image of the tables created in mysql workbench after running the server](/readmeImages/TablesCreatedAfterRunningTheServer.png)
 
   If you want to check the created endPoints of the backend 
   <a href='https://documenter.getpostman.com/view/29809597/2s9YeD8DNB'>click here</a>
 
   In the link you will see all the endpoints in the database with folders for each table, if you want to see a description of the table, clic in the folder and you will see this:
+
   ![Image of the description of a table in postman](/readmeImages/DescriptionOfATableInPostman.png)
 
   - Start the frontend:
@@ -189,6 +196,7 @@ Clic on apply and you have finished the set up of the proyect.
   ```
 
   Now it will start a localhost server in the port 3000 and you can start to use it:
+
   ![Image of the console when you start the frontend server](/readmeImages/FrontendConsoleStartingTheServer.png)
 
 <!-- CONTACT -->

@@ -1,0 +1,130 @@
+.teacher-activities-page {
+  height: 100%;
+}
+
+.teacher-activities-page-main {
+  display: flex;
+  justify-content: center;
+}
+
+.teacher-activities-page-main .activity-section {
+  position: relative;
+  width: 90%;
+  margin-top: 1.25rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+
+.teacher-activities-page-main .activity-section .return-arrow {
+  top: 0.78rem;
+}
+
+.teacher-activities-page-main .workUnitName {
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  flex-direction: column;
+  justify-content: center;
+  color: #F2F2F2;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.375rem;
+  text-align: center;
+  text-decoration-line: underline;
+}
+
+.teacher-activities-page-main .add-icon-component {
+  display: flex;
+  position: absolute;
+  right: 0.44rem;
+  top: 0.35rem;
+  height: fit-content;
+  border-radius: 50px;
+}
+
+.teacher-activities-page-main .activity-section>main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.teacher-activities-page-main header {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.teacher-activities-page-main :where(.evaluable-activities, .non-evaluable-activities) {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.teacher-activities-page-main :where(.evaluable-activities>main, .non-evaluable-activities>main) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.evaluable-activities>main:last-child,
+.non-evaluable-activities>main:last-child {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+
+  .teacher-activities-page-main .activity-section {
+    margin-top: 4rem;
+  }
+
+  .add-icon-component,
+  .return-arrow {
+    cursor: pointer;
+  }
+
+  .teacher-activities-page-main :where(.evaluable-activities>main, .non-evaluable-activities>main) {
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .teacher-activities-page-main .activities-card {
+    width: 35% !important;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+
+  .teacher-activities-page-main .activity-section {
+    width: 80%;
+  }
+
+  .teacher-activities-page-main .activities-card {
+    width: 30% !important;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+
+  .teacher-activities-page-main .activity-section {
+    width: 70%;
+  }
+
+}
+
+@media screen and (min-width: 1600px) {
+
+  .teacher-activities-page-main .activity-section {
+    width: 70%;
+  }
+
+  .teacher-activities-page-main .activities-card {
+    width: 20% !important;
+  }
+}

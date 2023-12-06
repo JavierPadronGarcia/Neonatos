@@ -1,0 +1,44 @@
+.add-activity-page {
+  height: 90%;
+}
+
+.add-activity-page-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+@media screen and (min-width: 768px) {
+
+  #root :where(.add-activity-page) {
+    overflow: hidden;
+  }
+
+  .add-activity-page {
+    height: 90%;
+  }
+
+  .add-activity-page-form {
+    margin-top: 10rem;
+  }
+
+  .add-activity-page-form .add-activity-form {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .add-activity-page-form .add-activity-form {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .add-activity-page-form {
+    margin-top: 12rem;
+  }
+
+  .add-activity-page-form .add-activity-form {
+    width: 40%;
+  }
+}

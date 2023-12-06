@@ -39,7 +39,7 @@ function UserPage() {
 
   return (
     <div className="user-page">
-      <Header />
+      <Header pageName='Mi perfil' />
       <div className="user-page-main">
         <div className='back-to-home'>
           <HomeOutlined onClick={() => authService.navigateByRole(rolesContext.role, navigate)} />

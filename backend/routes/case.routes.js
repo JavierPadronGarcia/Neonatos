@@ -1,11 +1,14 @@
 module.exports = app => {
   const cases = require("../controllers/case.controller");
   const auth = require('../controllers/auth');
-  
+
   var router = require("express").Router();
 
   //create a new case
   router.post("/", auth.isAuthenticated, cases.create);
+
+  //retrieve all cases in a group
+  router.get("/byGroup/:groupId/:workUnitId", auth.isAuthenticated, cases.findAllCasesInAGroup);
 
   //retrieve all cases
   router.get("/", auth.isAuthenticated, cases.findAll);

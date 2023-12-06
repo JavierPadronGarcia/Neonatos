@@ -63,7 +63,7 @@ function UpdateGroup() {
 
   return (
     <div className='update-group-page'>
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/groups' alt='volver a los cursos' />
       <main className='update-group-main'>
         <h3>Actualizando curso</h3>
