@@ -30,16 +30,17 @@ exports.create = (req, res) => {
 exports.createSomeExercises = (req, res) => {
 
   const { CaseID, Students, assigned, finishDate } = req.body;
+  let newFinishDate = new Date(finishDate)
 
   const creationExercises = [];
   const splittedStudents = Students.split(',');
-  if (finishDate instanceof Date && !isNaN(finishDate)) {
+  if (newFinishDate instanceof Date && !isNaN(newFinishDate)) {
     splittedStudents.forEach(studentId => {
       creationExercises.push({
         assigned: assigned,
         CaseID: CaseID,
         UserID: studentId,
-        finishDate: finishDate
+        finishDate: newFinishDate
       })
     });
   } else {
@@ -158,7 +159,7 @@ exports.getAllStudentsAssignedToExercise = async (req, res) => {
       AND wku.id = ${workUnitId} 
       AND ex.assigned = ${assigned}
       AND ex.CaseID = ${caseId}
-      AND ex.finishDate like '${formattedDate}'
+      AND (ex.finishDate like '${formattedDate}' OR ex.finishDate IS NULL)
       ORDER BY u.id asc
     `, { type: db.Sequelize.QueryTypes.SELECT });
 
@@ -176,7 +177,6 @@ exports.getAllStudentsAssignedToExercise = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const { GroupID, WorkUnitID, prevCaseID, CaseID, Students, prevAssigned, assigned, prevDate, finishDate } = req.body;
-    console.log(finishDate);
     const idsToDelete = [];
     let formattedPrevDate = null;
     let formattedFinishDate = null;
@@ -199,9 +199,11 @@ exports.update = async (req, res) => {
     and wku.id = ${WorkUnitID} 
     and ex.assigned = ${prevAssigned}
     and ex.CaseID = ${prevCaseID}
-    and ex.finishDate like '${formattedPrevDate}'
+    and (ex.finishDate like '${formattedPrevDate}' OR ex.finishDate IS NULL)
   `, { type: db.Sequelize.QueryTypes.SELECT });
 
+
+    console.log(result)
 
     result.forEach(exercise => {
       idsToDelete.push(exercise.id);
@@ -212,9 +214,7 @@ exports.update = async (req, res) => {
       const creationExercises = [];
       const splittedStudents = Students.split(',');
 
-      console.log(splittedStudents[0])
-
-      if (finishDate) {
+      if (assigned === 'true') {
         splittedStudents.forEach(studentId => {
           creationExercises.push({
             assigned: assigned,
@@ -229,6 +229,7 @@ exports.update = async (req, res) => {
             assigned: assigned,
             CaseID: CaseID,
             UserID: studentId,
+            finishDate: null
           })
         });
       }
@@ -275,11 +276,13 @@ exports.delete = async (req, res) => {
       JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
       JOIN \`${Exercise.tableName}\` AS ex ON ex.CaseID = c.id
       WHERE g.id = ${groupId} 
-      and wku.id = ${workUnitId} 
-      and ex.assigned = ${assigned}
-      and ex.CaseID = ${caseId}
-      and ex.finishDate like '${formattedDate}'
+      AND wku.id = ${workUnitId} 
+      AND ex.assigned = ${assigned}
+      AND ex.CaseID = ${caseId}
+      AND (ex.finishDate like '${formattedDate}' OR ex.finishDate IS NULL)
     `, { type: db.Sequelize.QueryTypes.SELECT });
+
+    console.log(groupId, workUnitId, caseId, assigned, finishDate)
 
     result.forEach(exercise => {
       idsToDelete.push(exercise.id);

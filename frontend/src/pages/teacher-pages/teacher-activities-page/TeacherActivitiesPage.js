@@ -50,6 +50,7 @@ function TeacherActivitiesPage() {
           description={exercise.finishDate}
           assigned={true}
           notifyDelete={(activityId, finishDate) => handleDelete(activityId, true, finishDate)}
+          notifyUpdateInfo={() => getAllExercises()}
         />
       )
     })
@@ -65,6 +66,7 @@ function TeacherActivitiesPage() {
           title={exercise.name}
           assigned={false}
           notifyDelete={(activityId) => handleDelete(activityId, false)}
+          notifyUpdateInfo={() => getAllExercises()}
         />
       )
     })

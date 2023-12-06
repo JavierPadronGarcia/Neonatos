@@ -22,6 +22,7 @@ async function getAllExercisesOfTheGroup(groupId, workUnitId) {
     );
     return (await response).data;
   } catch (err) {
+    console.log(err)
     throw err;
   }
 }
@@ -30,7 +31,7 @@ async function addExercises(caseId, students, assigned, date) {
   const body = new URLSearchParams();
   body.append('CaseID', caseId);
   body.append('Students', students);
-  body.append('assigned', assigned);
+  body.append('assigned', assigned || false);
   body.append('finishDate', date);
   try {
     const response = axios.post(`${backendExercisesEndpoint}/addExercises`,
@@ -54,6 +55,7 @@ async function updateExercises(updateData) {
   body.append('assigned', updateData.assigned);
   body.append('prevDate', updateData.prevDate)
   body.append('finishDate', updateData.finishDate);
+  console.log(updateData.students)
   try {
     const response = axios.put(`${backendExercisesEndpoint}/updateExercises`,
       body,

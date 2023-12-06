@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const { Meta } = Card;
 
-function ActivityCard({ edit, id, title, description, assigned, notifyDelete }) {
+function ActivityCard({ edit, id, title, description, assigned, notifyDelete, notifyUpdateInfo }) {
   const [isOpen, setOpen] = useState(false);
   const params = useParams();
   const groupId = params.id;
@@ -55,7 +55,8 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete }) 
           groupId={groupId}
           workUnitId={workUnitId}
           isUpdateForm={true}
-          updateFormContent={{ case: { id: id, name: title }, date: description, assigned: assigned }} />
+          updateFormContent={{ case: { id: id, name: title }, date: description, assigned: assigned }}
+          notifyUpdateInfo={() => notifyUpdateInfo()} />
       </div>
     )
 

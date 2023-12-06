@@ -7,7 +7,7 @@ import { noConnectionError } from '../../utils/shared/errorHandler';
 import { activityFormValidation, activityFormValidationWithDate } from '../../utils/shared/globalFunctions';
 import exercisesService from '../../services/exercises.service';
 
-function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent }) {
+function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, notifyUpdateInfo }) {
 
   const colors = JSON.parse(sessionStorage.getItem('colors'));
 
@@ -83,7 +83,7 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent }) 
   const getStudentIds = (studentArray) => {
     let studentIdsArray = [];
     studentArray.map((student) => {
-      studentIdsArray.push(student.id);
+      studentIdsArray.push(student.value);
     })
     return studentIdsArray;
   }
@@ -131,10 +131,9 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent }) 
     e.preventDefault();
     setStatus({ caseStatus: '', studentStatus: '', dateStatus: '' });
     const activityCase = selectedCase;
-    const students = checked[0] ? getStudentIds(allStudents) : selectedItems;
+    const students = checked[0] ? getStudentIds(allStudents) : getStudentIds(selectedItems);
     const date = selectedDate;
 
-    console.log(students)
 
     let validForm = false;
 
@@ -151,7 +150,7 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent }) 
         workUnitId: workUnitId,
         prevCaseId: prevUpdateData.prevCaseId,
         caseId: selectedCase,
-        students: checked[0] ? getStudentIds(allStudents) : selectedItems,
+        students: students,
         prevAssigned: prevUpdateData.prevAssigned,
         assigned: checked[1],
         prevDate: prevUpdateData.prevDate,
@@ -166,6 +165,7 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent }) 
         setSelectedDate(null);
         setChecked(false);
         setDisabled(false);
+        notifyUpdateInfo();
       });
     }
   }
