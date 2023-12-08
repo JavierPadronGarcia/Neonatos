@@ -1,7 +1,5 @@
 # MetaHospitalFP
 
-<a name="readme-top"></a>
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -20,11 +18,12 @@
         <li><a href="#class-diagram">Entity-relation diagram</a></li>
       </ul>
     </li>
+    <li><a href="#usability-and-accessibility">Usability and accessibility</a></li>
     <li><a href="#figma-prototype">Figma prototype</a></li>
     <li>
       <span>Getting started</span>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#user-requires--prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#open-the-project">Open the project</a></li>
       </ul>
@@ -33,7 +32,7 @@
   </ol>
 </details>
 
-## Introduction
+# Introduction
 
 This project is an application about the administration an creation of activities and assigments of 
 students, teachers and more, the objective is to create a system that can be used by all users in the school. 
@@ -46,7 +45,7 @@ The project is not developed for a specific company; it is a public project. How
 
 In conclusion, the main idea is to develop an easy-to-use and intuitive application for use in an educational setting.
 
-## About The Project
+# About The Project
 
 To provide context for the upcoming diagrams, we will explain in more detail the actions that users will perform in the app.
 
@@ -59,7 +58,7 @@ The cases will be evaluated based on a set of criteria ("Items"). The criteria w
 In addition, there will be a guest user. This guest user will only be able to access public cases.
 Any changes they make will not be saved to the database.
 
-## Diagrams
+# Diagrams
 
 ### Use case diagram
 
@@ -114,6 +113,9 @@ Course evaluation involves three components: "Items," representing evaluation cr
 <div style="text-align: center; height: fit-content; margin: 20px 0">
   <img src="./readmeImages/RelationalModel.png" alt="entity-relation diagram" width="50%">
 </div>
+
+
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
 ## Considerations for the Future
 
@@ -170,15 +172,127 @@ The "Color" table has been incorporated to enable customization of course colors
 
 These proposals integrate into the existing project to enrich functionality, adapting it to evolving educational needs and providing a more comprehensive and customizable experience.
 
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
-#### Figma prototype
+# Figma prototype
 
 Once that I have a first view of the application, I can start to create the prototype, to create it I used Figma, here is the prototype. [Figma prototype]
 
+# Usability and accessibility
+
+Los formularios están validados proporcionando sus respectivos mensajes al usuario, entre los mensajes que podemos ver en este caso, el inicio de sesión son:
+
+- message when a field is empty:
+
+In this message the empty fields fill the border in red to show the user exactly where is the problem: 
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/loginNoDataInForm.png" alt="login error, no data in form" width="35%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/loginNoDataInForm2.png" alt="login error, no data in form" width="35%"/>
+</div>
+
+- message when the user is not found:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/loginNoUserFound.png" alt="login error, no user found" width="40%"/>
+</div>
+
+- message when there is no connection to the server:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/loginNoConnectionToServer.png" alt="login error, no connection to server" width="40%"/>
+</div>
+
+The last two images has error control, the first the error is generated in the backend an is catched in the frontend to show the message and the last one is generated when the user try to get informacion from the backend and there is no response:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/handleLoginCodeImage.png" alt="image of the code where the error is catched" width="59%"/>
+   <img src="./readmeImages/usabilityAndAccesibility/loginCatchingErrorsCodeImage.png" alt="image of the code where the error message is shown" width="40%"/>
+</div>
+
+##
+
+After that, when the user is correctly logged it shows a success message like this:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/loginSuccessfull.png" alt="image of the code where the error message is shown" width="50%"/>
+</div>
+
+##
+
+Another aspect is the interfaces, which are simple and uncluttered, in addition to being intuitive with pleasant colors and good contrast between text, buttons, and the background. Here, we present several images of interfaces for different types of users:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/adminInterfaceAspect.png" alt="admin interface" width="45%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/adminGroupsInterface.png" alt="admin interface" width="50%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/teacherMainInterface.png" alt="teacher interface" width="50%"/>
+</div>
+
+The interfaces are also responsive, allowing them to adapt to various devices, including mobile phones:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/adminInterfaceAspectMobile.png" alt="admin interface" width="30%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/adminGroupsInterfaceMobile.png" alt="admin interface" width="30%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/teacherMainInterfaceMobile.png" alt="teacher interface" width="30%"/>
+</div>
+
+##
+
+Furthermore, for options that can significantly impact data, a confirmation message is displayed to allow the user to cancel the action:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/eliminationQuestion.png" alt="elimination confirmation message" width="80%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/logoutQuestion.png" alt="logout confirmation message" width="50%"/>
+</div>
+
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
+
+##
+
+Other aspects of accessibility are tested with Lighthouse, it gives a max punctuation of 100:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/lighthouseAccesibility.png" alt="accessibility punctuation of 100" width="80%"/>
+</div>
+
+This is because the interfaces have a good contrast, all the images and icons have an alt text, all text sizes are relative, this allows the user to zoom in on the browser, and the font size increases appropriately.
+
+##
+
+In addition, the users can use the tab key to move through the application, they don't necessary need to use the mouse, here is an image of the function:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/focusDemostration.png" alt="an item beign focused when tab key is used" width="40%"/>
+</div>
+
+And when you tap the enter key it executes the action, in this case it goes to the groups page:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/focusDemostration2.png" alt="an item beign focused when tab key is used" width="90%"/>
+</div>
+
+Here is the code for this interactions: 
+
+tabIndex is added to be focusable and onKeyDown to listen to the enter key, when it's focus check if the key is the enter key and if it's the correct key navigate to the new page
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/focusDemostration3.png" alt="code of the container focusable" width="90%"/>
+  <img src="./readmeImages/usabilityAndAccesibility/focusDemostration4.png" alt="code of the function that navigate when is the correct key pressed" width="60%"/>
+</div>
+
+##
+
+Finally, all the pages have restricted access exept the login page, when the user is logged in takes a token with the user information including the role of the user, this role is used to navigate to the user page and can't  change to a page that is not allowed to go, this is implementet with private routes, here is an image of all the pages and their roles allowed:
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/privateRoutes.png" alt="code of the private routes" width="70%"/>
+</div>
+
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
 ## Getting Started
 
-### Prerequisites
+### User requires / Prerequisites
 
 - Have a text editor like [Visual Studio Code]
 
@@ -251,7 +365,7 @@ And put the same database name that you have in the .env:
 
 Clic on apply and you have finished the set up of the proyect.
 
-<a name="start-the-project"></a>
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
 ### Open the project
 
@@ -300,7 +414,7 @@ Javier Padrón García -- padrongarciajavier04@gmail.com
 
 Project Link: [https://github.com/JavierPadronGarcia/Neonatos.git](https://github.com/JavierPadronGarcia/Neonatos.git)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
 <!-- URL for images and links -->
 
