@@ -32,6 +32,9 @@ function TeacherMainPage() {
   return (
     <div className="teacher-page">
       <Header pageName='Tus cursos' />
+      <p>
+        <a href='/assets/help/Ayuda.html' target='blank'>Ayuda</a>
+      </p>
       <h2>Tus cursos</h2>
       <div className='teacher-page-main'>
         {loading &&

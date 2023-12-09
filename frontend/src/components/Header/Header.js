@@ -62,6 +62,9 @@ function Header({ pageName }) {
               <LogoutOutlined className='icon' />
             </li>
           </Popconfirm>
+          <li>
+            <a href='/assets/help/Ayuda.html' target='blank'>Ayuda</a>
+          </li>
         </ul>
       </nav>
     </>

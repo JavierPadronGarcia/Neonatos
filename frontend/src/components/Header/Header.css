@@ -84,13 +84,12 @@
     display: flex;
   }
 
-
   .more-info,
   .more-info.expanded {
     position: absolute;
     z-index: 5;
     right: 0;
-    top: -100px;
+    top: -200px;
     flex-direction: column;
     width: 11rem;
     background: #D9D9D9;
@@ -121,8 +120,18 @@
   }
 
   .more-info>ul>li:first-child,
-  .more-info.expanded>ul>li:first-child {
+  .more-info>ul>li:nth-child(2),
+  .more-info.expanded>ul>li:first-child,
+  .more-info.expanded>ul>li:nth-child(2) {
     border-bottom: 1px solid black;
+  }
+
+  .more-info>ul>li:nth-child(3) a,
+  .more-info.expanded>ul>li:nth-child(3) a {
+    width: 100%;
+    margin-left: 0.5rem;
+    text-decoration: inherit;
+    color: inherit;
   }
 
   .more-info .icon {
