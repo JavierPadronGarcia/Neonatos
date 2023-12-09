@@ -19,7 +19,11 @@ function AdminControlPanel() {
       <Header pageName='Administración' />
       <div className="admin-control-panel-page">
         <header>
+          <p>
+            <a href='/assets/help/Ayuda.html' target='blank'>Ayuda</a>
+          </p>
           <h2>Panel de Control</h2>
+
           <TabsComponent pageType='admin' keySelected='1' />
         </header>
         <main className='buttons-section'>

@@ -107,9 +107,11 @@ function Login() {
           <label>
             <Button className='button' htmlType='submit' loading={loading}>Iniciar sesion</Button>
           </label>
+          <label>
+            <a href='/assets/help/Iniciodesesion.html' target='blank'>Ayuda</a>
+          </label>
         </form>
       </main>
-
     </div >
 
   );

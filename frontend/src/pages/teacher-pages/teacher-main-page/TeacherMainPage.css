@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.teacher-page>p {
+  width: 100%;
+  text-align: center;
+}
+
 .teacher-page-main {
   display: flex;
   flex-direction: column;
@@ -18,6 +23,10 @@
 
   #root :where(.teacher-page) {
     overflow: hidden;
+  }
+
+  .teacher-page>p {
+    display: none;
   }
 
   .teacher-page>h2 {
