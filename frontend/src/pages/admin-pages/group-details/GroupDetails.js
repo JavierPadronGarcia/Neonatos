@@ -83,7 +83,12 @@ function GroupDetails() {
   }
 
   const assignTeacher = (teacher) => {
-    const teacherStringified = JSON.stringify(teacher);
+    const adaptTeacherToNavigate = {
+      id: teacher.id,
+      username: teacher.username,
+      role: teacher.role
+    }
+    const teacherStringified = JSON.stringify(adaptTeacherToNavigate);
     navigate('/admin/teachers/assign/' + teacherStringified);
   }
 

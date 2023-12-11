@@ -7,7 +7,7 @@ import Add from '../../../components/add/Add';
 import ActivityCard from '../../../components/activity-card/ActivityCard';
 import { useEffect, useState } from 'react';
 import exercisesService from '../../../services/exercises.service';
-import { noConnectionError } from '../../../utils/shared/errorHandler';
+import { errorMessage, noConnectionError } from '../../../utils/shared/errorHandler';
 import { Modal, Popover, message } from 'antd';
 function TeacherActivitiesPage() {
 
@@ -21,6 +21,14 @@ function TeacherActivitiesPage() {
     exercisesService.getAllExercisesOfTheGroup(id, workUnitId).then(exercises => {
       setAssignedExercises(exercises.filter(exercise => exercise.assigned == true));
       setUnAssignedExercises(exercises.filter(exercise => exercise.assigned == false));
+    }).catch(err => {
+      if (!err.response) {
+        noConnectionError();
+      }
+
+      if (err.response && err.code === 500) {
+        errorMessage('Hubo un error buscando las actividades', 'Intentelo de nuevo');
+      }
     });
   }
 
@@ -35,6 +43,10 @@ function TeacherActivitiesPage() {
     }).catch(err => {
       if (!err.response) {
         noConnectionError();
+      }
+
+      if (err.response && err.code === 500) {
+        errorMessage('No se ha podido eliminar la actividad', 'Intentelo de nuevo');
       }
     })
   }

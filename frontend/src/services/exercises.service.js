@@ -22,7 +22,6 @@ async function getAllExercisesOfTheGroup(groupId, workUnitId) {
     );
     return (await response).data;
   } catch (err) {
-    console.log(err)
     throw err;
   }
 }
