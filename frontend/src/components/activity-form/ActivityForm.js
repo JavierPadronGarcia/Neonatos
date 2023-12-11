@@ -3,7 +3,7 @@ import { Button, Checkbox, DatePicker, Select, message } from 'antd';
 import { useEffect, useState } from 'react';
 import casesService from '../../services/cases.service';
 import groupEnrolementService from '../../services/groupEnrolement.service';
-import { noConnectionError } from '../../utils/shared/errorHandler';
+import { errorMessage, noConnectionError } from '../../utils/shared/errorHandler';
 import { activityFormValidation, activityFormValidationWithDate } from '../../utils/shared/globalFunctions';
 import exercisesService from '../../services/exercises.service';
 
@@ -39,6 +39,8 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, no
     } catch (err) {
       if (!err.response) {
         noConnectionError();
+      } else {
+        throw err;
       }
     }
   }
@@ -60,6 +62,8 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, no
     } catch (err) {
       if (!err.response) {
         noConnectionError();
+      } else {
+        throw err;
       }
     }
   }
@@ -89,8 +93,12 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, no
   }
 
   useEffect(() => {
-    getAllCases();
-    getAllStudents();
+    try {
+      getAllCases();
+      getAllStudents();
+    } catch (err) {
+      errorMessage('No se han podido recoger todos los datos para el formulario', 'Intenelo de nuevo');
+    }
   }, []);
 
   const filterOption = (input, option) =>
@@ -123,6 +131,11 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, no
         setSelectedDate(null);
         setChecked(false);
         setDisabled(false);
+      }).catch(err => {
+        if (!err.response) noConnectionError();
+        if (err.response === err.code == 500) {
+          errorMessage('No se ha podido agregar correctamente la activiad', 'intentelo de unuevo')
+        };
       });
     }
   }
@@ -166,6 +179,11 @@ function ActivityForm({ groupId, workUnitId, isUpdateForm, updateFormContent, no
         setChecked(false);
         setDisabled(false);
         notifyUpdateInfo();
+      }).catch(err => {
+        if (!err.response) noConnectionError();
+        if (err.response && err.code === 500) {
+          errorMessage("Ocurrió un error al intentar actualizar la actividad", "Intentelo de nuevo");
+        }
       });
     }
   }

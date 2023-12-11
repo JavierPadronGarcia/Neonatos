@@ -6,7 +6,7 @@ import groupsService from '../../../services/groups.service';
 import Toolbar from '../../../components/toolbar/Toolbar';
 import { Button, Input, message } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
-import { noConnectionError } from '../../../utils/shared/errorHandler';
+import { errorMessage, noConnectionError } from '../../../utils/shared/errorHandler';
 
 function AddGroup() {
 
@@ -29,6 +29,14 @@ function AddGroup() {
         message.destroy();
         if (!err.response) {
           noConnectionError();
+        }
+
+        if (err.response && err.code === 400) {
+          errorMessage('El curso debe tener un nombre', 'Intentelo de nuevo');
+        }
+
+        if (err.response && err.code === 500) {
+          errorMessage('No se pudo crear el curso', 'Intentelo de nuevo');
         }
       });
     } else {

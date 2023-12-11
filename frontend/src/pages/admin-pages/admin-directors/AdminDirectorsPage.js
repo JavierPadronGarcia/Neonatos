@@ -48,11 +48,12 @@ function AdminDirectorsPage() {
       if (!err.response) {
         noConnectionError();
       }
+      message.destroy();
     })
   }
 
   const setElements = (data) => {
-    const allDirectors = data.allDirectors;
+    const allDirectors = data?.allDirectors;
     if (allDirectors.length !== 0) {
       const assignedDirectorIndex = allDirectors.findIndex(director => director.id === data.assignedDirector.id)
       if (assignedDirectorIndex !== -1) {
@@ -67,6 +68,10 @@ function AdminDirectorsPage() {
   const setUpDirectors = () => {
     getAllDirectors().then(data => {
       setElements(data);
+    }).catch(err => {
+      if (!err.response) {
+        noConnectionError();
+      }
     });
   }
 

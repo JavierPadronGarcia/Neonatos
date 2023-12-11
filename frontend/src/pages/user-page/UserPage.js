@@ -12,6 +12,7 @@ import AuthCodeGenerator from '../../components/auth-code-generator/AuthCodeGene
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/auth.service';
 import { RolesContext } from '../../context/roles';
+import { errorMessage, noConnectionError } from '../../utils/shared/errorHandler';
 
 function UserPage() {
 
@@ -22,11 +23,21 @@ function UserPage() {
   const rolesContext = useContext(RolesContext);
 
   const getUserInfo = async () => {
-    const token = localStorage.getItem('token');
-    const tokenDecoded = jwtDecode(token);
-    const user = await usersService.getUserById(tokenDecoded.id);
-    setUser(user);
-    setUserImage(user.filename || '');
+    try {
+      const token = localStorage.getItem('token');
+      const tokenDecoded = jwtDecode(token);
+      const user = await usersService.getUserById(tokenDecoded.id);
+      setUser(user);
+      setUserImage(user.filename || '');
+    } catch (err) {
+      if (!err.response) {
+        noConnectionError();
+      }
+
+      if (err.response && err.code === 500) {
+        errorMessage('No se ha podido encontrar su usuario', 'Intentalo de nuevo')
+      }
+    }
   }
 
   useEffect(() => {

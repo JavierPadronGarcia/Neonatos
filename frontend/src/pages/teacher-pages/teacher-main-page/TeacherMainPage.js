@@ -6,6 +6,7 @@ import teacherGroupService from '../../../services/teacherGroup.service';
 import { useEffect, useState } from 'react';
 import { decodeToken } from '../../../utils/shared/globalFunctions';
 import { LoadingOutlined } from '@ant-design/icons';
+import { errorMessage, noConnectionError } from '../../../utils/shared/errorHandler';
 
 function TeacherMainPage() {
 
@@ -14,9 +15,20 @@ function TeacherMainPage() {
   const teacher = decodeToken();
 
   const getAllGroups = async () => {
-    const groupArray = await teacherGroupService.getAllGroupsAssignedToTeacher(teacher.id);
-    setAllGroups(groupArray);
-    setLoading(false);
+    try {
+      const groupArray = await teacherGroupService.getAllGroupsAssignedToTeacher(teacher.id);
+      setAllGroups(groupArray);
+      setLoading(false);
+    } catch (err) {
+      if (!err.response) {
+        noConnectionError();
+      }
+
+      if (err.response && err.code === 500) {
+        errorMessage('Hubo un error buscando sus cursos', 'Intentelo de nuevo');
+      }
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

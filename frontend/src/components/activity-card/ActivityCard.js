@@ -12,10 +12,6 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
   const groupId = params.id;
   const workUnitId = params.workUnitId;
 
-  const handleOpenDetails = () => {
-
-  }
-
   const formatDate = (date) => {
     const newDate = new Date(date);
 
@@ -75,7 +71,7 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
         actions={[
           (deleteElement()),
           (editElement()),
-          <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />
+          <EllipsisOutlined key='ellipsis' />
         ]}
       >
         <Meta title={title} description={description ? formatDate(description) : ''} />
@@ -88,7 +84,7 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
       style={{ width: '100%' }}
       className='activities-card'
       actions={[
-        <EllipsisOutlined key='ellipsis' onClick={() => handleOpenDetails()} />
+        <EllipsisOutlined key='ellipsis' />
       ]}
     >
       <Meta title={title} description={description ? formatDate(description) : ''} />

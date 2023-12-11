@@ -47,7 +47,6 @@ async function addGroup(groupName) {
       getOptions(localStorage.getItem("token"))
     );
   } catch (err) {
-    console.log(err);
     throw err;
   }
   return response.status;
