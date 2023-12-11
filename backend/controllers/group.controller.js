@@ -44,63 +44,42 @@ exports.findAllWithCounts = async (req, res) => {
   let studentCount = [];
   let teacherCount = [];
   try {
-
-    studentCount = await Group.findAll({
-      attributes: ["id", "name", [db.sequelize.fn('COUNT', '*'), 'StudentCount']],
-      include: [
-        {
-          model: GroupEnrolement,
-          attributes: [],
-          where: {
-            GroupID: {
-              [Op.ne]: null
-            }
-          }
-        },
-      ],
-      group: ['id', 'name'],
-    });
+    studentCount = await db.sequelize.query(`
+      SELECT gr.id, gr.name, COALESCE(COUNT(gre.GroupID), 0) AS StudentCount
+      FROM \`${Group.tableName}\` AS gr
+      LEFT JOIN \`${GroupEnrolement.tableName}\` AS gre ON gr.id = gre.GroupID
+      GROUP BY gr.id, gr.name
+    `, { type: db.Sequelize.QueryTypes.SELECT });
   } catch (err) {
     return res.status(500).send({
       error: err
     })
   }
   try {
-    teacherCount = await Group.findAll({
-      attributes: ["id", "name", [db.sequelize.fn('COUNT', '*'), 'TeacherCount']],
-      include: [
-        {
-          model: Teachercourse,
-          attributes: [],
-          where: {
-            GroupID: {
-              [Op.ne]: null
-            }
-          }
-        },
-      ],
-      group: ['id', 'name'],
-    });
+    teacherCount = await db.sequelize.query(`
+      SELECT gr.id, gr.name, COALESCE(COUNT(the.GroupID), 0) AS TeacherCount
+      FROM \`${Group.tableName}\` AS gr
+      LEFT JOIN \`${Teachercourse.tableName}\` AS the ON gr.id = the.GroupID
+      GROUP BY gr.id, gr.name
+    `, { type: db.Sequelize.QueryTypes.SELECT });
   } catch (err) {
     return res.status(500).send({
       error: err
     })
   }
-
-  let newArray = [];
-
-  for (let i = 0; i < teacherCount.length; i++) {
-    let teacherGroup = teacherCount[i].dataValues;
-    if (studentCount[i]) {
-      teacherGroup.StudentCount = studentCount[i].dataValues.StudentCount
-    } else {
-      teacherGroup.StudentCount = 0
-    }
-    newArray.push(teacherGroup);
-  }
-
-  return res.send(newArray);
+  const mergedArray = await mergeArrays(teacherCount, studentCount);
+  return res.send(mergedArray);
 };
+
+const mergeArrays = (arr1, arr2) => {
+  return arr1.map(item1 => {
+    const matchingItem = arr2.find(item2 => item1.id === item2.id && item1.name === item2.name);
+    return {
+      ...item1,
+      StudentCount: matchingItem ? matchingItem.StudentCount : 0
+    };
+  });
+}
 
 exports.findAll = (req, res) => {
   Group.findAll().then(data => {

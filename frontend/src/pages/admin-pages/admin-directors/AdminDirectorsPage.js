@@ -108,7 +108,7 @@ function AdminDirectorsPage() {
               <DirectorCard director={assignedDirector} />)
               || <p>No hay director asignado</p>
             }
-            <div>
+            <div className='un-assigned-directors'>
               <span>Directores sin asignar:</span>
               {allDirectors.length === 0 && !loading &&
                 <p style={{ display: 'flex', justifyContent: 'center' }}>No se encuentran directores</p>
@@ -130,6 +130,7 @@ function AdminDirectorsPage() {
                 textButton='Asignar director'
                 showOptions={true}
                 title='Directores disponibles'
+                notifyUpdate={(newDirector) => handleAssign(newDirector.id)}
               />
             </section>
           </div>

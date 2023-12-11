@@ -31,6 +31,14 @@
   display: none;
 }
 
+.admin-directors-page .un-assigned-directors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
 @media screen and (min-width: 768px) {
 
   .admin-directors-page .tables-section {
