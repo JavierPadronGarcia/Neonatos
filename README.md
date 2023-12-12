@@ -290,9 +290,26 @@ Finally, all the pages have restricted access exept the login page, when the use
 
 <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
+## User Requirements
+
+  1. To use the application the user must have an account
+
+  2. The application will work in all plattforms
+
+  3. Administration <br />
+    2.1 En el panel de control se debe acceder a todas las funcionalidades del administrador \
+    &nbsp;2.2
+    &nbsp; hola
+
+  4. List item <br />
+    3.1
+
+
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
+
 ## Getting Started
 
-### User requires / Prerequisites
+### Prerequisites
 
 - Have a text editor like [Visual Studio Code]
 
