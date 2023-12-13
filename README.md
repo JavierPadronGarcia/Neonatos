@@ -29,6 +29,9 @@
         <li><a href="#open-the-project">Open the project</a></li>
       </ul>
     </li>
+    <li><a href="#organization">Organization</a></li>
+    <li><a href="#technology-stack">Technology-stack</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -114,7 +117,6 @@ Course evaluation involves three components: "Items," representing evaluation cr
 <div style="text-align: center; height: fit-content; margin: 20px 0">
   <img src="./readmeImages/RelationalModel.png" alt="entity-relation diagram" width="50%">
 </div>
-
 
 <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
@@ -422,24 +424,41 @@ Clic on apply and you have finished the set up of the proyect.
     npm start
   ```
 
-  Now it will start a localhost server in the port 3000 and you can start to use it:
+  Now it will start a localhost server and you can start to use it:
 
   ![Image of the console when you start the frontend server](/readmeImages/FrontendConsoleStartingTheServer.png)
+
+  <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
 ## Organization
 
 I have organized my work following the Scrum methodology, breaking down tasks into the smallest possible issues to maintain a high level of organization. This approach enables me to track and understand my weekly progress effectively.
 
+## Technology Stack:
 
-## Pila tecnológica:
-
+### Frontend:
 [![React][React.js]][React-url]
-[![Node.js](https://img.shields.io/badge/Node.js-<VERSION>-green?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![JavaScript][Javascript]][Javascript-url]
+[![HTML5][Html5]][Html5-url]
+[![CSS3][Css3]][Css3-url]
 
+### Backend:
+[![Node][Node.js]][Node-url]
+[![Express][Express.js]][Express-url]
+[![MySQL][Mysql]][Mysql-url]
 
-## Conclusión
+### Version Control:
+ [![Git][Git]][Git-url]
+ [![GitHub][Github]][Github-url]
 
-Este proyecto me ha gustado mucho, ha sido complicado ya que tuve que es un proyecto bastante grande, pero he aprendido mucho. Además, me tocó con una pila tecnológica que me parece muy cómoda, sobre todo porque ya había practicado con react, por lo que se me ha hecho mucho mas llevadero. Lo más tedioso es la documentación
+### Project Management:
+[![Scrum][Scrum]][Scrum-url]
+
+<p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
+
+## Conclusion
+
+I have thoroughly enjoyed working on this project. It has been challenging due to its substantial size, but the learning experience has been invaluable. Dealing with a tech stack that I find comfortable, especially because of my previous experience with React, has made the process more manageable. While documentation proved to be somewhat tedious, effective organization helped me navigate through it with minimal issues.
 
 <!-- CONTACT -->
 ## Contact
@@ -456,5 +475,37 @@ Project Link: [https://github.com/JavierPadronGarcia/Neonatos.git](https://githu
 
 [Visual Studio Code]: https://code.visualstudio.com
 [postman]: https://www.postman.com
+
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+
+[Node.js]: https://img.shields.io/badge/Node.js-<18.17>-green?style=for-the-badge&logo=node.js&logoColor=white
+
+[javascript]:https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+
+[Express.js]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=
+
+[Mysql]:https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white
+
+[Git]:https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white
+
+[Scrum]:https://img.shields.io/badge/Scrum-000000?style=for-the-badge&logo=scrum&logoColor=white
+
+[Github]:https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white
+
+[Javascript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+
+[Html5]:https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+
+[Css3]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+
 [React-url]: https://reactjs.org/
+[Node-url]: https://nodejs.org/
+[javascript-url]: https://developer.mozilla.org/es/docs/Web/JavaScript
+[Express-url]: https://expressjs.com
+[Mysql-url]: https://www.mysql.com
+[Git-url]: https://git-scm.com
+[Scrum-url]: https://www.scrum.org/
+[Github-url]: https://github.com/your-username/your-repository
+[Javascript-url]:https://developer.mozilla.org/es/docs/Web/JavaScript
+[Html5-url]:https://developer.mozilla.org/en-US/docs/Glossary/HTML5
+[Css3-url]:https://developer.mozilla.org/en-US/docs/Web/CSS
