@@ -20,10 +20,11 @@
     </li>
     <li><a href="#usability-and-accessibility">Usability and accessibility</a></li>
     <li><a href="#figma-prototype">Figma prototype</a></li>
+    <li><a href="#user-requirements">User requirements</a></li>
     <li>
       <span>Getting started</span>
       <ul>
-        <li><a href="#user-requires--prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#open-the-project">Open the project</a></li>
       </ul>
@@ -297,12 +298,13 @@ Finally, all the pages have restricted access exept the login page, when the use
   2. The application will work in all plattforms
 
   3. Administration <br />
-    2.1 En el panel de control se debe acceder a todas las funcionalidades del administrador \
-    &nbsp;2.2
-    &nbsp; hola
+    3.1 Log in securely to the platform. <br/>
+    3.2 Once logged in, the system should show the dashboard with all functionalities available. <br/>
 
-  4. List item <br />
-    3.1
+  4. Teacher <br />
+    4.1 Create activities and assign them to students.<br/>
+    4.2 Assign exercises and set deadlines.<br/>
+    4.3 Change the visibility of the workUnits in the group
 
 
 <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
@@ -424,6 +426,21 @@ Clic on apply and you have finished the set up of the proyect.
 
   ![Image of the console when you start the frontend server](/readmeImages/FrontendConsoleStartingTheServer.png)
 
+## Organization
+
+I have organized my work following the Scrum methodology, breaking down tasks into the smallest possible issues to maintain a high level of organization. This approach enables me to track and understand my weekly progress effectively.
+
+
+## Pila tecnológica:
+
+[![React][React.js]][React-url]
+[![Node.js](https://img.shields.io/badge/Node.js-<VERSION>-green?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+
+
+## Conclusión
+
+Este proyecto me ha gustado mucho, ha sido complicado ya que tuve que es un proyecto bastante grande, pero he aprendido mucho. Además, me tocó con una pila tecnológica que me parece muy cómoda, sobre todo porque ya había practicado con react, por lo que se me ha hecho mucho mas llevadero. Lo más tedioso es la documentación
+
 <!-- CONTACT -->
 ## Contact
 
@@ -439,3 +456,5 @@ Project Link: [https://github.com/JavierPadronGarcia/Neonatos.git](https://githu
 
 [Visual Studio Code]: https://code.visualstudio.com
 [postman]: https://www.postman.com
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
