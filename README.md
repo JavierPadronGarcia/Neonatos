@@ -11,6 +11,9 @@
       <a href="#about-the-project">About The Project</a>
     </li>
     <li>
+      <a href="#technical-specifications">Technical specifications</a>
+    </li>
+    <li>
       <span>Diagrams</span>
       <ul>
         <li><a href="#use-case-diagram">Use case diagram</a></li>
@@ -61,6 +64,24 @@ The cases will be evaluated based on a set of criteria ("Items"). The criteria w
 
 In addition, there will be a guest user. This guest user will only be able to access public cases.
 Any changes they make will not be saved to the database.
+
+# Technical specifications
+
+The application follows a client-server architecture. On the frontend, React is employed—a JavaScript library for building interactive and efficient user interfaces. On the backend, Node.js, in conjunction with Express, is used to simplify the creation of APIs and web applications. The relational database MySQL manages data storage and retrieval.
+
+#### Progressive Web App (PWA)
+
+The application is designed as a Progressive Web App (PWA), providing an optimal user experience even in poor network conditions. By adopting PWA best practices, enhanced security, offline functionality, and the option to be installed on devices are ensured, thereby improving accessibility and user experience.
+
+#### Security
+
+Security measures are implemented to ensure user information protection:
+
+- **Secure Authentication:** The application uses JSON Web Tokens (JWT) to authenticate and authorize users, ensuring the privacy of information.
+- **Server-Side Validation:** Validation controls are applied on the backend to prevent potential vulnerabilities and ensure data integrity.
+- **Proper Error Handling:** Robust error handling has been incorporated to protect against potential attacks and ensure application stability.
+
+to see more details about the technologies used clic <a href='#technology-stack'>here</a>
 
 # Diagrams
 
@@ -307,7 +328,6 @@ Finally, all the pages have restricted access exept the login page, when the use
     4.1 Create activities and assign them to students.<br/>
     4.2 Assign exercises and set deadlines.<br/>
     4.3 Change the visibility of the workUnits in the group
-
 
 <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
