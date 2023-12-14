@@ -2,6 +2,33 @@
     height: 100%;
 }
 
+.group-details-page .slick-slide>div {
+    display: flex;
+    justify-content: center;
+}
+
+.group-details-page .slick-dots li button {
+    background-color: blue !important;
+}
+
+.group-details-page .student-container>div,
+.group-details-page .teacher-container>div {
+    position: relative;
+}
+
+.group-details-page .left-arrow {
+    position: absolute;
+    z-index: 50;
+    top: 43%;
+}
+
+.group-details-page .right-arrow {
+    position: absolute;
+    z-index: 50;
+    right: 0;
+    top: 43%;
+}
+
 .group-details-page-main {
     display: flex;
     flex-direction: column;
@@ -14,7 +41,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
     width: 100%;
     height: 100%;
 }
