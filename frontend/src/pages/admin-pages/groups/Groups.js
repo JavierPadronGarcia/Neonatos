@@ -6,7 +6,7 @@ import groupsService from "../../../services/groups.service";
 import Group from "../../../components/group/Group";
 import Toolbar from "../../../components/toolbar/Toolbar";
 import { message } from "antd";
-import { noConnectionError } from "../../../utils/shared/errorHandler";
+import { noConnectionError, errorMessage } from "../../../utils/shared/errorHandler";
 import { LoadingOutlined } from '@ant-design/icons';
 import TabsComponent from "../../../components/tabs/TabsComponent";
 import TableComponent from "../../../components/table/TableComponent";
@@ -29,6 +29,10 @@ function Groups() {
       if (!err.response) {
         noConnectionError();
       }
+
+      if (err.response && err.code === 500) {
+        errorMessage('Hubo un problema buscando los cursos', 'Intentelo de nuevo');
+      }
     }
   }
 
@@ -47,6 +51,10 @@ function Groups() {
       if (!err.response) {
         noConnectionError();
       }
+
+      if (err.response && err.code === 500) {
+        errorMessage('No se pudo eliminar el curso', 'Intentelo de nuevo');
+      }
     })
   }
 
@@ -62,7 +70,7 @@ function Groups() {
 
   return (
     <div className="groups-page">
-      <Header />
+      <Header pageName='Administración' />
       <main>
         <header className="groups-page-header">
           <div className="groups-page-add" >

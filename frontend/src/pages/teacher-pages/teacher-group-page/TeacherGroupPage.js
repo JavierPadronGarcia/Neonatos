@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import WorkUnitComponent from '../../../components/work-unit/WorkUnitComponent';
 import workUnitGroupService from '../../../services/workUnitGroups.service';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
+import GoBack from '../../../components/go-back/GoBack';
 
 function TeacherGroupPage() {
 
@@ -53,7 +54,8 @@ function TeacherGroupPage() {
 
   return (
     <div className='teacher-group-page'>
-      <Header />
+      <Header pageName={name} />
+      <GoBack link='../main' alt='volver al inicio' />
       <h2>{name}</h2>
       <div className='teacher-group-page-main'>
         {loading &&

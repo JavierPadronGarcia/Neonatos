@@ -48,11 +48,12 @@ function AdminDirectorsPage() {
       if (!err.response) {
         noConnectionError();
       }
+      message.destroy();
     })
   }
 
   const setElements = (data) => {
-    const allDirectors = data.allDirectors;
+    const allDirectors = data?.allDirectors;
     if (allDirectors.length !== 0) {
       const assignedDirectorIndex = allDirectors.findIndex(director => director.id === data.assignedDirector.id)
       if (assignedDirectorIndex !== -1) {
@@ -67,6 +68,10 @@ function AdminDirectorsPage() {
   const setUpDirectors = () => {
     getAllDirectors().then(data => {
       setElements(data);
+    }).catch(err => {
+      if (!err.response) {
+        noConnectionError();
+      }
     });
   }
 
@@ -92,7 +97,7 @@ function AdminDirectorsPage() {
 
   return (
     <div className="admin-directors-page">
-      <Header />
+      <Header pageName='Administración' />
       <div className="admin-directors-page-main">
         <header className='admin-directors-page-header'>
           <h2>Dirección</h2>
@@ -108,7 +113,7 @@ function AdminDirectorsPage() {
               <DirectorCard director={assignedDirector} />)
               || <p>No hay director asignado</p>
             }
-            <div>
+            <div className='un-assigned-directors'>
               <span>Directores sin asignar:</span>
               {allDirectors.length === 0 && !loading &&
                 <p style={{ display: 'flex', justifyContent: 'center' }}>No se encuentran directores</p>
@@ -130,6 +135,7 @@ function AdminDirectorsPage() {
                 textButton='Asignar director'
                 showOptions={true}
                 title='Directores disponibles'
+                notifyUpdate={(newDirector) => handleAssign(newDirector.id)}
               />
             </section>
           </div>

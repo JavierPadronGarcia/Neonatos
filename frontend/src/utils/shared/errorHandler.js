@@ -16,3 +16,12 @@ export const errorOnLogin = () => {
     duration: 5
   });
 }
+
+export const errorMessage = (message, description) => {
+  notification.error({
+    message: message,
+    description: description,
+    placement: 'top',
+    duration: 5
+  });
+}

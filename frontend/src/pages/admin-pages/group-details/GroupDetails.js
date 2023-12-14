@@ -1,7 +1,6 @@
 import './GroupDetails.css';
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+import { useEffect, useRef, useState } from 'react';
 import Header from "../../../components/Header/Header";
 import Toolbar from "../../../components/toolbar/Toolbar";
 import GoBack from '../../../components/go-back/GoBack';
@@ -11,30 +10,20 @@ import groupEnrolementService from '../../../services/groupEnrolement.service';
 import teacherGroupService from '../../../services/teacherGroup.service';
 import { noConnectionError } from '../../../utils/shared/errorHandler';
 import TableComponent from '../../../components/table/TableComponent';
+import { Carousel } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 function GroupDetails() {
   const params = useParams();
   const groupId = params.id;
   const groupName = params.name;
 
-  const [displayVisibility, setDisplayVisibility] = useState({ teachers: true, students: false });
+  const carouselTeacherRef = useRef(null);
+  const carouselStudentRef = useRef(null);
+
   const [groupData, setGroupData] = useState({ teachers: [], students: [] });
   const [groupDataTable, setGroupDataTable] = useState({ teachers: [], students: [] })
   const navigate = useNavigate();
-
-  const changeTeachersVisibility = () => {
-    setDisplayVisibility(prevState => ({
-      ...prevState,
-      teachers: !prevState.teachers
-    }));
-  }
-
-  const changeStudentsVisibility = () => {
-    setDisplayVisibility(prevState => ({
-      ...prevState,
-      students: !prevState.students
-    }));
-  }
 
   const getGroupData = async () => {
     try {
@@ -56,10 +45,20 @@ function GroupDetails() {
   const showTeachers = () => {
     return (
       <div className='teacher-container'>
-        {groupData.teachers.map(teacher => {
-          return <TeacherCard teacher={teacher.User} key={teacher.User.id} />
-        })}
-      </div>
+        <div style={{ width: '100%' }}>
+          {groupData.teachers.length > 1 &&
+            <>
+              <LeftOutlined onClick={() => changePrev(carouselTeacherRef)} className='left-arrow' />
+              <RightOutlined onClick={() => changeNext(carouselTeacherRef)} className='right-arrow' />
+            </>
+          }
+          <Carousel ref={carouselTeacherRef}>
+            {groupData.teachers.map(teacher => {
+              return <TeacherCard teacher={teacher.User} key={teacher.User.id} />
+            })}
+          </Carousel>
+        </div>
+      </div >
     );
   }
 
@@ -72,18 +71,41 @@ function GroupDetails() {
     return newArray;
   }
 
+  const changePrev = (carouselRef) => {
+    carouselRef.current.prev();
+  }
+
+  const changeNext = (carouselRef) => {
+    carouselRef.current.next();
+  }
+
   const showStudents = () => {
     return (
       <div className='student-container'>
-        {groupData.students.map(student => {
-          return <StudentCard student={student.User} key={student.User.id} />
-        })}
+        <div style={{ width: '100%' }}>
+          {groupData.students.length > 1 &&
+            <>
+              <LeftOutlined onClick={() => changePrev(carouselStudentRef)} className='left-arrow' />
+              <RightOutlined onClick={() => changeNext(carouselStudentRef)} className='right-arrow' />
+            </>
+          }
+          <Carousel ref={carouselStudentRef}>
+            {groupData.students.map(student => {
+              return <StudentCard student={student.User} key={student.User.id} />
+            })}
+          </Carousel>
+        </div>
       </div>
     );
   }
 
   const assignTeacher = (teacher) => {
-    const teacherStringified = JSON.stringify(teacher);
+    const adaptTeacherToNavigate = {
+      id: teacher.id,
+      username: teacher.username,
+      role: teacher.role
+    }
+    const teacherStringified = JSON.stringify(adaptTeacherToNavigate);
     navigate('/admin/teachers/assign/' + teacherStringified);
   }
 
@@ -98,7 +120,7 @@ function GroupDetails() {
 
   return (
     <div className="group-details-page">
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/groups' alt='go to all groups' />
       <div className="group-details-page-main">
         <header>
@@ -109,14 +131,9 @@ function GroupDetails() {
             <div className='teachers'>
               <div>
                 <span>Profesorado</span>
-                <span onClick={() => changeTeachersVisibility()}>
-                  {displayVisibility.teachers
-                    ? <CaretDownOutlined />
-                    : <CaretUpOutlined />}
-                </span>
               </div>
               {
-                displayVisibility.teachers &&
+                groupData.teachers.length > 0 &&
                 showTeachers()
               }
             </div>
@@ -124,14 +141,9 @@ function GroupDetails() {
             <div className='students'>
               <div>
                 <span>Alumnado</span>
-                <span onClick={() => changeStudentsVisibility()}>
-                  {displayVisibility.students
-                    ? <CaretDownOutlined />
-                    : <CaretUpOutlined />}
-                </span>
               </div>
               {
-                displayVisibility.students &&
+                groupData.students.length > 0 &&
                 showStudents()
               }
             </div>
@@ -158,7 +170,6 @@ function GroupDetails() {
               />
             </section>
           </div>
-
         </main>
       </div>
       <Toolbar />

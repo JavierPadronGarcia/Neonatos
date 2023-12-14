@@ -7,7 +7,7 @@ import Toolbar from '../../../components/toolbar/Toolbar';
 import groupsService from '../../../services/groups.service';
 import { Button, Input, message } from 'antd';
 import GoBack from '../../../components/go-back/GoBack';
-import { noConnectionError } from '../../../utils/shared/errorHandler';
+import { errorMessage, noConnectionError } from '../../../utils/shared/errorHandler';
 
 function UpdateGroup() {
   const params = useParams();
@@ -45,6 +45,11 @@ function UpdateGroup() {
         if (!err.response) {
           noConnectionError();
         }
+
+        if (err.response && err.code === 500) {
+          errorMessage('No se pudo actualizar el', 'Intentelo de nuevo');
+        }
+
         message.destroy();
       })
     } else {
@@ -63,7 +68,7 @@ function UpdateGroup() {
 
   return (
     <div className='update-group-page'>
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/groups' alt='volver a los cursos' />
       <main className='update-group-main'>
         <h3>Actualizando curso</h3>

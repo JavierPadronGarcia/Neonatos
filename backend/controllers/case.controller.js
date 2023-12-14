@@ -1,5 +1,8 @@
 const db = require("../models");
 const Case = db.case;
+const WorkUnit = db.workUnit;
+const WorkUnitGroup = db.workUnitGroup;
+const Group = db.groups;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -45,6 +48,26 @@ exports.findOne = (req, res) => {
   })
 }
 
+exports.findAllCasesInAGroup = async (req, res) => {
+  const { groupId, workUnitId } = req.params;
+  try {
+    const result = await db.sequelize.query(`
+      SELECT c.id, c.name
+      FROM \`${Group.tableName}\` AS g
+      JOIN \`${WorkUnitGroup.tableName}\` AS wkug ON wkug.GroupID = g.id 
+      JOIN \`${WorkUnit.tableName}\` AS wku ON wku.id = wkug.WorkUnitID
+      JOIN \`${Case.tableName}\` AS c ON c.WorkUnitId = wku.id
+      WHERE g.id = ${groupId} and wku.id = ${workUnitId}
+      GROUP BY c.id, c.WorkUnitId, c.name;
+    `, { type: db.Sequelize.QueryTypes.SELECT });
+    return res.send(result);
+  } catch (err) {
+    return res.status(500).send({
+      error: err.message || "Some error occurred while retrieving the cases and their exercises."
+    });
+  }
+}
+
 exports.update = (req, res) => {
   let id = req.params.id;
   const workUnit = req.body.workUnit;
@@ -72,6 +95,8 @@ exports.update = (req, res) => {
       })
     })
 }
+
+
 
 exports.delete = (req, res) => {
   let id = req.params.id;

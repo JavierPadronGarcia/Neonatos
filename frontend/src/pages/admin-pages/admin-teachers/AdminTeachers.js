@@ -42,13 +42,18 @@ function AdminTeachers() {
   ]
 
   const handleAssign = (teacher) => {
-    const teacherStringified = JSON.stringify(teacher);
+    const adaptTeacherToNavigate = {
+      id: teacher.id,
+      username: teacher.username,
+      role: teacher.role
+    }
+    const teacherStringified = JSON.stringify(adaptTeacherToNavigate);
     navigate('/admin/teachers/assign/' + teacherStringified);
   }
 
   return (
     <div className="admin-teachers-page">
-      <Header />
+      <Header pageName='Administración' />
       <div className='admin-teachers-page-main'>
         <header className='admin-teachers-page-header'>
           <h2>Profesorado</h2>

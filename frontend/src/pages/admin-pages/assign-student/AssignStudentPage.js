@@ -52,7 +52,7 @@ function AssignStudentPage() {
 
   return (
     <div className="admin-students-assign-page">
-      <Header />
+      <Header pageName='Administración' />
       <GoBack link='/admin/students' alt='volver a todo el alumnado' />
       <div className="admin-students-assign-container">
         <header>

@@ -1,0 +1,133 @@
+.add-activity-form {
+  margin: 1rem;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.add-activity-form>span {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  color: #F2F2F2;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.375rem;
+  text-align: center;
+  text-decoration-line: underline;
+  margin-top: 1rem;
+}
+
+.add-activity-form .activity-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.add-activity-form .selects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  gap: 1rem;
+}
+
+.add-activity-form .selects>label {
+  width: 100%;
+}
+
+.add-activity-form .checkboxes {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  row-gap: 1rem;
+  column-gap: 2rem;
+}
+
+.add-activity-form .buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.update-activity-form {
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.update-activity-form>span {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  color: #F2F2F2;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.375rem;
+  text-align: center;
+  text-decoration-line: underline;
+  margin-top: 1rem;
+}
+
+.update-activity-form .activity-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.update-activity-form .selects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  gap: 1rem;
+}
+
+.update-activity-form .selects>label {
+  width: 100%;
+}
+
+.update-activity-form .checkboxes {
+  display: flex;
+  flex-flow: row wrap;
+  width: 80%;
+  row-gap: 1rem;
+  column-gap: 2rem;
+}
+
+.update-activity-form .buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 500px) {
+  .add-activity-form .checkboxes {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .add-activity-form .selects {
+    width: 70%;
+  }
+}
