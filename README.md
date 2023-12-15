@@ -69,7 +69,45 @@ Any changes they make will not be saved to the database.
 
 The application follows a client-server architecture. On the frontend, React is employed—a JavaScript library for building interactive and efficient user interfaces. On the backend, Node.js, in conjunction with Express, is used to simplify the creation of APIs and web applications. The relational database MySQL manages data storage and retrieval.
 
-#### Progressive Web App (PWA)
+## Differences between types of applications
+
+### Progressive Web Applications (PWA):
+
+#### Advantages:
+- Cross-platform development: A single codebase that can run on multiple platforms.
+- Automatic updates: Updates are performed automatically, ensuring users always have the latest version.
+- Faster access: Easily added to the home screen without the need to download from an app store.
+
+#### Disadvantages:
+- Limited access to device functions: Despite improvements, there are still restrictions compared to native apps.
+- Browser dependency: User experience may vary depending on the browser used.
+- Lower visibility in stores: PWAs may have lower visibility compared to native apps in app stores.
+
+### Native Applications:
+
+#### Advantages:
+- Full hardware access: Can make the most of device features and provide a richer experience.
+- Better performance: Typically have faster and smoother performance, optimized for the specific platform.
+- Store visibility: Higher visibility and accessibility through app stores.
+
+#### Disadvantages:
+- Platform-specific development: Requires separate development for each platform, increasing cost and development time.
+- Store approval process: Updates must go through an approval process in app stores, which can take time.
+- Mandatory downloads: Users need to download and install the app before using it.
+
+### Hybrid Applications:
+
+#### Advantages:
+- Faster development: Share a significant portion of the codebase across platforms, speeding up the development process.
+- Access to device functions: Through frameworks like Ionic or React Native, hybrid apps can access native device functions.
+- Less expensive than natives: Development and maintenance are usually less costly compared to native apps.
+
+#### Disadvantages:
+- Lower performance: Typically have inferior performance compared to native apps, as they use container technologies.
+- Limitations in advanced features: Some advanced native features may be challenging to implement in hybrid apps.
+- Framework dependency: Development quality and flexibility may depend heavily on the frameworks used.
+
+### What type is this application
 
 The application is designed as a Progressive Web App (PWA), providing an optimal user experience even in poor network conditions. By adopting PWA best practices, enhanced security, offline functionality, and the option to be installed on devices are ensured, thereby improving accessibility and user experience.
 
