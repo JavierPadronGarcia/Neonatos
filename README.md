@@ -111,6 +111,8 @@ The application follows a client-server architecture. On the frontend, React is 
 
 The application is designed as a Progressive Web App (PWA), providing an optimal user experience even in poor network conditions. By adopting PWA best practices, enhanced security, offline functionality, and the option to be installed on devices are ensured, thereby improving accessibility and user experience.
 
+This type of application is better than other because it provides the functionallity to use the application without connection and it renders faster the images because it permit the possibility to insert image in cache
+
 #### Security
 
 Security measures are implemented to ensure user information protection:
@@ -306,6 +308,40 @@ Furthermore, for options that can significantly impact data, a confirmation mess
   <img src="./readmeImages/usabilityAndAccesibility/eliminationQuestion.png" alt="elimination confirmation message" width="80%"/>
   <img src="./readmeImages/usabilityAndAccesibility/logoutQuestion.png" alt="logout confirmation message" width="50%"/>
 </div>
+
+##
+
+The colors stand out in such a way that the user can correctly identify the actions that can be performed, such as more eye-catching buttons for more important actions.
+
+![Colors image](readmeImages/usabilityAndAccesibility/colors.png)
+
+![Colors image 2](readmeImages/usabilityAndAccesibility/colors2.png)
+
+## 
+
+The fonts are appropriately sized for the types of devices, and there isn't an excessive amount of information on the screen. This ensures that the interfaces can be easily read. This can be seen in all the images showed in this readme
+
+## 
+
+The icons accurately convey the actions they represent, enabling users to identify button actions without the need to read the accompanying text.
+
+This can be seen in this two images, the first image show that for each row will execute three actions, show more info, edit and delete, identified by "i", a pencil and the trash can in the same order.
+
+![Colors image](readmeImages/usabilityAndAccesibility/colors.png)
+
+An in the second image we can see the settigns button on the left side and the enter button on the right side of the orange square
+
+![Colors image 2](readmeImages/usabilityAndAccesibility/colors2.png)
+
+##
+
+On the mobile interface, there are interactive elements that visually enhance the presentation of information, specifically regarding the students and faculty of a group.
+
+<div style="text-align: center; height: fit-content; margin: 20px 0">
+  <img src="./readmeImages/usabilityAndAccesibility/details.png" alt="teacher interface" width="50%"/>
+</div>
+
+And finnally, there are no lengthy chunks of text, ensuring that the interface remains quick and concise at all times. This can be seen in all the application, there are no long texts
 
 <p align="right">(<a href="#metahospitalfp">back to top</a>)</p>
 
