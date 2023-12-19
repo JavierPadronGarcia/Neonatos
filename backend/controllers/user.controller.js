@@ -98,7 +98,7 @@ exports.update = (req, res) => {
     username: req.body.username || '',
     password: '',
     role: req.body.role || '',
-    filename: ''
+    filename: '',
   }
 
   User.findOne({ where: { id: id } }).then(data => {
@@ -220,6 +220,20 @@ exports.assignCode = async (req, res) => {
     return res.status(500).send({
       error: err.message || "Error retrieving the user"
     });
+  })
+}
+
+exports.unAssignCode = async (req, res) => {
+  const userId = req.user.id;
+  User.findOne({ where: { id: userId } }).then(user => {
+    user.code = null;
+    user.codeExpirationDate = null;
+    user.save();
+    return res.send({ message: "expDate and code eliminated" });
+  }).catch(err => {
+    return res.status(500).send({
+      error: err.message || "Error unAssignnin the code"
+    })
   })
 }
 

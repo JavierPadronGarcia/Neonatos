@@ -26,6 +26,8 @@ module.exports = app => {
   // Generate uuid and assign to the user with the id
   router.put("/assignCode", auth.isAuthenticated, users.assignCode);
 
+  router.put("/unassignCode", auth.isAuthenticated, users.unAssignCode);
+
   // Assign a user to be Director
   router.put("/assignDirector/:id", auth.isAuthenticated, users.assignDirector);
 
