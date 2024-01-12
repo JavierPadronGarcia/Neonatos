@@ -1,0 +1,8 @@
+{
+  "name": "jsreport-server",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "jsonwebtoken": "^9.0.2",
+    "jsreport": "^4.2.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "AveragePunctuation",
+    "engine": "handlebars",
+    "recipe": "chrome-pdf",
+    "data": null,
+    "shortid": "7ggS5RqZL2",
+    "chrome": {
+        "printBackground": true
+    },
+    "creationDate": {
+        "$$date": 1704744241739
+    },
+    "modificationDate": {
+        "$$date": 1705002284831
+    },
+    "_id": "lx5oANibB1xzwWj5",
+    "$entitySet": "templates",
+    "scripts": [
+        {
+            "shortid": "LWX1OfaBwy"
+        }
+    ]
+}

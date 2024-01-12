@@ -1,14 +1,15 @@
-import { Card, Input, Popconfirm, Popover } from 'antd';
+import { Button, Card, Popconfirm, Popover } from 'antd';
 import { DeleteOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import ActivityForm from '../activity-form/ActivityForm';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const { Meta } = Card;
 
 function ActivityCard({ edit, id, title, description, assigned, notifyDelete, notifyUpdateInfo }) {
   const [isOpen, setOpen] = useState(false);
   const params = useParams();
+  const navigate = useNavigate();
   const groupId = params.id;
   const workUnitId = params.workUnitId;
 
@@ -64,6 +65,31 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
       </Popover>
     )
 
+    const prepareActivityReport = () => {
+      const reportData = {
+        groupId: groupId,
+        activityId: id,
+        workUnitId: workUnitId,
+        assigned: assigned
+      }
+      localStorage.setItem('reportData', JSON.stringify(reportData));
+      navigate('../../prueba');
+    }
+
+    const detailsList = () => (
+      <ul>
+        <li><Button onClick={prepareActivityReport}>Ver reporte de notas</Button></li>
+      </ul>
+    )
+
+    const detailsElement = () => (
+      <Popover content={detailsList}
+        trigger='click'
+      >
+        <EllipsisOutlined key='ellipsis' />
+      </Popover>
+    )
+
     return (
       <Card
         style={{ width: '80%' }}
@@ -71,7 +97,7 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
         actions={[
           (deleteElement()),
           (editElement()),
-          <EllipsisOutlined key='ellipsis' />
+          (detailsElement())
         ]}
       >
         <Meta title={title} description={description ? formatDate(description) : ''} />

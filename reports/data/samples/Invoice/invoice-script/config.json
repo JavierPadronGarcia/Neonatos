@@ -1,0 +1,13 @@
+{
+    "name": "invoice-script",
+    "scope": "template",
+    "shortid": "P2A4opB3HD",
+    "creationDate": {
+        "$$date": 1704917656781
+    },
+    "modificationDate": {
+        "$$date": 1704977187529
+    },
+    "_id": "KXGTw5JU37vpekmU",
+    "$entitySet": "scripts"
+}

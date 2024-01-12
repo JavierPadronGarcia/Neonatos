@@ -1,0 +1,13 @@
+{
+    "name": "AveragePunctuation-script",
+    "scope": "template",
+    "shortid": "LWX1OfaBwy",
+    "creationDate": {
+        "$$date": 1704986577175
+    },
+    "modificationDate": {
+        "$$date": 1705062186054
+    },
+    "_id": "bdoxKR7jU663ORDQ",
+    "$entitySet": "scripts"
+}
