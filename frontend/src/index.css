@@ -19,3 +19,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:where(.css-dev-only-do-not-override-2i2tap).ant-popover {
+  z-index: 500 !important;
+}
+
+:where(.css-dev-only-do-not-override-2i2tap).ant-message {
+  z-index: 3000 !important;
+}

@@ -1,4 +1,3 @@
-// server side script fetching remote data and preparing report data source
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 
@@ -13,11 +12,15 @@ function getOptions(token) {
     return options;
 }
 
-// call remote http rest api
-async function fetchPunctuationsOfUsers(token) {
+async function fetchUserActivities(token, params) {
     return new Promise((resolve, reject) => {
-        axios.get('http://localhost:12080/api/cases', getOptions(token)).then(response => {
+        const {groupId, workUnitId, caseId, assigned, finishDate} = params;
+
+        axios.get(`http://localhost:12080/api/exercises/studentsAssignedToExerciseWithDetails/${groupId}/${workUnitId}/${caseId}/${assigned}/${finishDate}`,
+            getOptions(token)).then(response => {
             resolve(response.data)
+        }).catch(err => {
+            reject(err.message);
         })
     })
 }
@@ -25,5 +28,5 @@ async function fetchPunctuationsOfUsers(token) {
 async function beforeRender(req, res) {
     const token = req.data.token;
     req.data.user = jwt.decode(token);
-    req.data.cases = await fetchPunctuationsOfUsers(token);
+    req.data.userActivities = await fetchUserActivities(token, req.data.params);
 }

@@ -2,15 +2,117 @@
 
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1 {
+            padding-left: 1rem;
+        }
+
+        .header {
+            width: 100%;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding-inline: 2rem;
+        }
+
+        .header>div{
+            width: 100%;
+        }
+
+        .header>div:last-child{
+            text-align:end;
+        }
+
+        .main{
+            width:100%;
+            height: 960px;
+            padding-inline: 1rem;
+        }
+
+        .footer {
+            width: 100%;
+            border-top: 1px solid black;
+            padding-left: 1rem; 
+        }
+    </style>
 </head>
 
 <body>
-    {{#each cases}}
-    <div>
-       {{name}}
+    <h1>Reporte de notas</h1>
+    {{#each userActivities}}
+    <main class="main">
+        <header class="header">
+            <div>{{username}}</div>
+            <div>Media: {{getAveragePunctuation items}}</div>
+        </header>
+        <canvas id='userChart{{userId}}' style="margin-bottom:30px"></canvas>
+        <table class='table striped'>
+            <thead>
+                <tr>
+                    <th>Apartado</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{itemName}}</td>
+                    <td>{{gradeValue}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
+        <script>
+            var userData{{userId}} = {{{toJS items}}};
+
+            Chart.defaults.global.legend.display = false;
+
+            new Chart(userChart{{userId}}.getContext("2d"), {
+                type: 'bar',
+                data: {
+                    labels: userData{{userId}}.map(function (item) {
+                        return item.itemName;
+                    }),
+                    datasets: [{
+                        fillColor: 'blue',
+                        label: "Notas de los criterios",
+                        backgroundColor: "rgba(27,161,226,0.2)",
+                        borderColor: "rgba(27,161,226,1)",
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(27,161,226,0.4)",
+                        hoverBorderColor: "rgba(27,161,226,1)",
+                        data: userData{{userId}}.map(function (item) {
+                            return item.gradeValue;
+                        })
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 0
+                    }
+                }
+            });
+        </script>
+    </main>
+    <footer class="footer">
+        <span>Página {{getPageNumber @index}} ({{nowLocalStr}})</span>
+    </footer>
+    <div style='page-break-after: always;'>
     </div>
     {{/each}}
-    <h1>Total: {{countCases cases}}</h1>
 </body>
 
 </html>

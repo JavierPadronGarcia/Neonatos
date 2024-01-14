@@ -21,7 +21,6 @@ import TeacherMainPage from './pages/teacher-pages/teacher-main-page/TeacherMain
 import TeacherGroupPage from './pages/teacher-pages/teacher-group-page/TeacherGroupPage';
 import TeacherActivitiesPage from './pages/teacher-pages/teacher-activities-page/TeacherActivitiesPage';
 import AddActivityPage from './pages/teacher-pages/teacher-add-activity-page/AddActivityPage';
-import ExamplePage from './pages/examplePage';
 
 function App() {
 
@@ -39,8 +38,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-
-        <Route path="/prueba" element={<ExamplePage />} />
 
         <Route element={<PrivateRoute onlyLogged={true} />}>
           <Route path="/myUser" element={<UserPage />} />

@@ -1,8 +1,10 @@
-import { Button, Card, Popconfirm, Popover } from 'antd';
+import { Button, Card, Modal, Popconfirm, Popover } from 'antd';
 import { DeleteOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import ActivityForm from '../activity-form/ActivityForm';
 import { useNavigate, useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
+import ReportGenerator from '../report-generator/ReportGenerator';
 
 const { Meta } = Card;
 
@@ -12,6 +14,8 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
   const navigate = useNavigate();
   const groupId = params.id;
   const workUnitId = params.workUnitId;
+  const [reportOpen, setReportOpen] = useState(false);
+  const [popOverOpen, setpopOverOpen] = useState(false);
 
   const formatDate = (date) => {
     const newDate = new Date(date);
@@ -68,40 +72,52 @@ function ActivityCard({ edit, id, title, description, assigned, notifyDelete, no
     const prepareActivityReport = () => {
       const reportData = {
         groupId: groupId,
-        activityId: id,
+        caseId: id,
         workUnitId: workUnitId,
-        assigned: assigned
+        assigned: assigned,
+        finishDate: dayjs(description).format('YYYY-MM-DD')
       }
-      localStorage.setItem('reportData', JSON.stringify(reportData));
-      navigate('../../prueba');
+      return reportData;
     }
 
     const detailsList = () => (
       <ul>
-        <li><Button onClick={prepareActivityReport}>Ver reporte de notas</Button></li>
+        <li><Button onClick={() => setReportOpen(true)}>Ver reporte de notas</Button></li>
       </ul>
     )
 
     const detailsElement = () => (
       <Popover content={detailsList}
         trigger='click'
+        style={{ zIndex: 100 }}
       >
         <EllipsisOutlined key='ellipsis' />
       </Popover>
     )
 
     return (
-      <Card
-        style={{ width: '80%' }}
-        className='activities-card'
-        actions={[
-          (deleteElement()),
-          (editElement()),
-          (detailsElement())
-        ]}
-      >
-        <Meta title={title} description={description ? formatDate(description) : ''} />
-      </Card>
+      <>
+        <Modal centered
+          open={reportOpen}
+          onOk={() => setReportOpen(false)}
+          onCancel={() => setReportOpen(false)}
+          style={{ zIndex: '5000 !important' }}
+          width='90%'
+        >
+          <ReportGenerator reportData={prepareActivityReport()} />
+        </Modal>
+        <Card
+          style={{ width: '80%' }}
+          className='activities-card'
+          actions={[
+            (deleteElement()),
+            (editElement()),
+            (detailsElement())
+          ]}
+        >
+          <Meta title={title} description={description ? formatDate(description) : ''} />
+        </Card>
+      </>
     );
   }
 

@@ -75,6 +75,7 @@ require("./routes/grade.routes")(app);
 require("./routes/color.routes")(app);
 require("./routes/workunitcolors.routes")(app);
 require("./routes/workunitgroup.routes")(app);
+require("./routes/mail.routes")(app);
 
 
 let server = null;
