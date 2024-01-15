@@ -59,3 +59,293 @@
 2024-01-14T00:10:46.690Z - info: 2 worker threads initialized in 266ms
 2024-01-14T00:10:46.691Z - info: Starting temp files cleanup with 180000ms threshold
 2024-01-14T00:10:46.692Z - info: reporter initialized
+2024-01-14T13:33:28.108Z - info: Initializing jsreport (version: 4.2.0, configuration file: jsreport.config.json, nodejs: 18.17.1)
+2024-01-14T13:33:28.111Z - info: Searching for available extensions in C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\
+2024-01-14T13:33:28.123Z - info: Extensions location cache contains up to date information, skipping crawling in C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\
+2024-01-14T13:33:28.165Z - info: Found 35 extension(s)
+2024-01-14T13:33:28.217Z - debug: Writing extension locations cache to C:\Users\Javier\AppData\Local\Temp\jsreport\core\locations.json
+2024-01-14T13:33:28.219Z - debug: Discovered 35 extensions
+2024-01-14T13:33:28.260Z - debug: Extension authentication@4.0.1 is disabled, skipping
+2024-01-14T13:33:28.262Z - info: Using extension base@4.0.0
+2024-01-14T13:33:28.268Z - info: Using extension child-templates@4.0.0
+2024-01-14T13:33:28.273Z - info: Using extension cli@4.0.2
+2024-01-14T13:33:28.279Z - info: Using extension components@4.0.0
+2024-01-14T13:33:28.282Z - info: Using extension data@4.0.0
+2024-01-14T13:33:28.284Z - info: Using extension express@4.0.1
+2024-01-14T13:33:28.776Z - info: Using extension freeze@4.0.0
+2024-01-14T13:33:28.779Z - info: Using extension fs-store@4.0.1
+2024-01-14T13:33:28.937Z - info: Using extension handlebars@4.0.1
+2024-01-14T13:33:28.939Z - info: Using extension import-export@4.0.2
+2024-01-14T13:33:28.957Z - info: Using extension jsrender@4.0.0
+2024-01-14T13:33:28.959Z - info: Using extension licensing@4.0.1
+2024-01-14T13:33:28.996Z - info: Using extension localization@4.0.1
+2024-01-14T13:33:28.999Z - info: Using extension npm@4.0.0
+2024-01-14T13:33:29.003Z - info: Using extension pdf-utils@4.0.2
+2024-01-14T13:33:29.006Z - info: Using extension reports@4.0.0
+2024-01-14T13:33:29.010Z - info: Using extension tags@4.0.1
+2024-01-14T13:33:29.013Z - info: Using extension text@4.0.0
+2024-01-14T13:33:29.015Z - info: Using extension version-control@4.0.0
+2024-01-14T13:33:29.037Z - info: Using extension assets@4.0.2
+2024-01-14T13:33:29.055Z - info: Using extension authorization@4.0.0
+2024-01-14T13:33:29.061Z - debug: Extension authorization@4.0.0 was disabled
+2024-01-14T13:33:29.062Z - info: Using extension browser-client@4.0.0
+2024-01-14T13:33:29.066Z - info: Using extension chrome-pdf@4.0.0
+2024-01-14T13:33:29.070Z - debug: Chrome strategy is chrome-pool, numberOfWorkers: 1
+2024-01-14T13:33:29.070Z - info: Using extension docx@4.1.1
+2024-01-14T13:33:29.073Z - info: Using extension html-to-xlsx@4.0.1
+2024-01-14T13:33:29.640Z - info: html-to-xlsx detected chrome as available html engine
+2024-01-14T13:33:29.641Z - info: Using extension pptx@4.1.0
+2024-01-14T13:33:29.643Z - info: Using extension scheduling@4.0.0
+2024-01-14T13:33:29.678Z - info: Using extension scripts@4.0.0
+2024-01-14T13:33:29.680Z - info: Using extension static-pdf@4.0.0
+2024-01-14T13:33:29.681Z - info: Using extension studio@4.0.2
+2024-01-14T13:33:29.826Z - info: Using extension xlsx@4.0.2
+2024-01-14T13:33:29.830Z - info: Using extension public-templates@4.0.0
+2024-01-14T13:33:29.832Z - debug: Extension public-templates@4.0.0 was disabled
+2024-01-14T13:33:29.832Z - info: Using extension sample-template@4.0.0
+2024-01-14T13:33:29.835Z - info: Using extension studio-theme-dark@4.0.0
+2024-01-14T13:33:29.837Z - info: Code sandboxing is disabled, users can potentially penetrate the local system if you allow code from external users to be part of your reports
+2024-01-14T13:33:29.838Z - info: Using general timeout for rendering (reportTimeout: 60000)
+2024-01-14T13:33:29.838Z - info: Using fs provider for template store.
+2024-01-14T13:33:29.845Z - info: fs store is persisting using fs for C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\data
+2024-01-14T13:33:29.851Z - info: fs store is loading data
+2024-01-14T13:33:29.887Z - info: fs store is initialized successfully
+2024-01-14T13:33:29.894Z - debug: studio default theme is: light
+2024-01-14T13:33:29.905Z - info: Creating default express app.
+2024-01-14T13:33:29.943Z - info: jsreport server successfully started on http port: 5488
+2024-01-14T13:33:29.944Z - info: Verifying license key free
+2024-01-14T13:33:29.947Z - info: Using free license
+2024-01-14T13:33:29.950Z - info: Initializing worker threads
+2024-01-14T13:33:29.951Z - debug: Extensions in workers: base, child-templates, components, data, express, handlebars, jsrender, localization, npm, pdf-utils, reports, text, version-control, assets, browser-client, chrome-pdf, docx, html-to-xlsx, pptx, scripts, static-pdf, studio, xlsx
+2024-01-14T13:33:30.291Z - info: 2 worker threads initialized in 341ms
+2024-01-14T13:33:30.292Z - info: Starting temp files cleanup with 180000ms threshold
+2024-01-14T13:33:30.293Z - info: reporter initialized
+2024-01-14T14:38:42.185Z - info: Render request 1 queued for execution and waiting for available worker rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.246Z - info: Starting rendering request 1 rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.248Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.270Z - debug: Inline data specified. rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.272Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.875Z - debug: Base url not specified, skipping its injection. rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:42.876Z - debug: Rendering engine handlebars rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:43.569Z - debug: Executing recipe chrome-pdf rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:44.661Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:45.961Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/0997d5ff-a50f-410f-85f9-64d8cb4f75f6-chrome-pdf.html rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:45.961Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:45.962Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:45.962Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/0997d5ff-a50f-410f-85f9-64d8cb4f75f6-chrome-pdf.html rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:46.177Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:46.178Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:46.287Z - debug: Running chrome with params {"printBackground":true,"timeout":58609,"margin":{}} rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:46.358Z - debug: Skipping storing report. rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:38:46.359Z - info: Rendering request 1 finished in 4178 ms rootId=qj79yy9ls38jp2q, id=qj79yy9ls38jp2q
+2024-01-14T14:42:02.515Z - info: Render request 2 queued for execution and waiting for available worker rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:02.539Z - info: Starting rendering request 2 rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:02.540Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:02.541Z - debug: Inline data specified. rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:02.541Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:03.009Z - debug: Base url not specified, skipping its injection. rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:03.009Z - debug: Rendering engine handlebars rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:04.078Z - debug: Executing recipe chrome-pdf rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:04.292Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.251Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/e291b8d3-77b5-4568-8b46-020b7bf3bb34-chrome-pdf.html rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.252Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.253Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.254Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/e291b8d3-77b5-4568-8b46-020b7bf3bb34-chrome-pdf.html rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.468Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.469Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.576Z - debug: Running chrome with params {"printBackground":true,"timeout":58432,"margin":{}} rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.663Z - debug: Skipping storing report. rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:42:05.664Z - info: Rendering request 2 finished in 3148 ms rootId=7hjm10n5yzq3omo, id=7hjm10n5yzq3omo
+2024-01-14T14:51:01.690Z - debug: OData query on templates
+2024-01-14T14:51:01.700Z - debug: OData query on settings
+2024-01-14T14:51:01.704Z - debug: OData query on folders
+2024-01-14T14:51:01.710Z - debug: OData query on components
+2024-01-14T14:51:01.714Z - debug: OData query on data
+2024-01-14T14:51:01.719Z - debug: OData query on tags
+2024-01-14T14:51:01.724Z - debug: OData query on assets
+2024-01-14T14:51:01.730Z - debug: OData query on scripts
+2024-01-14T14:51:01.734Z - debug: OData query on schedules
+2024-01-14T14:51:01.858Z - debug: OData query on templates
+2024-01-14T14:51:01.890Z - debug: OData query on profiles
+2024-01-14T14:51:01.906Z - debug: OData query on profiles
+2024-01-14T14:51:01.921Z - debug: OData query on profiles
+2024-01-14T14:51:01.928Z - debug: OData query on profiles
+2024-01-14T14:51:01.933Z - debug: OData query on profiles
+2024-01-14T14:51:01.938Z - debug: OData query on profiles
+2024-01-14T14:51:01.941Z - debug: OData query on templates
+2024-01-14T14:51:09.755Z - debug: OData query on templates
+2024-01-14T14:51:10.728Z - debug: OData query on scripts
+2024-01-14T14:51:32.519Z - debug: OData update on scripts
+2024-01-14T14:51:32.642Z - debug: OData query on scripts
+2024-01-14T15:52:11.941Z - info: Render request 3 queued for execution and waiting for available worker rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:11.978Z - info: Starting rendering request 3 rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:11.979Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:11.979Z - debug: Inline data specified. rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:11.980Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.084Z - debug: Base url not specified, skipping its injection. rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.085Z - debug: Rendering engine handlebars rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.149Z - debug: Executing recipe chrome-pdf rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.150Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.691Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/801a88ec-9399-4f8e-9fc1-92e7c5c6a3c1-chrome-pdf.html rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.692Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.693Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/801a88ec-9399-4f8e-9fc1-92e7c5c6a3c1-chrome-pdf.html rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.693Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.694Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.695Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.799Z - debug: Running chrome with params {"printBackground":true,"timeout":59842,"margin":{}} rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.864Z - debug: Skipping storing report. rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:52:12.865Z - info: Rendering request 3 finished in 925 ms rootId=n6rs8vxz4jmmgps, id=n6rs8vxz4jmmgps
+2024-01-14T15:54:09.290Z - info: Render request 4 queued for execution and waiting for available worker rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.323Z - info: Starting rendering request 4 rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.323Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.324Z - debug: Inline data specified. rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.325Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.427Z - debug: Base url not specified, skipping its injection. rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.429Z - debug: Rendering engine handlebars rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.504Z - debug: Executing recipe chrome-pdf rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.505Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.612Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/31573384-c349-443a-8afa-194a31ab933a-chrome-pdf.html rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.613Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.614Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.614Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/31573384-c349-443a-8afa-194a31ab933a-chrome-pdf.html rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.615Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.616Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.720Z - debug: Running chrome with params {"printBackground":true,"timeout":59846,"margin":{}} rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.790Z - debug: Skipping storing report. rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-14T15:54:09.791Z - info: Rendering request 4 finished in 501 ms rootId=vim8pqlqkoxkysg, id=vim8pqlqkoxkysg
+2024-01-15T10:33:37.963Z - info: Initializing jsreport (version: 4.2.0, configuration file: jsreport.config.json, nodejs: 18.17.1)
+2024-01-15T10:33:37.966Z - info: Searching for available extensions in C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\
+2024-01-15T10:33:37.977Z - info: Extensions location cache contains up to date information, skipping crawling in C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\
+2024-01-15T10:33:38.025Z - info: Found 35 extension(s)
+2024-01-15T10:33:38.077Z - debug: Writing extension locations cache to C:\Users\Javier\AppData\Local\Temp\jsreport\core\locations.json
+2024-01-15T10:33:38.079Z - debug: Discovered 35 extensions
+2024-01-15T10:33:38.121Z - debug: Extension authentication@4.0.1 is disabled, skipping
+2024-01-15T10:33:38.124Z - info: Using extension base@4.0.0
+2024-01-15T10:33:38.132Z - info: Using extension child-templates@4.0.0
+2024-01-15T10:33:38.138Z - info: Using extension cli@4.0.2
+2024-01-15T10:33:38.143Z - info: Using extension components@4.0.0
+2024-01-15T10:33:38.146Z - info: Using extension data@4.0.0
+2024-01-15T10:33:38.149Z - info: Using extension express@4.0.1
+2024-01-15T10:33:38.648Z - info: Using extension freeze@4.0.0
+2024-01-15T10:33:38.650Z - info: Using extension fs-store@4.0.1
+2024-01-15T10:33:38.813Z - info: Using extension handlebars@4.0.1
+2024-01-15T10:33:38.815Z - info: Using extension import-export@4.0.2
+2024-01-15T10:33:38.831Z - info: Using extension jsrender@4.0.0
+2024-01-15T10:33:38.833Z - info: Using extension licensing@4.0.1
+2024-01-15T10:33:38.871Z - info: Using extension localization@4.0.1
+2024-01-15T10:33:38.873Z - info: Using extension npm@4.0.0
+2024-01-15T10:33:38.878Z - info: Using extension pdf-utils@4.0.2
+2024-01-15T10:33:38.882Z - info: Using extension reports@4.0.0
+2024-01-15T10:33:38.887Z - info: Using extension tags@4.0.1
+2024-01-15T10:33:38.890Z - info: Using extension text@4.0.0
+2024-01-15T10:33:38.892Z - info: Using extension version-control@4.0.0
+2024-01-15T10:33:38.913Z - info: Using extension assets@4.0.2
+2024-01-15T10:33:38.933Z - info: Using extension authorization@4.0.0
+2024-01-15T10:33:38.942Z - debug: Extension authorization@4.0.0 was disabled
+2024-01-15T10:33:38.943Z - info: Using extension browser-client@4.0.0
+2024-01-15T10:33:38.947Z - info: Using extension chrome-pdf@4.0.0
+2024-01-15T10:33:38.952Z - debug: Chrome strategy is chrome-pool, numberOfWorkers: 1
+2024-01-15T10:33:38.953Z - info: Using extension docx@4.1.1
+2024-01-15T10:33:38.956Z - info: Using extension html-to-xlsx@4.0.1
+2024-01-15T10:33:39.485Z - info: html-to-xlsx detected chrome as available html engine
+2024-01-15T10:33:39.486Z - info: Using extension pptx@4.1.0
+2024-01-15T10:33:39.488Z - info: Using extension scheduling@4.0.0
+2024-01-15T10:33:39.522Z - info: Using extension scripts@4.0.0
+2024-01-15T10:33:39.524Z - info: Using extension static-pdf@4.0.0
+2024-01-15T10:33:39.525Z - info: Using extension studio@4.0.2
+2024-01-15T10:33:39.665Z - info: Using extension xlsx@4.0.2
+2024-01-15T10:33:39.668Z - info: Using extension public-templates@4.0.0
+2024-01-15T10:33:39.670Z - debug: Extension public-templates@4.0.0 was disabled
+2024-01-15T10:33:39.671Z - info: Using extension sample-template@4.0.0
+2024-01-15T10:33:39.674Z - info: Using extension studio-theme-dark@4.0.0
+2024-01-15T10:33:39.676Z - info: Code sandboxing is disabled, users can potentially penetrate the local system if you allow code from external users to be part of your reports
+2024-01-15T10:33:39.677Z - info: Using general timeout for rendering (reportTimeout: 60000)
+2024-01-15T10:33:39.677Z - info: Using fs provider for template store.
+2024-01-15T10:33:39.682Z - info: fs store is persisting using fs for C:\Users\Javier\Desktop\Proyecto\proyectoNeonatos\reports\data
+2024-01-15T10:33:39.693Z - info: fs store is loading data
+2024-01-15T10:33:39.727Z - info: fs store is initialized successfully
+2024-01-15T10:33:39.733Z - debug: studio default theme is: light
+2024-01-15T10:33:39.744Z - info: Creating default express app.
+2024-01-15T10:33:39.787Z - info: jsreport server successfully started on http port: 5488
+2024-01-15T10:33:39.789Z - info: Verifying license key free
+2024-01-15T10:33:39.790Z - info: Using free license
+2024-01-15T10:33:39.794Z - info: Initializing worker threads
+2024-01-15T10:33:39.795Z - debug: Extensions in workers: base, child-templates, components, data, express, handlebars, jsrender, localization, npm, pdf-utils, reports, text, version-control, assets, browser-client, chrome-pdf, docx, html-to-xlsx, pptx, scripts, static-pdf, studio, xlsx
+2024-01-15T10:33:40.101Z - info: 2 worker threads initialized in 307ms
+2024-01-15T10:33:40.101Z - info: Starting temp files cleanup with 180000ms threshold
+2024-01-15T10:33:40.102Z - info: reporter initialized
+2024-01-15T10:43:07.424Z - info: Render request 1 queued for execution and waiting for available worker rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:07.495Z - info: Starting rendering request 1 rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:07.497Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:07.499Z - debug: Inline data specified. rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:07.502Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:08.070Z - debug: Base url not specified, skipping its injection. rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:08.071Z - debug: Rendering engine handlebars rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:08.757Z - debug: Executing recipe chrome-pdf rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:09.854Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.613Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/c6ca3b5b-4d7c-4df9-bbf5-d0b4cf0015ea-chrome-pdf.html rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.614Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.614Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.615Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/c6ca3b5b-4d7c-4df9-bbf5-d0b4cf0015ea-chrome-pdf.html rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.831Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.832Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.938Z - debug: Running chrome with params {"printBackground":true,"timeout":58661,"margin":{}} rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.980Z - debug: Skipping storing report. rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:43:10.981Z - info: Rendering request 1 finished in 3559 ms rootId=0ay4q98tw5rv6mx, id=0ay4q98tw5rv6mx
+2024-01-15T10:45:43.538Z - debug: OData query on templates
+2024-01-15T10:45:43.549Z - debug: OData query on settings
+2024-01-15T10:45:43.553Z - debug: OData query on folders
+2024-01-15T10:45:43.563Z - debug: OData query on components
+2024-01-15T10:45:43.569Z - debug: OData query on data
+2024-01-15T10:45:43.574Z - debug: OData query on tags
+2024-01-15T10:45:43.580Z - debug: OData query on assets
+2024-01-15T10:45:43.586Z - debug: OData query on scripts
+2024-01-15T10:45:43.592Z - debug: OData query on schedules
+2024-01-15T10:45:43.663Z - debug: OData query on templates
+2024-01-15T10:45:43.686Z - debug: OData query on profiles
+2024-01-15T10:45:43.710Z - debug: OData query on profiles
+2024-01-15T10:45:43.726Z - debug: OData query on profiles
+2024-01-15T10:45:43.734Z - debug: OData query on profiles
+2024-01-15T10:45:43.739Z - debug: OData query on profiles
+2024-01-15T10:45:43.744Z - debug: OData query on profiles
+2024-01-15T10:45:43.748Z - debug: OData query on templates
+2024-01-15T10:45:46.444Z - debug: OData query on templates
+2024-01-15T10:46:19.294Z - debug: OData query on scripts
+2024-01-15T12:25:40.613Z - debug: OData update on templates
+2024-01-15T12:25:40.650Z - debug: OData query on templates
+2024-01-15T12:25:53.255Z - info: Render request 2 queued for execution and waiting for available worker rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.295Z - info: Starting rendering request 2 rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.297Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.314Z - debug: Inline data specified. rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.315Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.864Z - debug: Base url not specified, skipping its injection. rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:53.865Z - debug: Rendering engine handlebars rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.549Z - debug: Executing recipe chrome-pdf rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.872Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.980Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/e99681e8-d278-42fa-87ef-a5f0a27805ec-chrome-pdf.html rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.981Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.982Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:54.983Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/e99681e8-d278-42fa-87ef-a5f0a27805ec-chrome-pdf.html rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:55.197Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:55.198Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:55.305Z - debug: Running chrome with params {"printBackground":true,"timeout":58696,"margin":{}} rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:55.370Z - debug: Skipping storing report. rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:25:55.372Z - info: Rendering request 2 finished in 2122 ms rootId=1fq3ccsglgflwgq, id=1fq3ccsglgflwgq
+2024-01-15T12:45:04.977Z - info: Render request 3 queued for execution and waiting for available worker rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.021Z - info: Starting rendering request 3 rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.022Z - info: Rendering template { name: AveragePunctuation, recipe: chrome-pdf, engine: handlebars, preview: false } rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.023Z - debug: Inline data specified. rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.034Z - debug: Executing script AveragePunctuation-script (beforeRender) rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.137Z - debug: Base url not specified, skipping its injection. rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.138Z - debug: Rendering engine handlebars rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.229Z - debug: Executing recipe chrome-pdf rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.231Z - debug: Converting with chrome HeadlessChrome/117.0.5938.149 using chrome-pool strategy rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.329Z - debug: Page request: GET (document) file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/10089510-05ac-46a0-a973-1245e3c82d82-chrome-pdf.html rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.330Z - debug: Page request: GET (stylesheet) https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.330Z - debug: Page request: GET (script) https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.331Z - debug: Page request finished: GET (document) 200 file:///C:/Users/Javier/AppData/Local/Temp/jsreport/autocleanup/10089510-05ac-46a0-a973-1245e3c82d82-chrome-pdf.html rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.430Z - debug: Page request finished: GET (stylesheet) 200 https://cdnjs.cloudflare.com/ajax/libs/metro/4.1.5/css/metro.min.css rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.431Z - debug: Page request finished: GET (script) 200 https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.433Z - debug: Running chrome with params {"printBackground":true,"timeout":59809,"margin":{}} rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.509Z - debug: Skipping storing report. rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
+2024-01-15T12:45:05.510Z - info: Rendering request 3 finished in 534 ms rootId=8kgp5i0saf5pfuy, id=8kgp5i0saf5pfuy
